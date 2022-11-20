@@ -1,4 +1,6 @@
 # Object Recognition using Microsoft Azure Computer Vision
+Extracts features from images to be used in appraisal
+
 ## Setup
 Create a virtual environment then install the following packages
 ```console
