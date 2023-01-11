@@ -10,10 +10,11 @@ import sys
 import time
 
 # island reffering to kitchen island
-important_features = [
+all_important_features = [
     "wood", "furniture", "table", "kitchen", "island", "bedroom", "bed", "porch", "stone",
     "Driveway", "sidewalk", "basement"
 ]
+extracted_features = []
 
 # Authenticates credentials and creates a client
 subscription_key = "adb3838b97db400f9c5326e36e2d7037"
@@ -21,10 +22,6 @@ endpoint = "https://marcoscomputervision.cognitiveservices.azure.com/"
 
 computervision_client = ComputerVisionClient(endpoint, CognitiveServicesCredentials(subscription_key))
 
-
-# images_folder = os.path.join (os.path.dirname(os.path.abspath(__file__)), "images")
-
-# file_path = str(input("Enter path of image: "))
 folder = "Sample-Data/sample house 1"
 files = os.listdir(folder)
 
@@ -42,10 +39,15 @@ for file in files:
         # tags_result_remote = computervision_client.tag_image(remote_image_url)
 
         # Print results with extracted tags
-        print(f"## Tags in the {file} image ##")
+        print(f"Processing {file} image...")
+        
         if (len(results.tags) == 0):
             print("No tags detected.")
         else:
             for tag in results.tags:
-                print(tag)
-        print()
+                # filters out features we want while preventing duplicates from being added to 
+                # the extracted_features variable
+                if tag in all_important_features and tag not in extracted_features:
+                    extracted_features.append(tag)
+
+print(extracted_features)
