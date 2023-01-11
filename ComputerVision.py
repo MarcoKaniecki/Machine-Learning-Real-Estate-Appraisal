@@ -36,7 +36,6 @@ for file in files:
     with open(file_path, mode='rb') as image_stream:
         # Call API with image
         results = computervision_client.describe_image_in_stream( image_stream )
-        # tags_result_remote = computervision_client.tag_image(remote_image_url)
 
         print(f"Processing {file} image...")
         
