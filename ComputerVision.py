@@ -38,7 +38,6 @@ for file in files:
         results = computervision_client.describe_image_in_stream( image_stream )
         # tags_result_remote = computervision_client.tag_image(remote_image_url)
 
-        # Print results with extracted tags
         print(f"Processing {file} image...")
         
         if (len(results.tags) == 0):
