@@ -27,7 +27,7 @@ const Navbar = () => {
 
                 {/* Anything over minimum width the button will be hidden */}
                 <div className='md:hidden' onClick={handleClick}>
-                    {!nav ? <FaBars className='w-5' /> : <ImCross className='w-5' />}
+                    {!nav ? <FaBars className='w-8 h-8' /> : <ImCross className='w-8 h-8' />}
                 </div>
             </div>
 
