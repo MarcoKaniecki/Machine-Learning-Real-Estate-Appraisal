@@ -25,7 +25,7 @@ const Hero = () => {
                     <p>Features</p>
                     <div className='flex justify-between flex-wrap px-4'>
                         <p className='flex px-4 py-2 text-slate-500'><AiFillGithub className='h-5 text-indigo-600 mr-1' /> Open Source</p>
-                        <p className='flex px-4 py-2 text-slate-500'><GiGears className='h-5 text-indigo-600 mr-1' /> Machine Learning</p>
+                        <p className='flex px-4 py-2 text-slate-500'><GiGears className='h-5 text-indigo-600 mr-1' /> Deep Learning</p>
                         <p className='flex px-4 py-2 text-slate-500'><ImPriceTag className='h-5 text-indigo-600 mr-1' /> Appraisal</p>
                         <p className='flex px-4 py-2 text-slate-500'><BsFillStopwatchFill className='h-5 text-indigo-600 mr-1' /> Fast</p>
                     </div>
