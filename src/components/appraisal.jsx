@@ -6,7 +6,7 @@ import supportImg from '../assets/appraisal-bg.png'
 
 const Appraisal = () => {
     return (
-        <div className='w-full mt-24'>
+        <div name='appraisal' className='w-full mt-24'>
             {/* the /90 after 900 for the color is for transparency */}
             <div className='w-full h-[700px] bg-gray-900/90 absolute'>
                 <img className='w-full h-full object-cover mix-blend-overlay' src={supportImg} alt="/" />
@@ -16,11 +16,11 @@ const Appraisal = () => {
                 <div className='px-4 py-12'>
                     <h2 className='text-3xl pt-8 text-slate-300 uppercase text-center'>Appraisal</h2>
                     <h3 className='text-5xl fond-bold py-6 text-center'>Steps to get your home appraised</h3>
-                    <p className='py-4 text-3xl text-slate-300'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil tempore recusandae, eos harum dolorum cupiditate commodi natus odit id a quo ut ea. Ipsum nemo facilis delectus repellendus. Eum, sit.</p>
+                    <p className='py-4 text-3xl text-slate-300 text-center'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil tempore recusandae, eos harum dolorum cupiditate commodi natus odit id a quo ut ea. Ipsum nemo facilis delectus repellendus. Eum, sit.</p>
                 </div>
                 
                 {/* div for all boxes */}
-                <div className='grid grid-cols-1 lg:grid-cols-2 relative gap-x-8 gap-y-16 px-4 pt-12 sm:pt-20 text-black'>
+                <div className='grid grid-cols-1 relative gap-x-8 gap-y-16 px-4 pt-12 sm:pt-20 text-black'>
                     {/* div for each separate box */}
                     <div className='bg-white rounded-xl shadow-2xl'>
                         <div className='p-8'>
