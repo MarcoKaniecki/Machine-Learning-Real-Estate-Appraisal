@@ -4,7 +4,7 @@ import {BsFillStopwatchFill} from 'react-icons/bs'
 import {GiGears} from 'react-icons/gi'
 import {ImPriceTag} from 'react-icons/im'
 
-import bgImg from '../assets/cyber-bg.png'
+import bgImg from '../assets/house.png'
 
 const Hero = () => {
     return (
