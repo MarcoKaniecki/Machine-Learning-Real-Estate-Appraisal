@@ -17,7 +17,7 @@ const Navbar = () => {
                         <li><Link to="home" smooth={true} duration={500}>Home</Link></li>
                         <li><Link to="about" smooth={true} offset={-200} duration={500}>About</Link></li>
                         <li><Link to="appraisal" smooth={true} offset={-50} duration={500}>Appraisal</Link></li>
-                        <li><Link to="documentation" smooth={true} offset={50} duration={500}>Documentation</Link></li>
+                        <li><Link to="methodology" smooth={true} offset={50} duration={500}>Methodology</Link></li>
                     </ul>
                 </div>
                 <div className='hidden md:flex pr-4'>
@@ -45,7 +45,7 @@ const Navbar = () => {
                     <Link onClick={handleClose} to="appraisal" smooth={true} offset={-80} duration={500}>Appraisal</Link>
                 </li>
                 <li className='border-b-2 border-zinc-300 w-full'>
-                    <Link onClick={handleClose} to="documentation" smooth={true} offset={50} duration={500}>Documentation</Link>
+                    <Link onClick={handleClose} to="methodology" smooth={true} offset={50} duration={500}>Methodology</Link>
                 </li>
                 
                 {/* Stack buttons ontop of one another using flex and flex-col */}
