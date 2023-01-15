@@ -52,7 +52,7 @@ const Appraisal = () => {
                             <BsCardText className='w-16 h-16 p-4 bg-indigo-600 text-white rounded-lg mt-[-4rem]'/>
                             <h3 className='font-bold text-2xl my-6'>Text</h3>
 
-
+                            {/*
                             <form>
                                 <div className="grid gap-6 mb-6 md:grid-cols-2">
                                     <div>
@@ -85,13 +85,19 @@ const Appraisal = () => {
                                     <input className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5" placeholder="" required />
                                 </div> 
                             </form>
-
+                            */}
                             <textarea id="message" 
                                 rows="4" 
                                 className="block p-2.5 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-indigo-600 focus:border-indigo-600" 
-                                placeholder="Anything else to add...">
+                                placeholder="Detailed description of home...">
                             </textarea>
                         </div>
+
+                        {/* 
+                            Pressing save will already have the text running through the NLP, to extract the info.
+                            If anything is missing something will pop-up saying whats missing.
+                            Only after the bare minimum is accounted for, will the appraise button actually work.
+                        */}
 
                         <div className='bg-slate-100 pl-8 py-4 rounded-b-xl'>
                             <p className='flex items-center text-indigo-600'>
