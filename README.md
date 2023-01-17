@@ -1,3 +1,21 @@
+# How to setup and run
+
+Install Node.js through their website (https://nodejs.org/en/)
+
+For this branch yarn is being used as our package manager.
+To install and upgrade yarn run the following
+`npm install --global yarn`
+
+Then run
+`yarn install`
+to install all the packages used in the program.
+
+Use
+`yarn start`
+to setup the localhost and have the UI be displayed in a browser window
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
