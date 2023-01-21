@@ -1,4 +1,8 @@
-# Object Recognition using Microsoft Azure Computer Vision
+# Deep-Learning-Real-Estate-Appraisal
+The project aims to build a solution for real estate appraisal by utilizing Deep Learning. 
+
+
+# Backend - Object Recognition using Microsoft Azure Computer Vision
 Extracts features from images to be used in appraisal
 
 ## Setup
