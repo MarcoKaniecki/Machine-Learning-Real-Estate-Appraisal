@@ -23,14 +23,20 @@ Install Node.js through their website (https://nodejs.org/en/)
 
 For this branch yarn is being used as our package manager.
 To install and upgrade yarn run the following
-`npm install --global yarn`
+```console
+npm install --global yarn
+```
 
 Then run
-`yarn install`
+```console
+yarn install
+```
 to install all the packages used in the program.
 
-Use
-`yarn start`
+Run
+```console
+yarn start
+```
 to setup the localhost and have the UI be displayed in a browser window
 
 
