@@ -1,6 +1,10 @@
 # Using Deep Learning for Real Estate Appraisal
 The project aims to build a solution for real estate appraisal by utilizing Deep Learning. 
 
+## Django demo program
+Go to the Django folder in terminal and run the following commands
+% source venv_d/bin/activate
+% python manage.py runserver
 
 ## Backend - Object Recognition using Microsoft Azure Computer Vision
 Extracts features from images to be used in appraisal
