@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>hello do you like images if so come in and take off your shoes</title>
+    <h1>IMAGE TIME LET'S GO</h1>
+</head>
+
+<body>
+    <div>
+        <a href="{% url 'home' %}">Home</a>
+    </div>
+    {% for alb in album_list %}
+    <div>
+        <h3>{{alb.name}}</h3>
+        {% for image in image_list %}
+
+            {% if alb == image.album %}
+                <a href="{% url 'delete_album' alb.id %}">
+                    <img src="{{ image.image.url }}" alt="{{ image.id }}" height=100px>
+                </a>
+            {% endif %}
+
+        {% endfor %}
+    </div>
+    {% endfor %}
+
+    {% comment %} {% for image in image_list %}
+    <div>
+        <h3>{{image.title}}</h3>
+        <a href="{% url 'delete_image' image.id %}">
+            <img src="{{ image.image.url }}" alt="{{ image.title }}" height=100px>
+        </a>
+    </div>
+    {% endfor %} {% endcomment %}
+</body>
+
+</html>

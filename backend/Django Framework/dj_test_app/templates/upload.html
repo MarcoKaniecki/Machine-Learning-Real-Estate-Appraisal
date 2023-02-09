@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>give me your images</title>
+    <h1>I HUNGER FOR images</h1>
+</head>
+
+<body>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="image">Upload Image:</label>
+        <input type="file" name="images" id="images" multiple>
+        <br>
+        <label for="name">Album name:</label>
+        <input type="name" name="name" id="name">
+        <br>
+        <label for="description">Description:</label>
+        <textarea name="description" id="description"></textarea>
+        <br>
+        <input type="submit" value="Upload">
+    </form>    
+    <div>
+        <a href="{% url 'home' %}">Home</a>
+    </div>
+</body>
+
+</html>
