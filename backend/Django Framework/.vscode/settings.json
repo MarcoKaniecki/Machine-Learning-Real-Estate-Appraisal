@@ -1,5 +1,0 @@
-{
-    "python.terminal.activateEnvInCurrentTerminal": true,
-    "python.defaultInterpreterPath": "/Users/jo/Documents/Django/venv_d/bin/python3",
-    "html.format.templating": true
-}
