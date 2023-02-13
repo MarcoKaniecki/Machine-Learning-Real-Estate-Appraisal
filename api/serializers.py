@@ -1,7 +1,7 @@
-from rest_framework.serializers import ModelSerializer
-from .models import RawAppraisalData
+from rest_framework import serializers
+from .models import ApprData
 
-class RawAppraisalDataSerializer(ModelSerializer):
+class ApprDataSerializer(serializers.ModelSerializer):
     class Meta:
-        model = RawAppraisalData
-        fields = ['id', 'description']
+        model = ApprData
+        fields = '__all__'

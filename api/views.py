@@ -1,20 +1,39 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from rest_framework.response import Response
-from rest_framework import viewsets
+from rest_framework import status
 from rest_framework.decorators import api_view
-from .serializers import RawAppraisalDataSerializer
-from .models import RawAppraisalData
+from rest_framework.parsers import MultiPartParser, FormParser, FileUploadParser
+from rest_framework.views import APIView
+from .serializers import ApprDataSerializer
+from .models import ApprData
 
 
 # from . import DescriptionForm
 
+class PostApprData(APIView):
+    parser_classes = (FormParser, FileUploadParser)
     
-def postDescription(request):
-    appr_data = RawAppraisalData.objects.all()
-    serializer = RawAppraisalDataSerializer
+    def get(self, request, *args, **kwargs):
+        data = ApprData.objects.all()
+        serializer = ApprDataSerializer(data, many=True)
+        return Response(serializer.data)
+    
+    def post(self, request, *args, **kwargs):
+        data_serializer = ApprDataSerializer(data=request.data)
+        if data_serializer.is_valid():
+            data_serializer.save()
+            return Response(data_serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            print('error', data_serializer.errors)
+            return Response(data_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+   
+'''    
+def postDescription(APIview):
+    appr_data = ApprData.objects.all()
+    serializer = ApprDataSerializer
     return Response(serializer.data)
-'''
+
 def post_data(request):
     return HttpResponse('processed successfully')
 

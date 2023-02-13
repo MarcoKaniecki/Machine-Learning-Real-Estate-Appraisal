@@ -3,6 +3,6 @@ from django.contrib import admin
 # Register your models here.
 
 # import model and register with admin panel
-from .models import RawAppraisalData
+from .models import ApprData
 
-admin.site.register(RawAppraisalData)
+admin.site.register(ApprData)
