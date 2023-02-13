@@ -4,4 +4,4 @@ from .models import RawAppraisalData
 class RawAppraisalDataSerializer(ModelSerializer):
     class Meta:
         model = RawAppraisalData
-        fields = '__all__' # ['description']
+        fields = ['id', 'description']

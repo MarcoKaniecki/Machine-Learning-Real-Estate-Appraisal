@@ -1,10 +1,31 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { BsImages, BsCardText, BsSave, BsCloudUpload } from 'react-icons/bs'
 
 import supportImg from '../assets/appraisal-bg.png'
 
 const Appraisal = () => {
+    const [description, setDescription] = useState('');
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        try {
+          const response = await fetch('/api/rawappraisaldata/', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ description })
+          });
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          setDescription('');
+        } catch (error) {
+          console.error('There was a problem submitting the form:', error);
+        }
+      };
+
     return (
         <div name='appraisal' className='w-full mt-24'>
             {/* the /90 after 900 for the color is for transparency */}
@@ -34,7 +55,8 @@ const Appraisal = () => {
                                         <p className="mb-2 text-sm text-gray-600"><span className="font-semibold">Click to upload</span> or drag and drop</p>
                                         <p className="text-xs text-gray-600">PNG or JPG (MAX. 800x400px)</p>
                                     </div>
-                                    <input required multiple id="dropzone-file" type="file" className="hidden" />
+                                    {/* add required multiple in the future */}
+                                    <input id="dropzone-file" type="file" className="hidden" />
                                 </label>
                             </div> 
 
@@ -86,11 +108,15 @@ const Appraisal = () => {
                                 </div> 
                             </form>
                             */}
-                            <textarea id="message" 
+                            <form onSubmit={handleSubmit}>
+                                <textarea id="message" 
+                                value={description}
+                                onChange={event => setDescription(event.target.value)}
                                 rows="4" 
                                 className="block p-2.5 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-indigo-600 focus:border-indigo-600" 
                                 placeholder="Detailed description of home...">
-                            </textarea>
+                                </textarea>
+                            </form>
                         </div>
 
                         {/* 
@@ -107,7 +133,7 @@ const Appraisal = () => {
                     </div>
 
                     <div className='text-center'>
-                        <button className='py-3 px-6 sm:w-[60%] md:w-[30%] my-4 shadow-xl'>Appraise!</button>
+                        <button type="submit" className='py-3 px-6 sm:w-[60%] md:w-[30%] my-4 shadow-xl'>Appraise!</button>
                     </div>
                 </div>
             </div>
