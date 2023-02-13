@@ -1,16 +1,15 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-from . import DescriptionForm
+
+# from . import DescriptionForm
 
 # Create your views here.
-
-def post_images(request):
-    if request.method == 'POST':
-        pass
-        # form = ImageForm
+def post_data(request):
+    return HttpResponse('processed successfully')
         
-def post_description(request):
+'''
+def post_description_and_images(request):
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
@@ -26,4 +25,5 @@ def post_description(request):
     else:
         form = DescriptionForm()
 
-    # return render(request, 'name.html', {'form': form})
+    return render(request, 'name.html', {'form': form})
+'''
