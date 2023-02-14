@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { BsImages, BsCardText, BsSave, BsCloudUpload } from 'react-icons/bs'
+import ApprImg from '../assets/appraisal-bg.png'
 
 
 class appraisal extends Component {
@@ -51,7 +53,7 @@ class appraisal extends Component {
                      id="image"
                      accept="image/png, image/jpeg"  onChange={this.handleImageChange} required/>
             </p>
-            <input type="submit"/>
+            <button type="submit">Submit!</button>
           </form>
         </div>
       );
