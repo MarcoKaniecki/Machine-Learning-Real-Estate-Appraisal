@@ -5,7 +5,6 @@ import axios from 'axios';
 class appraisal extends Component {
 
     state = {
-      title: '',
       content: '',
       image: null
     };
@@ -27,7 +26,6 @@ class appraisal extends Component {
       console.log(this.state);
       let form_data = new FormData();
       form_data.append('image', this.state.image, this.state.image.name);
-      form_data.append('title', this.state.title);
       form_data.append('content', this.state.content);
       let url = 'http://localhost:8000/api/posts/';
       axios.post(url, form_data, {
@@ -46,11 +44,7 @@ class appraisal extends Component {
         <div>
           <form onSubmit={this.handleSubmit}>
             <p>
-              <input type="text" placeholder='Title' id='title' value={this.state.title} onChange={this.handleChange} required/>
-            </p>
-            <p>
               <input type="text" placeholder='Content' id='content' value={this.state.content} onChange={this.handleChange} required/>
-  
             </p>
             <p>
               <input type="file"
