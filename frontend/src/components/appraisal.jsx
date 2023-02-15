@@ -1,8 +1,9 @@
 import { useState } from "react";
 import axios from "axios";
-import { BsImages, BsCardText, BsSave, BsCloudUpload } from 'react-icons/bs'
+import { BsImages, BsCardText } from 'react-icons/bs'
 
 import supportImg from '../assets/appraisal-bg.png'
+
 
 const Appraisal = () => {
   const [image, setImage] = useState(null);
@@ -58,11 +59,9 @@ const Appraisal = () => {
                   />
                 </div>
               </div>
-          
             </div>
 
             <div className='bg-white rounded-xl shadow-2xl'>
-
               <div className='p-8'>
                 <BsCardText className='w-16 h-16 p-4 bg-indigo-600 text-white rounded-lg mt-[-4rem]'/>
                 <h3 className='font-bold text-2xl my-6'>Text</h3>
@@ -73,7 +72,6 @@ const Appraisal = () => {
                   className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 ></textarea>
               </div>
-
             </div>
         
             {/* Appraise button */}
@@ -85,13 +83,9 @@ const Appraisal = () => {
                 hover:bg-transparent hover:text-indigo-600 rounded-md cursor-pointer"
               />
             </div>
-
           </div>
-
         </div>
-
       </div>
-
     </form>
   );
 }
