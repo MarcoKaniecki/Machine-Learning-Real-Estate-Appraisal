@@ -21,8 +21,9 @@ source env/bin/activate
 #### Windows
 ```console
 py -m venv env
-Scripts\activate
 ```
+
+`.\env\Scripts\activate`
 
 Install backend dependencies
 ```console
