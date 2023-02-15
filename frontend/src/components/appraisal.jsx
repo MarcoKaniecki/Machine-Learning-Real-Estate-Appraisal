@@ -52,7 +52,7 @@ const Appraisal = () => {
                 <div className="flex items-center justify-center w-full">
                   <input
                     type="file"
-                    id="image"
+                    id="image" accept="image/png, image/jpeg"
                     onChange={(e) => setImage(e.target.files[0])}
                     className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   />
