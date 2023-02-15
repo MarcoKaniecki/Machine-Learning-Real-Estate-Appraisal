@@ -15,6 +15,8 @@ cd Deep-Learning-Real-Estate-Appraisal
 #### MacOS
 ```console
 python3 -m venv env
+```
+```console
 source env/bin/activate
 ```
 
@@ -22,18 +24,23 @@ source env/bin/activate
 ```console
 py -m venv env
 ```
-
-`.\env\Scripts\activate`
+```console
+.\env\Scripts\activate
+```
 
 Install backend dependencies
 ```console
 cd backend
+```
+```console
 pip install -r ../requirements.txt
 ```
 
 Setup database
 ```console
 python manage.py makemigrations
+```
+```console
 python manage.py migrate
 ```
 
@@ -58,6 +65,10 @@ to see data in database
 Open a new terminal
 ```console
 cd frontend
+```
+```console
 yarn install
+```
+```console
 yarn start
 ```
