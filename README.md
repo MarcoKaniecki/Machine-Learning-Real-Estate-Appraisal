@@ -1,4 +1,5 @@
 # Using Deep Learning for Real Estate Appraisal
+Before starting, make sure you have [python3](https://www.python.org/downloads/), pip (comes with python3), and [yarn](https://classic.yarnpkg.com/lang/en/docs/install/#windows-stable) installed.
 
 ## Local Installation
 Find or create a directory where you want to store the repo
