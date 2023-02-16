@@ -1,8 +1,33 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { BsImages, BsCardText } from 'react-icons/bs'
 
 import supportImg from '../assets/appraisal-bg.png'
+
+
+const Toast = ({ message, duration = 3000, onClose }) => {
+  const [show, setShow] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShow(false);
+      onClose();
+    }, duration);
+
+    return () => clearTimeout(timer);
+  }, [duration, onClose]);
+
+  return (
+    <div
+      className={`fixed bottom-0 right-0 p-4 m-4 rounded-md bg-gray-700 text-white transition-opacity duration-500 ${
+        show ? "opacity-100" : "opacity-0"
+      }`}
+    >
+      {message}
+    </div>
+  );
+}
+
 
 
 const Appraisal = () => {
@@ -23,6 +48,17 @@ const Appraisal = () => {
     } catch (error) {
       console.log(error);
     }
+  };
+
+
+  const [showToast, setShowToast] = useState(false);
+
+  const handleShowToast = () => {
+    setShowToast(true);
+  };
+
+  const handleHideToast = () => {
+    setShowToast(false);
   };
 
   return (
@@ -52,7 +88,7 @@ const Appraisal = () => {
                 <h3 className='font-bold text-2xl my-6'>Images</h3>
                 <div className="flex items-center justify-center w-full">
                   <input
-                    type="file"
+                    type="file" required
                     id="image" accept="image/png, image/jpeg"
                     onChange={(e) => setImage(e.target.files[0])}
                     className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -78,10 +114,13 @@ const Appraisal = () => {
             <div className='text-center'>
               <input
                 type="submit"
-                value="Appraise!"
+                value="Appraise!" onClick={handleShowToast}
                 className="py-3 px-6 sm:w-[60%] md:w-[30%] my-4 shadow-xl text-white border bg-indigo-600 border-indigo-600
                 hover:bg-transparent hover:text-indigo-600 rounded-md cursor-pointer"
               />
+              {showToast && (
+              <Toast message="Form submitted!" duration={3000} onClose={handleHideToast} />
+              )}
             </div>
           </div>
         </div>
