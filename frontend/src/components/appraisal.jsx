@@ -4,7 +4,7 @@ import { BsImages, BsCardText } from 'react-icons/bs'
 
 import supportImg from '../assets/appraisal-bg.png'
 
-
+/* Toast is used to display a quick pop-up message for confirmation when the form is submitted */
 const Toast = ({ message, duration = 3000, onClose }) => {
   const [show, setShow] = useState(true);
 
@@ -17,6 +17,7 @@ const Toast = ({ message, duration = 3000, onClose }) => {
     return () => clearTimeout(timer);
   }, [duration, onClose]);
 
+  /* set location of toast and how it should be displayed */
   return (
     <div
       className={`fixed bottom-0 right-0 p-4 m-4 rounded-md bg-gray-700 text-white transition-opacity duration-500 ${
@@ -29,11 +30,12 @@ const Toast = ({ message, duration = 3000, onClose }) => {
 }
 
 
-
+/* handle for containing appraisal information, uses axios to send data to backend database */
 const Appraisal = () => {
   const [image, setImage] = useState(null);
   const [content, setContent] = useState("");
 
+  /* combines data in the form and sends it as one package to backend */
   const handleSubmit = async (e) => {
     e.preventDefault();
     let formData = new FormData();
@@ -53,10 +55,12 @@ const Appraisal = () => {
 
   const [showToast, setShowToast] = useState(false);
 
+  /* display toast */
   const handleShowToast = () => {
     setShowToast(true);
   };
 
+  /* hide toast */
   const handleHideToast = () => {
     setShowToast(false);
   };
@@ -82,11 +86,12 @@ const Appraisal = () => {
             
             {/* div for each separate box */}
             <div className='bg-white rounded-xl shadow-2xl'>
-              
+            
               <div className='p-8'>
                 <BsImages className='w-16 h-16 p-4 bg-indigo-600 text-white rounded-lg mt-[-4rem]'/>
                 <h3 className='font-bold text-2xl my-6'>Images</h3>
                 <div className="flex items-center justify-center w-full">
+                  {/* image input */}
                   <input
                     type="file" required
                     id="image" accept="image/png, image/jpeg"
@@ -101,6 +106,7 @@ const Appraisal = () => {
               <div className='p-8'>
                 <BsCardText className='w-16 h-16 p-4 bg-indigo-600 text-white rounded-lg mt-[-4rem]'/>
                 <h3 className='font-bold text-2xl my-6'>Text</h3>
+                {/* Text area input */}
                 <textarea
                   id="content"
                   value={content} required placeholder="Enter detailed description of home..."
