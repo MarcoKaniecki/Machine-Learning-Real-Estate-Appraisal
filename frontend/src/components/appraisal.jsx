@@ -32,15 +32,19 @@ const Toast = ({ message, duration = 3000, onClose }) => {
 
 /* handle for containing appraisal information, uses axios to send data to backend database */
 const Appraisal = () => {
+  /* Consider setting default values for Demo purposes */
   const [image, setImage] = useState(null);
-  const [content, setContent] = useState("");
+  const [zone, setZone] = useState("");
+  const [lotArea, setLotArea] = useState("");
 
   /* combines data in the form and sends it as one package to backend */
   const handleSubmit = async (e) => {
     e.preventDefault();
     let formData = new FormData();
     formData.append("image", image);
-    formData.append("content", content);
+    formData.append("zone", zone);
+    formData.append("lotArea", lotArea);
+
     try {
       await axios.post("http://localhost:8000/api/posts/", formData, {
         headers: {
@@ -102,21 +106,45 @@ const Appraisal = () => {
               </div>
             </div>
 
+            {/* area containing all feature inputs */}
             <div className='bg-white rounded-xl shadow-2xl'>
               <div className='p-8'>
                 <BsCardText className='w-16 h-16 p-4 bg-indigo-600 text-white rounded-lg mt-[-4rem]'/>
                 <h3 className='font-bold text-2xl my-6'>Text</h3>
-                {/* Text area input */}
-                <textarea
-                  id="content"
-                  value={content} required placeholder="Enter detailed description of home..."
-                  onChange={(e) => setContent(e.target.value)}
-                  className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                ></textarea>
+                
+                <div className="grid gap-6 mb-6 md:grid-cols-2">
+                  
+                  {/* Zone/Neighbourhood input field */}
+                  <div>
+                    <label for="zone" className="block mb-2 text-sm font-medium text-gray-900">Zone</label>
+                    <select id="zone" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 h-10" 
+                    onChange={(e) => setZone(e.target.value)} required>
+                      <option value="A">Agriculture</option>
+                      <option value="C">Commercial</option>
+                      <option value="FV">Floating Village Residential</option>
+                      <option value="I">Industrial</option>
+                      <option value="RH">Residential High Density</option>
+                      <option value="RM">Residential Medium Density</option>
+                      <option value="RL">Residential Low Density</option>
+                      <option value="RP">Residential Low Density Park</option>
+                    </select>
+                  </div>
+
+                  {/* Lot Area input field */}
+                  <div>
+                    <label className="block mb-2 text-sm font-medium text-gray-900">Lot Area in sqft</label>
+                    {/* Step attribute set so only integers can be submitted */}
+                    <input id="lotArea" type="number" step="1" min="0" max="1000000" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5" 
+                    value={lotArea} onChange={(e) => setLotArea(e.target.value)} placeholder="1200" required />
+                  </div>
+
+
+                </div>
               </div>
             </div>
         
-            {/* Appraise button */}
+            {/* TODO: fix button so toast only shows when all fields are inputted and valid */}
+            {/* Appraise button to submit form */}
             <div className='text-center'>
               <input
                 type="submit"

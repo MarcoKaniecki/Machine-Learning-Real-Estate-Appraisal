@@ -6,7 +6,9 @@ from django.db import models
 
 class Post(models.Model):
     # content is a paragraph description of the house (will change in the future)
-    content = models.TextField()
+    zone = models.CharField(max_length=100, blank=True, null=True)
+    lotArea = models.IntegerField(blank=True, null=True)
+    
     image = models.ImageField(upload_to='post_images')
     
     def __str__(self):
