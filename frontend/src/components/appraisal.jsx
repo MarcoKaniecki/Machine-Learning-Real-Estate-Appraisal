@@ -32,14 +32,16 @@ const Toast = ({ message, duration = 3000, onClose }) => {
 
 /* handle for containing appraisal information, uses axios to send data to backend database */
 const Appraisal = () => {
-  const [image, setImage] = useState(null);
+  const [images, setImages] = useState(null);
   const [content, setContent] = useState("");
 
   /* combines data in the form and sends it as one package to backend */
   const handleSubmit = async (e) => {
     e.preventDefault();
     let formData = new FormData();
-    formData.append("image", image);
+    for (let i = 0; i < images.length; i++) {
+      formData.append("images", images[i]);
+    }
     formData.append("content", content);
     try {
       await axios.post("http://localhost:8000/api/posts/", formData, {
@@ -94,8 +96,8 @@ const Appraisal = () => {
                   {/* image input */}
                   <input
                     type="file" required
-                    id="image" accept="image/png, image/jpeg"
-                    onChange={(e) => setImage(e.target.files[0])}
+                    id="images" accept="image/png, image/jpeg" multiple
+                    onChange={(e) => setImages(e.target.files)}
                     className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   />
                 </div>
