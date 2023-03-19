@@ -11,13 +11,9 @@ from rest_framework import status
 class PostView(APIView):
     parser_classes = (MultiPartParser, FormParser)
 
-    # get all info in database, will be displayed in REST framework page
-    # def get(self, request, *args, **kwargs):
-    #     posts = Post.objects.all()
-    #     serializer = PostSerializer(posts, many=True)
-    #     return Response(serializer.data)
+    # We don't need a get, there is no outgoing HTTP traffic until PDF creation
 
-    # post data to database
+    # Post data to database
     def post(self, request, *args, **kwargs):
         # posts_serializer = ListingSerializer(data=request.data, files=request.FILES)
         posts_serializer = ListingSerializer(data=request.data, context={'request': request})
@@ -27,23 +23,3 @@ class PostView(APIView):
         else:
             print('error', posts_serializer.errors)
             return Response(posts_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-# class PostView(APIView):
-#     parser_classes = (MultiPartParser, FormParser)
-
-#     # get all info in database, will be displayed in REST fraemwork page
-#     def get(self, request, *args, **kwargs):
-#         posts = Post.objects.all()
-#         serializer = PostSerializer(posts, many=True)
-#         return Response(serializer.data)
-
-#     # post data to database
-#     def post(self, request, *args, **kwargs):
-#         posts_serializer = PostSerializer(data=request.data)
-#         if posts_serializer.is_valid():
-#             posts_serializer.save()
-#             return Response(posts_serializer.data, status=status.HTTP_201_CREATED)
-#         else:
-#             print('error', posts_serializer.errors)
-#             return Response(posts_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
