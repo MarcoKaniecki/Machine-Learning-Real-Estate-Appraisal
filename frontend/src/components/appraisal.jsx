@@ -36,6 +36,41 @@ const Appraisal = () => {
   const [image, setImage] = useState(null);
   const [zone, setZone] = useState("");
   const [lotArea, setLotArea] = useState("");
+  
+  /* things to be implemented */
+  const [utilities, setUtilities] = useState("");
+  const [bldgType, setBldgType] = useState("");
+  const [houseStyle, setHouseStyle] = useState("");
+  const [overallQual, setOverallQual] = useState("");
+  const [overallCond, setOverallCond] = useState("");
+  const [yearBuilt, setYearBuilt] = useState("");
+  const [yearRemod, setYearRemod] = useState("");
+  const [exterior1, setExterior1] = useState("");
+  const [exterQual, setExterQual] = useState("");
+  const [exterCond, setExterCond] = useState("");
+  const [foundation, setFoundation] = useState("");
+  const [bsmtFinType1, setBsmtFinType1] = useState("");
+  const [bsmtFindSF1, setBsmtFindSF1] = useState("");
+  const [totalBsmtSF, setTotalBsmtSF] = useState("");
+  const [heating, setHeating] = useState("");
+  const [heatingQC, setHeatingQC] = useState("");
+  const [centralAir, setCentralAir] = useState("");
+  const [electrical, setClectrical] = useState("");
+  const [fstFloorArea, set1stFloorArea] = useState("");
+  const [sndFloorArea, set2ndFloorArea] = useState("");
+  const [fullBath, setFullBath] = useState("");
+  const [halfBath, setHalfBath] = useState("");
+  const [bedroom, setBedroom] = useState("");
+  const [kitchen, setKitchen] = useState("");
+  const [kitchenQual, setKitchenQual] = useState("");
+  const [totRmsAbvGrd, setTotRmsAbvGrd] = useState("");
+  const [garageType, setGarageType] = useState("");
+  const [garageCars, setGarageCars] = useState("");
+  const [garageArea, setGarageArea] = useState("");
+  const [garageQual, setGarageQual] = useState("");
+  const [woodDeckSF, setWoodDeckSF] = useState("");
+  const [fence, setFence] = useState("");
+  
 
   /* combines data in the form and sends it as one package to backend */
   const handleSubmit = async (e) => {
@@ -44,6 +79,42 @@ const Appraisal = () => {
     formData.append("image", image);
     formData.append("zone", zone);
     formData.append("lotArea", lotArea);
+
+    /* things to be implemented */
+    formData.append("utilities", utilities);
+    formData.append("bldgType", bldgType);
+    formData.append("houseStyle", houseStyle);
+    formData.append("overallQual", overallQual);
+    formData.append("overallCond", overallCond);
+    formData.append("yearBuilt", yearBuilt);
+    formData.append("yearRemod", yearRemod);
+    formData.append("exterior1", exterior1);
+    formData.append("exterQual", exterQual);
+    formData.append("exterCond", exterCond);
+    formData.append("foundation", foundation);
+    formData.append("exterCond", exterCond);
+    formData.append("bsmtFinType1", bsmtFinType1);
+    formData.append("bsmtFindSF1", bsmtFindSF1);
+    formData.append("totalBsmtSF", totalBsmtSF);
+    formData.append("heating", heating);
+    formData.append("heatingQC", heatingQC);
+    formData.append("centralAir", centralAir);
+    formData.append("electrical", electrical);
+    formData.append("fstFloorArea", fstFloorArea);
+    formData.append("sndFloorArea", sndFloorArea);
+    formData.append("fullBath", fullBath);
+    formData.append("halfBath", halfBath);
+    formData.append("bedroom", bedroom);
+    formData.append("kitchen", kitchen);
+    formData.append("kitchenQual", kitchenQual);
+    formData.append("totRmsAbvGrd", totRmsAbvGrd);
+    formData.append("garageType", garageType);
+    formData.append("garageCars", garageCars);
+    formData.append("garageArea", garageArea);
+    formData.append("garageQual", garageQual);
+    formData.append("woodDeckSF", woodDeckSF);
+    formData.append("fence", fence);
+  
 
     try {
       await axios.post("http://localhost:8000/api/posts/", formData, {
