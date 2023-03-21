@@ -209,7 +209,178 @@ const Appraisal = () => {
                     value={lotArea} onChange={(e) => setLotArea(e.target.value)} placeholder="1200" required />
                   </div>
 
+                  {/* utilities input field */}
+                  <div>
+                    <label className="block mb-2 text-sm font-medium text-gray-900">Utilities</label>
+                    <select id="utilities" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 h-10" 
+                    onChange={(e) => setUtilities(e.target.value)} required>
+                      <option value="AllPub">All public Utilities (E, G, W, and S)</option>
+                      <option value="NoSewr">Electricity, Gas, and Water (Septic Tank)</option>
+                      <option value="NoSeWa">Electricity and Gas only</option>
+                      <option value="ELO">Electricity only</option>
+                    </select>
+                  </div>
 
+                  <div>
+                    <label className="block mb-2 text-sm font-medium text-gray-900">Building Type</label>
+                    <select id="bldgType" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 h-10" 
+                    onChange={(e) => setBldgType(e.target.value)} required>
+                      <option value="1Fam">Single-family Detached</option>
+                      <option value="2FmCon">Two-family Conversion; originally bult as one-family dwelling</option>
+                      <option value="Duplx">Duplex</option>
+                      <option value="TwnhsE">Townhouse End Unit</option>
+                      <option value="TwnhsI">Townhouse Inside Unit</option>
+                    </select>
+                  </div>
+
+
+                  <div>
+                    <label className="block mb-2 text-sm font-medium text-gray-900">House Style</label>
+                    <select id="houseStyle" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 h-10" 
+                    onChange={(e) => setHouseStyle(e.target.value)} required>
+                      <option value="1Story">One story</option>
+                      <option value="1.5Fin">One and one-half story: 2nd level finished</option>
+                      <option value="1.5Unf">One and one-half story: 2nd level unfinished</option>
+                      <option value="2Story">Two story</option>
+                      <option value="2.5Fin">Two and one-half story: 2nd level finished</option>
+                      <option value="2.5Unf">Two and one-half story: 2nd level unfinished</option>
+                      <option value="SFoyer">Split Foyer</option>
+                      <option value="SLvl">Split Level</option>
+                    </select>
+                  </div>
+
+
+                  <div>
+                    <label className="block mb-2 text-sm font-medium text-gray-900">Overall Quality: Rates the overall material and finish of the house</label>
+                    <select id="overallQual" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 h-10" 
+                    onChange={(e) => setOverallQual(e.target.value)} required>
+                      <option value="10">Very Excellent</option>
+                      <option value="9">Excellent</option>
+                      <option value="8">Very Good</option>
+                      <option value="7">Good</option>
+                      <option value="6">Above Average</option>
+                      <option value="5">Average</option>
+                      <option value="4">Below Average</option>
+                      <option value="3">Fair</option>
+                      <option value="2">Poor</option>
+                      <option value="1">Very Poor</option>
+                    </select>
+                  </div>
+
+
+                  <div>
+                    <label className="block mb-2 text-sm font-medium text-gray-900">Overall Condition: Rates the overall condition of the house</label>
+                    <select id="overallCond" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 h-10" 
+                    onChange={(e) => setOverallCond(e.target.value)} required>
+                      <option value="10">Very Excellent</option>
+                      <option value="9">Excellent</option>
+                      <option value="8">Very Good</option>
+                      <option value="7">Good</option>
+                      <option value="6">Above Average</option>
+                      <option value="5">Average</option>
+                      <option value="4">Below Average</option>
+                      <option value="3">Fair</option>
+                      <option value="2">Poor</option>
+                      <option value="1">Very Poor</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block mb-2 text-sm font-medium text-gray-900">Year Built: Original construction date</label>
+                    {/* may want to change max build year dynamically based on current year */}
+                    <input id="yearBuilt" type="number" step="1" min="1000" max="3000" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5" 
+                    value={yearBuilt} onChange={(e) => setYearBuilt(e.target.value)} placeholder="2005" required />
+                  </div>
+
+                  <div>
+                    <label className="block mb-2 text-sm font-medium text-gray-900">Year Remodelled: Remodel date (same as construction date if no remodeling or additions)</label>
+                    {/* may want to change max build year dynamically based on current year */}
+                    <input id="yearRemod" type="number" step="1" min="1000" max="3000" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5" 
+                    value={yearRemod} onChange={(e) => setYearRemod(e.target.value)} placeholder="2005" required />
+                  </div>
+
+                  <div>
+                    <label className="block mb-2 text-sm font-medium text-gray-900">Exterior 1: Exterior covering on house</label>
+                    <select id="exterior1" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 h-10" 
+                    onChange={(e) => setExterior1(e.target.value)} required>
+                      <option value="AsbShng">Asbestos Shingles</option>
+                      <option value="AsphShn">Asphalt Shingles</option>
+                      <option value="BrkComm">Brick Common</option>
+                      <option value="BrkFace">Brick Face</option>
+                      <option value="CBlock">Cinder Block</option>
+                      <option value="CemntBd">Cement Board</option>
+                      <option value="HdBoard">Hard Board</option>
+                      <option value="ImStucc">Imitation Stucco</option>
+                      <option value="MetalSd">Metal Siding</option>
+                      <option value="Other">Other</option>
+                      <option value="Plywood">Plywood</option>
+                      <option value="PreCast">PreCast</option>
+                      <option value="Stone">Stone</option>
+                      <option value="Stucco">Stucco</option>
+                      <option value="VinylSd">Vinyl Siding</option>
+                      <option value="Wd Sdng">Wood Siding</option>
+                      <option value="WdShing">Wood Shingles</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block mb-2 text-sm font-medium text-gray-900">Exterior Quality: Evaluates the quality of the material on the exterior</label>
+                    <select id="exterQual" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 h-10" 
+                    onChange={(e) => setExterQual(e.target.value)} required>
+                      <option value="Ex">Excellent</option>
+                      <option value="Gd">Good</option>
+                      <option value="TA">Average/Typical</option>
+                      <option value="Fa">Fair</option>
+                      <option value="Po">Poor</option>
+                    </select>
+                  </div>
+          
+
+                  <div>
+                    <label className="block mb-2 text-sm font-medium text-gray-900">Exterior Condition: Evaluates the present condition of the material on the exterior</label>
+                    <select id="exterCond" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 h-10" 
+                    onChange={(e) => setExterCond(e.target.value)} required>
+                      <option value="Ex">Excellent</option>
+                      <option value="Gd">Good</option>
+                      <option value="TA">Average/Typical</option>
+                      <option value="Fa">Fair</option>
+                      <option value="Po">Poor</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block mb-2 text-sm font-medium text-gray-900">Foundation: Type of foundation</label>
+                    <select id="foundation" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 h-10" 
+                    onChange={(e) => setFoundation(e.target.value)} required>
+                      <option value="BrkTil">Brick & Tile</option>
+                      <option value="CBlock">Cinder Block</option>
+                      <option value="PConc">Poured Contrete</option>
+                      <option value="Slab">Slab</option>
+                      <option value="Stone">Stone</option>
+                      <option value="Wood">Wood</option>
+                    </select>
+                  </div>
+
+                  
+                  <div>
+                    <label className="block mb-2 text-sm font-medium text-gray-900">Basement Finish: Rating of basement finished area</label>
+                    <select id="bsmtFinType1" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 h-10" 
+                    onChange={(e) => setBsmtFinType1(e.target.value)} required>
+                      <option value="GLQ">Good Living Quarters</option>
+                      <option value="ALQ">Average Living Quarters</option>
+                      <option value="BLQ">Below Average Living Quarters</option>
+                      <option value="Rec">Average Rec Room</option>
+                      <option value="LwQ">Low Quality</option>
+                      <option value="Unf">Unfinshed</option>
+                      <option value="NA">No Basement</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block mb-2 text-sm font-medium text-gray-900">Area of Finished Basement: square feet</label>
+                    <input id="bsmtFindSF1" type="number" step="1" min="0" max="10000" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5" 
+                    value={bsmtFindSF1} onChange={(e) => setBsmtFindSF1(e.target.value)} placeholder="200" required />
+                  </div>
                 </div>
               </div>
             </div>
