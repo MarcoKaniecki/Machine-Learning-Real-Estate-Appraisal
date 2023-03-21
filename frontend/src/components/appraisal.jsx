@@ -55,7 +55,7 @@ const Appraisal = () => {
   const [heating, setHeating] = useState("");
   const [heatingQC, setHeatingQC] = useState("");
   const [centralAir, setCentralAir] = useState("");
-  const [electrical, setClectrical] = useState("");
+  const [electrical, setElectrical] = useState("");
   const [fstFloorArea, set1stFloorArea] = useState("");
   const [sndFloorArea, set2ndFloorArea] = useState("");
   const [fullBath, setFullBath] = useState("");
@@ -377,10 +377,177 @@ const Appraisal = () => {
                   </div>
 
                   <div>
-                    <label className="block mb-2 text-sm font-medium text-gray-900">Area of Finished Basement: square feet</label>
+                    <label className="block mb-2 text-sm font-medium text-gray-900">Area of Finished Basement in square feet</label>
                     <input id="bsmtFindSF1" type="number" step="1" min="0" max="10000" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5" 
-                    value={bsmtFindSF1} onChange={(e) => setBsmtFindSF1(e.target.value)} placeholder="200" required />
+                    value={bsmtFindSF1} onChange={(e) => setBsmtFindSF1(e.target.value)} placeholder="500" required />
                   </div>
+
+                  <div>
+                    <label className="block mb-2 text-sm font-medium text-gray-900">Total Area of Basement in square feet</label>
+                    <input id="totalBsmtSF" type="number" step="1" min="0" max="10000" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5" 
+                    value={totalBsmtSF} onChange={(e) => setTotalBsmtSF(e.target.value)} placeholder="500" required />
+                  </div>
+
+                  <div>
+                    <label className="block mb-2 text-sm font-medium text-gray-900">Heating: Type of heating</label>
+                    <select id="heating" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 h-10" 
+                    onChange={(e) => setHeating(e.target.value)} required>
+                      <option value="Floor">Floor Furnace</option>
+                      <option value="GasA">Gas forced warm air furnace</option>
+                      <option value="GasW">Gas hot water or steam heat</option>
+                      <option value="Grav">Gravity furnace</option>
+                      <option value="OthW">Hot water or steam heat other than gas</option>
+                      <option value="Wall">Wall furnace</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block mb-2 text-sm font-medium text-gray-900">Heating quality and condition</label>
+                    <select id="heatingQC" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 h-10" 
+                    onChange={(e) => setHeatingQC(e.target.value)} required>
+                      <option value="Ex">Excellent</option>
+                      <option value="Gd">Good</option>
+                      <option value="TA">Average/Typical</option>
+                      <option value="Fa">Fair</option>
+                      <option value="Po">Poor</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block mb-2 text-sm font-medium text-gray-900">Central air conditioning</label>
+                    <select id="centralAir" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 h-10" 
+                    onChange={(e) => setCentralAir(e.target.value)} required>
+                      <option value="N">No</option>
+                      <option value="Y">Yes</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block mb-2 text-sm font-medium text-gray-900">Central air conditioning</label>
+                    <select id="centralAir" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 h-10" 
+                    onChange={(e) => setElectrical(e.target.value)} required>
+                      <option value="SBrkr">Standard Circuit Breakers & Romex</option>
+                      <option value="FuseA">Fuse Box over 60 AMP and all Romex wiring (Average)</option>
+                      <option value="FuseF">60 AMP Fuse Box and mostly Romex wiring (Fair)</option>
+                      <option value="FuseP">60 AMP Fuse Box and mostly knob & tube wiring (poor)</option>
+                      <option value="Mix">Mixed</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block mb-2 text-sm font-medium text-gray-900">Area of First Floor in square feet</label>
+                    <input id="fstFloorArea" type="number" step="1" min="0" max="10000" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5" 
+                    value={fstFloorArea} onChange={(e) => set1stFloorArea(e.target.value)} placeholder="1250" required />
+                  </div>
+
+                  <div>
+                    <label className="block mb-2 text-sm font-medium text-gray-900">Area of Second Floor in square feet</label>
+                    <input id="sndFloorArea" type="number" step="1" min="0" max="10000" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5" 
+                    value={sndFloorArea} onChange={(e) => set2ndFloorArea(e.target.value)} placeholder="750" required />
+                  </div>
+
+                  {/* add total area */}
+
+                  <div>
+                    <label className="block mb-2 text-sm font-medium text-gray-900">Number of full bathrooms</label>
+                    <input id="fullBath" type="number" step="1" min="0" max="100" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5" 
+                    value={fullBath} onChange={(e) => setFullBath(e.target.value)} placeholder="2" required />
+                  </div>
+
+                  <div>
+                    <label className="block mb-2 text-sm font-medium text-gray-900">Number of half bathrooms</label>
+                    <input id="halfBath" type="number" step="1" min="0" max="100" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5" 
+                    value={halfBath} onChange={(e) => setHalfBath(e.target.value)} placeholder="1" required />
+                  </div>
+
+                  <div>
+                    <label className="block mb-2 text-sm font-medium text-gray-900">Number of Bedrooms (not including basement bedrooms)</label>
+                    <input id="bedroom" type="number" step="1" min="0" max="100" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5" 
+                    value={bedroom} onChange={(e) => setBedroom(e.target.value)} placeholder="3" required />
+                  </div>
+
+                  <div>
+                    <label className="block mb-2 text-sm font-medium text-gray-900">Number of Kitchens</label>
+                    <input id="kitchen" type="number" step="1" min="0" max="100" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5" 
+                    value={kitchen} onChange={(e) => setKitchen(e.target.value)} placeholder="1" required />
+                  </div>
+
+                  <div>
+                    <label className="block mb-2 text-sm font-medium text-gray-900">Kitchen quality</label>
+                    <select id="kitchenQual" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 h-10" 
+                    onChange={(e) => setKitchenQual(e.target.value)} required>
+                      <option value="Ex">Excellent</option>
+                      <option value="Gd">Good</option>
+                      <option value="TA">Average/Typical</option>
+                      <option value="Fa">Fair</option>
+                      <option value="Po">Poor</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block mb-2 text-sm font-medium text-gray-900">Total rooms above grade (does not include bathrooms)</label>
+                    <input id="totRmsAbvGrd" type="number" step="1" min="0" max="100" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5" 
+                    value={totRmsAbvGrd} onChange={(e) => setTotRmsAbvGrd(e.target.value)} placeholder="8" required />
+                  </div>
+
+                  <div>
+                    <label className="block mb-2 text-sm font-medium text-gray-900">Garage location</label>
+                    <select id="garageType" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 h-10" 
+                    onChange={(e) => setGarageType(e.target.value)} required>
+                      <option value="2Types">More than one type of garage</option>
+                      <option value="Attchd">Attached to home</option>
+                      <option value="Basment">Basement Garage</option>
+                      <option value="BuiltIn">Built-In (Garage part of house - typically has room above garage)</option>
+                      <option value="CarPort">Car Port</option>
+                      <option value="Detchd">Detached from home</option>
+                      <option value="NA">No Garage</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block mb-2 text-sm font-medium text-gray-900">Size of garage in car capacity</label>
+                    <input id="garageCars" type="number" step="1" min="0" max="100" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5" 
+                    value={garageCars} onChange={(e) => setGarageCars(e.target.value)} placeholder="2" required />
+                  </div>
+
+                  <div>
+                    <label className="block mb-2 text-sm font-medium text-gray-900">Size of garage in square feet</label>
+                    <input id="garageArea" type="number" step="1" min="0" max="100" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5" 
+                    value={garageArea} onChange={(e) => setGarageArea(e.target.value)} placeholder="400" required />
+                  </div>
+
+                  <div>
+                    <label className="block mb-2 text-sm font-medium text-gray-900">Kitchen quality</label>
+                    <select id="garageQual" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 h-10" 
+                    onChange={(e) => setGarageQual(e.target.value)} required>
+                      <option value="Ex">Excellent</option>
+                      <option value="Gd">Good</option>
+                      <option value="TA">Average/Typical</option>
+                      <option value="Fa">Fair</option>
+                      <option value="Po">Poor</option>
+                      <option value="NA">No Garage</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block mb-2 text-sm font-medium text-gray-900">Wood deck area in square feet</label>
+                    <input id="woodDeckSF" type="number" step="1" min="0" max="100" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5" 
+                    value={woodDeckSF} onChange={(e) => setWoodDeckSF(e.target.value)} placeholder="200" required />
+                  </div>
+
+                  <div>
+                    <label className="block mb-2 text-sm font-medium text-gray-900">Kitchen quality</label>
+                    <select id="fence" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 h-10" 
+                    onChange={(e) => setFence(e.target.value)} required>
+                      <option value="GdPrv">Good Privacy</option>
+                      <option value="MnPrv">Minimum Privacy</option>
+                      <option value="GdWo">Good Wood</option>
+                      <option value="MnWw">Minimum Wood/Wire</option>
+                      <option value="NA">No Fence</option>
+                    </select>
+                  </div>
+
+
                 </div>
               </div>
             </div>
