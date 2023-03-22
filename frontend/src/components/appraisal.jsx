@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
 import axios from "axios";
+import { useState, useEffect } from "react";
 import { BsImages, BsCardText } from 'react-icons/bs'
 
 import supportImg from '../assets/appraisal-bg.png'
@@ -20,9 +20,8 @@ const Toast = ({ message, duration = 3000, onClose }) => {
   /* set location of toast and how it should be displayed */
   return (
     <div
-      className={`fixed bottom-0 right-0 p-4 m-4 rounded-md bg-gray-700 text-white transition-opacity duration-500 ${
-        show ? "opacity-100" : "opacity-0"
-      }`}
+      className={`fixed bottom-0 right-0 p-4 m-4 rounded-md bg-gray-700 text-white transition-opacity duration-500 ${show ? "opacity-100" : "opacity-0"
+        }`}
     >
       {message}
     </div>
@@ -34,87 +33,95 @@ const Toast = ({ message, duration = 3000, onClose }) => {
 const Appraisal = () => {
   /* Consider setting default values for Demo purposes */
   const [image, setImage] = useState(null);
-  const [zone, setZone] = useState("");
-  const [lotArea, setLotArea] = useState("");
-  
-  /* things to be implemented */
-  const [utilities, setUtilities] = useState("");
-  const [bldgType, setBldgType] = useState("");
-  const [houseStyle, setHouseStyle] = useState("");
-  const [overallQual, setOverallQual] = useState("");
-  const [overallCond, setOverallCond] = useState("");
-  const [yearBuilt, setYearBuilt] = useState("");
-  const [yearRemod, setYearRemod] = useState("");
-  const [exterior1, setExterior1] = useState("");
-  const [exterQual, setExterQual] = useState("");
-  const [exterCond, setExterCond] = useState("");
-  const [foundation, setFoundation] = useState("");
-  const [bsmtFinType1, setBsmtFinType1] = useState("");
-  const [bsmtFindSF1, setBsmtFindSF1] = useState("");
-  const [totalBsmtSF, setTotalBsmtSF] = useState("");
-  const [heating, setHeating] = useState("");
-  const [heatingQC, setHeatingQC] = useState("");
-  const [centralAir, setCentralAir] = useState("");
-  const [electrical, setElectrical] = useState("");
-  const [fstFloorArea, set1stFloorArea] = useState("");
-  const [sndFloorArea, set2ndFloorArea] = useState("");
-  const [fullBath, setFullBath] = useState("");
-  const [halfBath, setHalfBath] = useState("");
-  const [bedroom, setBedroom] = useState("");
-  const [kitchen, setKitchen] = useState("");
-  const [kitchenQual, setKitchenQual] = useState("");
-  const [totRmsAbvGrd, setTotRmsAbvGrd] = useState("");
-  const [garageType, setGarageType] = useState("");
-  const [garageCars, setGarageCars] = useState("");
-  const [garageArea, setGarageArea] = useState("");
-  const [garageQual, setGarageQual] = useState("");
-  const [woodDeckSF, setWoodDeckSF] = useState("");
-  const [fence, setFence] = useState("");
-  
+  const [property, setProperty] = useState({
+    // image: null,
+    zone: "",
+    lotArea: "",
+    utilities: "",
+    bldgType: "",
+    houseStyle: "",
+    overallQual: "",
+    overallCond: "",
+    yearBuilt: "",
+    yearRemod: "",
+    exterior1: "",
+    exterQual: "",
+    exterCond: "",
+    foundation: "",
+    bsmtFinType1: "",
+    bsmtFindSF1: "",
+    totalBsmtSF: "",
+    heating: "",
+    heatingQC: "",
+    centralAir: "",
+    electrical: "",
+    fstFloorArea: "",
+    sndFloorArea: "",
+    fullBath: "",
+    halfBath: "",
+    bedroom: "",
+    kitchen: "",
+    kitchenQual: "",
+    totRmsAbvGrd: "",
+    garageType: "",
+    garageCars: "",
+    garageArea: "",
+    garageQual: "",
+    woodDeckSF: "",
+    fence: "",
+  });
+
+
+
 
   /* combines data in the form and sends it as one package to backend */
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let formData = new FormData();
-    formData.append("image", image);
-    formData.append("zone", zone);
-    formData.append("lotArea", lotArea);
 
-    /* things to be implemented */
-    formData.append("utilities", utilities);
-    formData.append("bldgType", bldgType);
-    formData.append("houseStyle", houseStyle);
-    formData.append("overallQual", overallQual);
-    formData.append("overallCond", overallCond);
-    formData.append("yearBuilt", yearBuilt);
-    formData.append("yearRemod", yearRemod);
-    formData.append("exterior1", exterior1);
-    formData.append("exterQual", exterQual);
-    formData.append("exterCond", exterCond);
-    formData.append("foundation", foundation);
-    formData.append("exterCond", exterCond);
-    formData.append("bsmtFinType1", bsmtFinType1);
-    formData.append("bsmtFindSF1", bsmtFindSF1);
-    formData.append("totalBsmtSF", totalBsmtSF);
-    formData.append("heating", heating);
-    formData.append("heatingQC", heatingQC);
-    formData.append("centralAir", centralAir);
-    formData.append("electrical", electrical);
-    formData.append("fstFloorArea", fstFloorArea);
-    formData.append("sndFloorArea", sndFloorArea);
-    formData.append("fullBath", fullBath);
-    formData.append("halfBath", halfBath);
-    formData.append("bedroom", bedroom);
-    formData.append("kitchen", kitchen);
-    formData.append("kitchenQual", kitchenQual);
-    formData.append("totRmsAbvGrd", totRmsAbvGrd);
-    formData.append("garageType", garageType);
-    formData.append("garageCars", garageCars);
-    formData.append("garageArea", garageArea);
-    formData.append("garageQual", garageQual);
-    formData.append("woodDeckSF", woodDeckSF);
-    formData.append("fence", fence);
-  
+    // object containing all the properties and their values
+    let propertyData = {
+      image: image,
+      zone: property.zone,
+      lotArea: property.lotArea,
+      utilities: property.utilities,
+      bldgType: property.bldgType,
+      houseStyle: property.houseStyle,
+      overallQual: property.overallQual,
+      overallCond: property.overallCond,
+      yearBuilt: property.yearBuilt,
+      yearRemod: property.yearRemod,
+      exterior1: property.exterior1,
+      exterQual: property.exterQual,
+      exterCond: property.exterCond,
+      foundation: property.foundation,
+      bsmtFinType1: property.bsmtFinType1,
+      bsmtFindSF1: property.bsmtFindSF1,
+      totalBsmtSF: property.totalBsmtSF,
+      heating: property.heating,
+      heatingQC: property.heatingQC,
+      centralAir: property.centralAir,
+      electrical: property.electrical,
+      fstFloorArea: property.fstFloorArea,
+      sndFloorArea: property.sndFloorArea,
+      fullBath: property.fullBath,
+      halfBath: property.halfBath,
+      bedroom: property.bedroom,
+      kitchen: property.kitchen,
+      kitchenQual: property.kitchenQual,
+      totRmsAbvGrd: property.totRmsAbvGrd,
+      garageType: property.garageType,
+      garageCars: property.garageCars,
+      garageArea: property.garageArea,
+      garageQual: property.garageQual,
+      woodDeckSF: property.woodDeckSF,
+      fence: property.fence
+    };
+
+    let formData = new FormData();
+    for (let key in propertyData) {
+      formData.append(key, propertyData[key]);
+    }
+
 
     try {
       await axios.post("http://localhost:8000/api/posts/", formData, {
@@ -144,26 +151,26 @@ const Appraisal = () => {
     <form onSubmit={handleSubmit}>
 
       <div name='appraisal' className='w-full mt-24'>
-        
+
         <div className='w-full h-[700px] bg-gray-900/90 absolute'>
           <img className='w-full h-full object-cover mix-blend-overlay' src={supportImg} alt="/" />
         </div>
 
         <div className='max-w-[1240px] mx-auto text-white relative'>
-          
+
           <div className='px-4 py-12'>
             <h2 className='text-3xl pt-8 text-slate-300 uppercase text-center'>Appraisal</h2>
             <h3 className='text-5xl fond-bold py-6 text-center'>Steps to get your home appraised</h3>
             <p className='py-4 text-3xl text-slate-300 text-center'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil tempore recusandae, eos harum dolorum cupiditate commodi natus odit id a quo ut ea. Ipsum nemo facilis delectus repellendus. Eum, sit.</p>
           </div>
-        
+
           <div className='grid grid-cols-1 relative gap-x-8 gap-y-16 px-4 pt-12 sm:pt-10 text-black'>
-            
+
             {/* div for each separate box */}
             <div className='bg-white rounded-xl shadow-2xl'>
-            
+
               <div className='p-8'>
-                <BsImages className='w-16 h-16 p-4 bg-indigo-600 text-white rounded-lg mt-[-4rem]'/>
+                <BsImages className='w-16 h-16 p-4 bg-indigo-600 text-white rounded-lg mt-[-4rem]' />
                 <h3 className='font-bold text-2xl my-6'>Images</h3>
                 <div className="flex items-center justify-center w-full">
                   {/* image input */}
@@ -180,16 +187,18 @@ const Appraisal = () => {
             {/* area containing all feature inputs */}
             <div className='bg-white rounded-xl shadow-2xl'>
               <div className='p-8'>
-                <BsCardText className='w-16 h-16 p-4 bg-indigo-600 text-white rounded-lg mt-[-4rem]'/>
+                <BsCardText className='w-16 h-16 p-4 bg-indigo-600 text-white rounded-lg mt-[-4rem]' />
                 <h3 className='font-bold text-2xl my-6'>Text</h3>
-                
+
                 <div className="grid gap-6 mb-6 md:grid-cols-2">
-                  
+
                   {/* Zone/Neighbourhood input field */}
                   <div>
                     <label for="zone" className="block mb-2 text-sm font-medium text-gray-900">Zone</label>
-                    <select id="zone" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 h-10" 
-                    onChange={(e) => setZone(e.target.value)} required>
+                    <select id="zone" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 h-10"
+                      value={property.zone}
+                      onChange={(e) => setProperty({ ...property, zone: e.target.value })} required>
+                      <option value="" disabled selected>Select an option</option>
                       <option value="A">Agriculture</option>
                       <option value="C">Commercial</option>
                       <option value="FV">Floating Village Residential</option>
@@ -205,15 +214,16 @@ const Appraisal = () => {
                   <div>
                     <label className="block mb-2 text-sm font-medium text-gray-900">Lot Area in sqft</label>
                     {/* Step attribute set so only integers can be submitted */}
-                    <input id="lotArea" type="number" step="1" min="0" max="1000000" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5" 
-                    value={lotArea} onChange={(e) => setLotArea(e.target.value)} placeholder="1200" required />
+                    <input id="lotArea" type="number" step="1" min="0" max="1000000" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5"
+                      value={property.lotArea} onChange={(e) => setProperty({ ...property, lotArea: e.target.value })} placeholder="1200" required />
                   </div>
 
                   {/* utilities input field */}
                   <div>
                     <label className="block mb-2 text-sm font-medium text-gray-900">Utilities</label>
-                    <select id="utilities" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 h-10" 
-                    onChange={(e) => setUtilities(e.target.value)} required>
+                    <select id="utilities" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 h-10"
+                      onChange={(e) => setProperty({ ...property, utilities: e.target.value })} required>
+                      <option value="" disabled selected>Select an option</option>
                       <option value="AllPub">All public Utilities (E, G, W, and S)</option>
                       <option value="NoSewr">Electricity, Gas, and Water (Septic Tank)</option>
                       <option value="NoSeWa">Electricity and Gas only</option>
@@ -221,10 +231,12 @@ const Appraisal = () => {
                     </select>
                   </div>
 
+                  {/* building type input field */}
                   <div>
                     <label className="block mb-2 text-sm font-medium text-gray-900">Building Type</label>
-                    <select id="bldgType" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 h-10" 
-                    onChange={(e) => setBldgType(e.target.value)} required>
+                    <select id="bldgType" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 h-10"
+                      onChange={(e) => setProperty({ ...property, bldgType: e.target.value })} required>
+                      <option value="" disabled selected>Select an option</option>
                       <option value="1Fam">Single-family Detached</option>
                       <option value="2FmCon">Two-family Conversion; originally bult as one-family dwelling</option>
                       <option value="Duplx">Duplex</option>
@@ -233,11 +245,12 @@ const Appraisal = () => {
                     </select>
                   </div>
 
-
+                  {/* house style input field */}
                   <div>
                     <label className="block mb-2 text-sm font-medium text-gray-900">House Style</label>
-                    <select id="houseStyle" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 h-10" 
-                    onChange={(e) => setHouseStyle(e.target.value)} required>
+                    <select id="houseStyle" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 h-10"
+                      onChange={(e) => setProperty({ ...property, houseStyle: e.target.value })} required>
+                      <option value="" disabled selected>Select an option</option>
                       <option value="1Story">One story</option>
                       <option value="1.5Fin">One and one-half story: 2nd level finished</option>
                       <option value="1.5Unf">One and one-half story: 2nd level unfinished</option>
@@ -249,11 +262,12 @@ const Appraisal = () => {
                     </select>
                   </div>
 
-
+                  {/* overall quality input field */}
                   <div>
                     <label className="block mb-2 text-sm font-medium text-gray-900">Overall Quality: Rates the overall material and finish of the house</label>
-                    <select id="overallQual" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 h-10" 
-                    onChange={(e) => setOverallQual(e.target.value)} required>
+                    <select id="overallQual" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 h-10"
+                      onChange={(e) => setProperty({ ...property, overallQual: e.target.value })} required>
+                      <option value="" disabled selected>Select an option</option>
                       <option value="10">Very Excellent</option>
                       <option value="9">Excellent</option>
                       <option value="8">Very Good</option>
@@ -267,11 +281,12 @@ const Appraisal = () => {
                     </select>
                   </div>
 
-
+                  {/* overall condtion input field */}
                   <div>
                     <label className="block mb-2 text-sm font-medium text-gray-900">Overall Condition: Rates the overall condition of the house</label>
-                    <select id="overallCond" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 h-10" 
-                    onChange={(e) => setOverallCond(e.target.value)} required>
+                    <select id="overallCond" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 h-10"
+                      onChange={(e) => setProperty({ ...property, overallCond: e.target.value })} required>
+                      <option value="" disabled selected>Select an option</option>
                       <option value="10">Very Excellent</option>
                       <option value="9">Excellent</option>
                       <option value="8">Very Good</option>
@@ -285,24 +300,28 @@ const Appraisal = () => {
                     </select>
                   </div>
 
+                  {/* build year input field */}
                   <div>
                     <label className="block mb-2 text-sm font-medium text-gray-900">Year Built: Original construction date</label>
                     {/* may want to change max build year dynamically based on current year */}
-                    <input id="yearBuilt" type="number" step="1" min="1000" max="3000" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5" 
-                    value={yearBuilt} onChange={(e) => setYearBuilt(e.target.value)} placeholder="2005" required />
+                    <input id="yearBuilt" type="number" step="1" min="1000" max="3000" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5"
+                      value={property.yearBuilt} onChange={(e) => setProperty({ ...property, yearBuilt: e.target.value })} placeholder="2005" required />
                   </div>
 
+                  {/* year remodelled input field */}
                   <div>
                     <label className="block mb-2 text-sm font-medium text-gray-900">Year Remodelled: Remodel date (same as construction date if no remodeling or additions)</label>
                     {/* may want to change max build year dynamically based on current year */}
-                    <input id="yearRemod" type="number" step="1" min="1000" max="3000" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5" 
-                    value={yearRemod} onChange={(e) => setYearRemod(e.target.value)} placeholder="2005" required />
+                    <input id="yearRemod" type="number" step="1" min="1000" max="3000" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5"
+                      value={property.yearRemod} onChange={(e) => setProperty({ ...property, yearRemod: e.target.value })} placeholder="2005" required />
                   </div>
 
+                  {/* main exterior material input field */}
                   <div>
                     <label className="block mb-2 text-sm font-medium text-gray-900">Exterior 1: Exterior covering on house</label>
-                    <select id="exterior1" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 h-10" 
-                    onChange={(e) => setExterior1(e.target.value)} required>
+                    <select id="exterior1" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 h-10"
+                      onChange={(e) => setProperty({ ...property, exterior1: e.target.value })} required>
+                      <option value="" disabled selected>Select an option</option>
                       <option value="AsbShng">Asbestos Shingles</option>
                       <option value="AsphShn">Asphalt Shingles</option>
                       <option value="BrkComm">Brick Common</option>
@@ -323,10 +342,12 @@ const Appraisal = () => {
                     </select>
                   </div>
 
+                  {/* exterior quality input field */}
                   <div>
                     <label className="block mb-2 text-sm font-medium text-gray-900">Exterior Quality: Evaluates the quality of the material on the exterior</label>
-                    <select id="exterQual" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 h-10" 
-                    onChange={(e) => setExterQual(e.target.value)} required>
+                    <select id="exterQual" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 h-10"
+                      onChange={(e) => setProperty({ ...property, exterQual: e.target.value })} required>
+                      <option value="" disabled selected>Select an option</option>
                       <option value="Ex">Excellent</option>
                       <option value="Gd">Good</option>
                       <option value="TA">Average/Typical</option>
@@ -334,12 +355,13 @@ const Appraisal = () => {
                       <option value="Po">Poor</option>
                     </select>
                   </div>
-          
 
+                  {/* exterior condition input field */}
                   <div>
                     <label className="block mb-2 text-sm font-medium text-gray-900">Exterior Condition: Evaluates the present condition of the material on the exterior</label>
-                    <select id="exterCond" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 h-10" 
-                    onChange={(e) => setExterCond(e.target.value)} required>
+                    <select id="exterCond" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 h-10"
+                      onChange={(e) => setProperty({ ...property, exterCond: e.target.value })} required>
+                      <option value="" disabled selected>Select an option</option>
                       <option value="Ex">Excellent</option>
                       <option value="Gd">Good</option>
                       <option value="TA">Average/Typical</option>
@@ -348,10 +370,12 @@ const Appraisal = () => {
                     </select>
                   </div>
 
+                  {/* foundation input field */}
                   <div>
                     <label className="block mb-2 text-sm font-medium text-gray-900">Foundation: Type of foundation</label>
-                    <select id="foundation" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 h-10" 
-                    onChange={(e) => setFoundation(e.target.value)} required>
+                    <select id="foundation" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 h-10"
+                      onChange={(e) => setProperty({ ...property, foundation: e.target.value })} required>
+                      <option value="" disabled selected>Select an option</option>
                       <option value="BrkTil">Brick & Tile</option>
                       <option value="CBlock">Cinder Block</option>
                       <option value="PConc">Poured Contrete</option>
@@ -361,11 +385,12 @@ const Appraisal = () => {
                     </select>
                   </div>
 
-                  
+                  {/* basement finish type input field */}
                   <div>
                     <label className="block mb-2 text-sm font-medium text-gray-900">Basement Finish: Rating of basement finished area</label>
-                    <select id="bsmtFinType1" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 h-10" 
-                    onChange={(e) => setBsmtFinType1(e.target.value)} required>
+                    <select id="bsmtFinType1" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 h-10"
+                      onChange={(e) => setProperty({ ...property, bsmtFinType1: e.target.value })} required>
+                      <option value="" disabled selected>Select an option</option>
                       <option value="GLQ">Good Living Quarters</option>
                       <option value="ALQ">Average Living Quarters</option>
                       <option value="BLQ">Below Average Living Quarters</option>
@@ -376,22 +401,26 @@ const Appraisal = () => {
                     </select>
                   </div>
 
+                  {/* size of finished basement input field */}
                   <div>
                     <label className="block mb-2 text-sm font-medium text-gray-900">Area of Finished Basement in square feet</label>
-                    <input id="bsmtFindSF1" type="number" step="1" min="0" max="10000" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5" 
-                    value={bsmtFindSF1} onChange={(e) => setBsmtFindSF1(e.target.value)} placeholder="500" required />
+                    <input id="bsmtFindSF1" type="number" step="1" min="0" max="10000" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5"
+                      value={property.bsmtFindSF1} onChange={(e) => setProperty({ ...property, bsmtFindSF1: e.target.value })} placeholder="500" required />
                   </div>
 
+                  {/* total size of basement input field */}
                   <div>
                     <label className="block mb-2 text-sm font-medium text-gray-900">Total Area of Basement in square feet</label>
-                    <input id="totalBsmtSF" type="number" step="1" min="0" max="10000" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5" 
-                    value={totalBsmtSF} onChange={(e) => setTotalBsmtSF(e.target.value)} placeholder="500" required />
+                    <input id="totalBsmtSF" type="number" step="1" min="0" max="10000" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5"
+                      value={property.totalBsmtSF} onChange={(e) => setProperty({ ...property, totalBsmtSF: e.target.value })} placeholder="500" required />
                   </div>
 
+                  {/* heating type input field */}
                   <div>
                     <label className="block mb-2 text-sm font-medium text-gray-900">Heating: Type of heating</label>
-                    <select id="heating" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 h-10" 
-                    onChange={(e) => setHeating(e.target.value)} required>
+                    <select id="heating" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 h-10"
+                      onChange={(e) => setProperty({ ...property, heating: e.target.value })} required>
+                      <option value="" disabled selected>Select an option</option>
                       <option value="Floor">Floor Furnace</option>
                       <option value="GasA">Gas forced warm air furnace</option>
                       <option value="GasW">Gas hot water or steam heat</option>
@@ -401,10 +430,12 @@ const Appraisal = () => {
                     </select>
                   </div>
 
+                  {/* heaitng quality and condition input field */}
                   <div>
                     <label className="block mb-2 text-sm font-medium text-gray-900">Heating quality and condition</label>
-                    <select id="heatingQC" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 h-10" 
-                    onChange={(e) => setHeatingQC(e.target.value)} required>
+                    <select id="heatingQC" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 h-10"
+                      onChange={(e) => setProperty({ ...property, heatingQC: e.target.value })} required>
+                      <option value="" disabled selected>Select an option</option>
                       <option value="Ex">Excellent</option>
                       <option value="Gd">Good</option>
                       <option value="TA">Average/Typical</option>
@@ -413,19 +444,23 @@ const Appraisal = () => {
                     </select>
                   </div>
 
+                  {/* central air input field */}
                   <div>
                     <label className="block mb-2 text-sm font-medium text-gray-900">Central air conditioning</label>
-                    <select id="centralAir" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 h-10" 
-                    onChange={(e) => setCentralAir(e.target.value)} required>
+                    <select id="centralAir" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 h-10"
+                      onChange={(e) => setProperty({ ...property, centralAir: e.target.value })} required>
+                      <option value="" disabled selected>Select an option</option>
                       <option value="N">No</option>
                       <option value="Y">Yes</option>
                     </select>
                   </div>
 
+                  {/* electrical type input field */}
                   <div>
-                    <label className="block mb-2 text-sm font-medium text-gray-900">Central air conditioning</label>
-                    <select id="centralAir" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 h-10" 
-                    onChange={(e) => setElectrical(e.target.value)} required>
+                    <label className="block mb-2 text-sm font-medium text-gray-900">Electrical system</label>
+                    <select id="electrical" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 h-10"
+                      onChange={(e) => setProperty({ ...property, electrical: e.target.value })} required>
+                      <option value="" disabled selected>Select an option</option>
                       <option value="SBrkr">Standard Circuit Breakers & Romex</option>
                       <option value="FuseA">Fuse Box over 60 AMP and all Romex wiring (Average)</option>
                       <option value="FuseF">60 AMP Fuse Box and mostly Romex wiring (Fair)</option>
@@ -434,48 +469,56 @@ const Appraisal = () => {
                     </select>
                   </div>
 
+                  {/* first floor area input field */}
                   <div>
                     <label className="block mb-2 text-sm font-medium text-gray-900">Area of First Floor in square feet</label>
-                    <input id="fstFloorArea" type="number" step="1" min="0" max="10000" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5" 
-                    value={fstFloorArea} onChange={(e) => set1stFloorArea(e.target.value)} placeholder="1250" required />
+                    <input id="fstFloorArea" type="number" step="1" min="0" max="10000" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5"
+                      value={property.fstFloorArea} onChange={(e) => setProperty({ ...property, fstFloorArea: e.target.value })} placeholder="1250" required />
                   </div>
 
+                  {/* second floor area input field */}
                   <div>
                     <label className="block mb-2 text-sm font-medium text-gray-900">Area of Second Floor in square feet</label>
-                    <input id="sndFloorArea" type="number" step="1" min="0" max="10000" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5" 
-                    value={sndFloorArea} onChange={(e) => set2ndFloorArea(e.target.value)} placeholder="750" required />
+                    <input id="sndFloorArea" type="number" step="1" min="0" max="10000" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5"
+                      value={property.sndFloorArea} onChange={(e) => setProperty({ ...property, sndFloorArea: e.target.value })} placeholder="750" required />
                   </div>
 
                   {/* add total area */}
 
+                  {/* number of full baths input field */}
                   <div>
                     <label className="block mb-2 text-sm font-medium text-gray-900">Number of full bathrooms</label>
-                    <input id="fullBath" type="number" step="1" min="0" max="100" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5" 
-                    value={fullBath} onChange={(e) => setFullBath(e.target.value)} placeholder="2" required />
+                    <input id="fullBath" type="number" step="1" min="0" max="100" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5"
+                      value={property.fullBath} onChange={(e) => setProperty({ ...property, fullBath: e.target.value })} placeholder="2" required />
                   </div>
 
+                  {/* number of half baths input field */}
                   <div>
                     <label className="block mb-2 text-sm font-medium text-gray-900">Number of half bathrooms</label>
-                    <input id="halfBath" type="number" step="1" min="0" max="100" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5" 
-                    value={halfBath} onChange={(e) => setHalfBath(e.target.value)} placeholder="1" required />
+                    <input id="halfBath" type="number" step="1" min="0" max="100" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5"
+                      value={property.halfBath} onChange={(e) => setProperty({ ...property, halfBath: e.target.value })} placeholder="1" required />
                   </div>
 
+                  {/* number of bedrooms input field */}
                   <div>
                     <label className="block mb-2 text-sm font-medium text-gray-900">Number of Bedrooms (not including basement bedrooms)</label>
-                    <input id="bedroom" type="number" step="1" min="0" max="100" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5" 
-                    value={bedroom} onChange={(e) => setBedroom(e.target.value)} placeholder="3" required />
+                    <input id="bedroom" type="number" step="1" min="0" max="100" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5"
+                      value={property.bedroom} onChange={(e) => setProperty({ ...property, bedroom: e.target.value })} placeholder="3" required />
                   </div>
 
+                  {/* number of kitchens input field */}
                   <div>
                     <label className="block mb-2 text-sm font-medium text-gray-900">Number of Kitchens</label>
-                    <input id="kitchen" type="number" step="1" min="0" max="100" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5" 
-                    value={kitchen} onChange={(e) => setKitchen(e.target.value)} placeholder="1" required />
+                    <input id="kitchen" type="number" step="1" min="0" max="100" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5"
+                      value={property.kitchen} onChange={(e) => setProperty({ ...property, kitchen: e.target.value })} placeholder="1" required />
                   </div>
 
+                  {/* kitchen quality input field */}
                   <div>
                     <label className="block mb-2 text-sm font-medium text-gray-900">Kitchen quality</label>
-                    <select id="kitchenQual" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 h-10" 
-                    onChange={(e) => setKitchenQual(e.target.value)} required>
+                    <select id="kitchenQual" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 h-10"
+                      onChange={(e) => setProperty({ ...property, kitchenQual: e.target.value })} required>
+                      <option value="" disabled selected>Select an option</option>
                       <option value="Ex">Excellent</option>
                       <option value="Gd">Good</option>
                       <option value="TA">Average/Typical</option>
@@ -484,16 +527,19 @@ const Appraisal = () => {
                     </select>
                   </div>
 
+                  {/* total rooms above ground input field */}
                   <div>
                     <label className="block mb-2 text-sm font-medium text-gray-900">Total rooms above grade (does not include bathrooms)</label>
-                    <input id="totRmsAbvGrd" type="number" step="1" min="0" max="100" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5" 
-                    value={totRmsAbvGrd} onChange={(e) => setTotRmsAbvGrd(e.target.value)} placeholder="8" required />
+                    <input id="totRmsAbvGrd" type="number" step="1" min="0" max="100" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5"
+                      value={property.totRmsAbvGrd} onChange={(e) => setProperty({ ...property, totRmsAbvGrd: e.target.value })} placeholder="8" required />
                   </div>
 
+                  {/* garage type input field */}
                   <div>
                     <label className="block mb-2 text-sm font-medium text-gray-900">Garage location</label>
-                    <select id="garageType" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 h-10" 
-                    onChange={(e) => setGarageType(e.target.value)} required>
+                    <select id="garageType" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 h-10"
+                      onChange={(e) => setProperty({ ...property, garageType: e.target.value })} required>
+                      <option value="" disabled selected>Select an option</option>
                       <option value="2Types">More than one type of garage</option>
                       <option value="Attchd">Attached to home</option>
                       <option value="Basment">Basement Garage</option>
@@ -504,22 +550,26 @@ const Appraisal = () => {
                     </select>
                   </div>
 
+                  {/* number of cars garage can fit input field */}
                   <div>
                     <label className="block mb-2 text-sm font-medium text-gray-900">Size of garage in car capacity</label>
-                    <input id="garageCars" type="number" step="1" min="0" max="100" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5" 
-                    value={garageCars} onChange={(e) => setGarageCars(e.target.value)} placeholder="2" required />
+                    <input id="garageCars" type="number" step="1" min="0" max="100" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5"
+                      value={property.garageCars} onChange={(e) => setProperty({ ...property, garageCars: e.target.value })} placeholder="2" required />
                   </div>
 
+                  {/* garage area input field */}
                   <div>
                     <label className="block mb-2 text-sm font-medium text-gray-900">Size of garage in square feet</label>
-                    <input id="garageArea" type="number" step="1" min="0" max="100" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5" 
-                    value={garageArea} onChange={(e) => setGarageArea(e.target.value)} placeholder="400" required />
+                    <input id="garageArea" type="number" step="1" min="0" max="10000" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5"
+                      value={property.garageArea} onChange={(e) => setProperty({ ...property, garageArea: e.target.value })} placeholder="400" required />
                   </div>
 
+                  {/* garage quality input field */}
                   <div>
-                    <label className="block mb-2 text-sm font-medium text-gray-900">Kitchen quality</label>
-                    <select id="garageQual" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 h-10" 
-                    onChange={(e) => setGarageQual(e.target.value)} required>
+                    <label className="block mb-2 text-sm font-medium text-gray-900">Garage quality</label>
+                    <select id="garageQual" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 h-10"
+                      onChange={(e) => setProperty({ ...property, garageQual: e.target.value })} required>
+                      <option value="" disabled selected>Select an option</option>
                       <option value="Ex">Excellent</option>
                       <option value="Gd">Good</option>
                       <option value="TA">Average/Typical</option>
@@ -529,16 +579,19 @@ const Appraisal = () => {
                     </select>
                   </div>
 
+                  {/* size of wooden deck input field */}
                   <div>
                     <label className="block mb-2 text-sm font-medium text-gray-900">Wood deck area in square feet</label>
-                    <input id="woodDeckSF" type="number" step="1" min="0" max="100" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5" 
-                    value={woodDeckSF} onChange={(e) => setWoodDeckSF(e.target.value)} placeholder="200" required />
+                    <input id="woodDeckSF" type="number" step="1" min="0" max="10000" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5"
+                      value={property.woodDeckSF} onChange={(e) => setProperty({ ...property, woodDeckSF: e.target.value })} placeholder="200" required />
                   </div>
 
+                  {/* fence input field */}
                   <div>
-                    <label className="block mb-2 text-sm font-medium text-gray-900">Kitchen quality</label>
-                    <select id="fence" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 h-10" 
-                    onChange={(e) => setFence(e.target.value)} required>
+                    <label className="block mb-2 text-sm font-medium text-gray-900">Fence quality</label>
+                    <select id="fence" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 h-10"
+                      onChange={(e) => setProperty({ ...property, fence: e.target.value })} required>
+                      <option value="" disabled selected>Select an option</option>
                       <option value="GdPrv">Good Privacy</option>
                       <option value="MnPrv">Minimum Privacy</option>
                       <option value="GdWo">Good Wood</option>
@@ -546,12 +599,10 @@ const Appraisal = () => {
                       <option value="NA">No Fence</option>
                     </select>
                   </div>
-
-
                 </div>
               </div>
             </div>
-        
+
             {/* TODO: fix button so toast only shows when all fields are inputted and valid */}
             {/* Appraise button to submit form */}
             <div className='text-center'>
@@ -562,7 +613,7 @@ const Appraisal = () => {
                 hover:bg-transparent hover:text-indigo-600 rounded-md cursor-pointer"
               />
               {showToast && (
-              <Toast message="Form submitted!" duration={3000} onClose={handleHideToast} />
+                <Toast message="Form submitted!" duration={3000} onClose={handleHideToast} />
               )}
             </div>
           </div>
