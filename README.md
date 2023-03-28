@@ -29,7 +29,7 @@ py -m venv env
 .\env\Scripts\activate
 ```
 
-Install backend dependencies
+### Install backend dependencies
 ```console
 cd backend
 ```
