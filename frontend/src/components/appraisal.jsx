@@ -35,9 +35,11 @@ const Appraisal = () => {
   const [image, setImage] = useState(null);
   const [property, setProperty] = useState({
     // image: null,
+    area: "",
     zone: "",
     lotArea: "",
     utilities: "",
+    neighborhood: "",
     bldgType: "",
     houseStyle: "",
     overallQual: "",
@@ -55,8 +57,6 @@ const Appraisal = () => {
     heatingQC: "",
     centralAir: "",
     electrical: "",
-    fstFloorArea: "",
-    sndFloorArea: "",
     fullBath: "",
     halfBath: "",
     bedroom: "",
@@ -81,9 +81,11 @@ const Appraisal = () => {
     // object containing all the properties and their values
     let propertyData = {
       image: image,
+      area: property.area,
       zone: property.zone,
       lotArea: property.lotArea,
       utilities: property.utilities,
+      neighborhood: property.neighborhood,
       bldgType: property.bldgType,
       houseStyle: property.houseStyle,
       overallQual: property.overallQual,
@@ -101,8 +103,6 @@ const Appraisal = () => {
       heatingQC: property.heatingQC,
       centralAir: property.centralAir,
       electrical: property.electrical,
-      fstFloorArea: property.fstFloorArea,
-      sndFloorArea: property.sndFloorArea,
       fullBath: property.fullBath,
       halfBath: property.halfBath,
       bedroom: property.bedroom,
@@ -192,6 +192,13 @@ const Appraisal = () => {
 
                 <div className="grid gap-6 mb-6 md:grid-cols-2">
 
+                  {/* Area input field */}
+                  <div>
+                    <label for="area" className="block mb-2 text-sm font-medium text-gray-900">Area</label>
+                    <input id="area" type="number" step="1" min="0" max="1000000" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5"
+                      value={property.area} onChange={(e) => setProperty({ ...property, area: e.target.value })} placeholder="2500" required />
+                  </div>
+
                   {/* Zone/Neighbourhood input field */}
                   <div>
                     <label for="zone" className="block mb-2 text-sm font-medium text-gray-900">Zone</label>
@@ -228,6 +235,40 @@ const Appraisal = () => {
                       <option value="NoSewr">Electricity, Gas, and Water (Septic Tank)</option>
                       <option value="NoSeWa">Electricity and Gas only</option>
                       <option value="ELO">Electricity only</option>
+                    </select>
+                  </div>
+
+                  {/* neighborhood input field */}
+                  <div>
+                    <label className="block mb-2 text-sm font-medium text-gray-900">Neighborhood</label>
+                    <select id="neighborhood" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 h-10"
+                      onChange={(e) => setProperty({ ...property, neighborhood: e.target.value })} required>
+                      <option value="" disabled selected>Select an option</option>
+                      <option value="Blmngtn">Bloomington Heights</option>
+                      <option value="Blueste">Bluestem</option>
+                      <option value="BrDale">Briardale</option>
+                      <option value="BrkSide">Brookside</option>
+                      <option value="ClearCr">Clear Creek</option>
+                      <option value="CollgCr">College Creek</option>
+                      <option value="Crawfor">Crawford</option>
+                      <option value="Edwards">Edwards</option>
+                      <option value="Gilbert">Gilbert</option>
+                      <option value="IDOTRR">Iowa DOT and Rail Road</option>
+                      <option value="MeadowV">Meadow Village</option>
+                      <option value="Mitchel">Mitchell</option>
+                      <option value="Names">North Ames</option>
+                      <option value="NoRidge">Northridge</option>
+                      <option value="NPkVill">Northpark Villa</option>
+                      <option value="NridgHt">Northridge Heights</option>
+                      <option value="NWAmes">Northwest Ames</option>
+                      <option value="OldTown">Old Town</option>
+                      <option value="SWISU">South & West of Iowa State University</option>
+                      <option value="Sawyer">Sawyer</option>
+                      <option value="SawyerW">Sawyer West</option>
+                      <option value="Somerst">Somerset</option>
+                      <option value="StoneBr">Stone Brook</option>
+                      <option value="Timber">Timberland</option>
+                      <option value="Veenker">Veenker</option>
                     </select>
                   </div>
 
@@ -304,7 +345,7 @@ const Appraisal = () => {
                   <div>
                     <label className="block mb-2 text-sm font-medium text-gray-900">Year Built: Original construction date</label>
                     {/* may want to change max build year dynamically based on current year */}
-                    <input id="yearBuilt" type="number" step="1" min="1000" max="3000" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5"
+                    <input id="yearBuilt" type="number" step="1" min="0" max="1000000" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5"
                       value={property.yearBuilt} onChange={(e) => setProperty({ ...property, yearBuilt: e.target.value })} placeholder="2005" required />
                   </div>
 
@@ -312,7 +353,7 @@ const Appraisal = () => {
                   <div>
                     <label className="block mb-2 text-sm font-medium text-gray-900">Year Remodelled: Remodel date (same as construction date if no remodeling or additions)</label>
                     {/* may want to change max build year dynamically based on current year */}
-                    <input id="yearRemod" type="number" step="1" min="1000" max="3000" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5"
+                    <input id="yearRemod" type="number" step="1" min="0" max="1000000" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5"
                       value={property.yearRemod} onChange={(e) => setProperty({ ...property, yearRemod: e.target.value })} placeholder="2005" required />
                   </div>
 
@@ -404,14 +445,14 @@ const Appraisal = () => {
                   {/* size of finished basement input field */}
                   <div>
                     <label className="block mb-2 text-sm font-medium text-gray-900">Area of Finished Basement in square feet</label>
-                    <input id="bsmtFindSF1" type="number" step="1" min="0" max="10000" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5"
+                    <input id="bsmtFindSF1" type="number" step="1" min="0" max="1000000" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5"
                       value={property.bsmtFindSF1} onChange={(e) => setProperty({ ...property, bsmtFindSF1: e.target.value })} placeholder="500" required />
                   </div>
 
                   {/* total size of basement input field */}
                   <div>
                     <label className="block mb-2 text-sm font-medium text-gray-900">Total Area of Basement in square feet</label>
-                    <input id="totalBsmtSF" type="number" step="1" min="0" max="10000" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5"
+                    <input id="totalBsmtSF" type="number" step="1" min="0" max="1000000" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5"
                       value={property.totalBsmtSF} onChange={(e) => setProperty({ ...property, totalBsmtSF: e.target.value })} placeholder="500" required />
                   </div>
 
@@ -469,47 +510,31 @@ const Appraisal = () => {
                     </select>
                   </div>
 
-                  {/* first floor area input field */}
-                  <div>
-                    <label className="block mb-2 text-sm font-medium text-gray-900">Area of First Floor in square feet</label>
-                    <input id="fstFloorArea" type="number" step="1" min="0" max="10000" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5"
-                      value={property.fstFloorArea} onChange={(e) => setProperty({ ...property, fstFloorArea: e.target.value })} placeholder="1250" required />
-                  </div>
-
-                  {/* second floor area input field */}
-                  <div>
-                    <label className="block mb-2 text-sm font-medium text-gray-900">Area of Second Floor in square feet</label>
-                    <input id="sndFloorArea" type="number" step="1" min="0" max="10000" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5"
-                      value={property.sndFloorArea} onChange={(e) => setProperty({ ...property, sndFloorArea: e.target.value })} placeholder="750" required />
-                  </div>
-
-                  {/* add total area */}
-
                   {/* number of full baths input field */}
                   <div>
                     <label className="block mb-2 text-sm font-medium text-gray-900">Number of full bathrooms</label>
-                    <input id="fullBath" type="number" step="1" min="0" max="100" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5"
+                    <input id="fullBath" type="number" step="1" min="0" max="1000" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5"
                       value={property.fullBath} onChange={(e) => setProperty({ ...property, fullBath: e.target.value })} placeholder="2" required />
                   </div>
 
                   {/* number of half baths input field */}
                   <div>
                     <label className="block mb-2 text-sm font-medium text-gray-900">Number of half bathrooms</label>
-                    <input id="halfBath" type="number" step="1" min="0" max="100" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5"
+                    <input id="halfBath" type="number" step="1" min="0" max="1000" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5"
                       value={property.halfBath} onChange={(e) => setProperty({ ...property, halfBath: e.target.value })} placeholder="1" required />
                   </div>
 
                   {/* number of bedrooms input field */}
                   <div>
                     <label className="block mb-2 text-sm font-medium text-gray-900">Number of Bedrooms (not including basement bedrooms)</label>
-                    <input id="bedroom" type="number" step="1" min="0" max="100" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5"
+                    <input id="bedroom" type="number" step="1" min="0" max="1000" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5"
                       value={property.bedroom} onChange={(e) => setProperty({ ...property, bedroom: e.target.value })} placeholder="3" required />
                   </div>
 
                   {/* number of kitchens input field */}
                   <div>
                     <label className="block mb-2 text-sm font-medium text-gray-900">Number of Kitchens</label>
-                    <input id="kitchen" type="number" step="1" min="0" max="100" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5"
+                    <input id="kitchen" type="number" step="1" min="0" max="1000" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5"
                       value={property.kitchen} onChange={(e) => setProperty({ ...property, kitchen: e.target.value })} placeholder="1" required />
                   </div>
 
@@ -530,7 +555,7 @@ const Appraisal = () => {
                   {/* total rooms above ground input field */}
                   <div>
                     <label className="block mb-2 text-sm font-medium text-gray-900">Total rooms above grade (does not include bathrooms)</label>
-                    <input id="totRmsAbvGrd" type="number" step="1" min="0" max="100" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5"
+                    <input id="totRmsAbvGrd" type="number" step="1" min="0" max="1000" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5"
                       value={property.totRmsAbvGrd} onChange={(e) => setProperty({ ...property, totRmsAbvGrd: e.target.value })} placeholder="8" required />
                   </div>
 
@@ -553,14 +578,14 @@ const Appraisal = () => {
                   {/* number of cars garage can fit input field */}
                   <div>
                     <label className="block mb-2 text-sm font-medium text-gray-900">Size of garage in car capacity</label>
-                    <input id="garageCars" type="number" step="1" min="0" max="100" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5"
+                    <input id="garageCars" type="number" step="1" min="0" max="1000" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5"
                       value={property.garageCars} onChange={(e) => setProperty({ ...property, garageCars: e.target.value })} placeholder="2" required />
                   </div>
 
                   {/* garage area input field */}
                   <div>
                     <label className="block mb-2 text-sm font-medium text-gray-900">Size of garage in square feet</label>
-                    <input id="garageArea" type="number" step="1" min="0" max="10000" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5"
+                    <input id="garageArea" type="number" step="1" min="0" max="1000000" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5"
                       value={property.garageArea} onChange={(e) => setProperty({ ...property, garageArea: e.target.value })} placeholder="400" required />
                   </div>
 
@@ -582,7 +607,7 @@ const Appraisal = () => {
                   {/* size of wooden deck input field */}
                   <div>
                     <label className="block mb-2 text-sm font-medium text-gray-900">Wood deck area in square feet</label>
-                    <input id="woodDeckSF" type="number" step="1" min="0" max="10000" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5"
+                    <input id="woodDeckSF" type="number" step="1" min="0" max="100000" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5"
                       value={property.woodDeckSF} onChange={(e) => setProperty({ ...property, woodDeckSF: e.target.value })} placeholder="200" required />
                   </div>
 

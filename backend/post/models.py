@@ -6,9 +6,11 @@ from django.db import models
 
 class Post(models.Model):
     # content is a paragraph description of the house (will change in the future)
+    area = models.IntegerField(blank=True, null=True)
     zone = models.CharField(max_length=100, blank=True, null=True)
     lotArea = models.IntegerField(blank=True, null=True)
     utilities = models.CharField(max_length=100, blank=True, null=True)
+    neighborhood = models.CharField(max_length=100, blank=True, null=True)
     bldgType = models.CharField(max_length=100, blank=True, null=True)
     houseStyle = models.CharField(max_length=100, blank=True, null=True)
     overallQual = models.CharField(max_length=100, blank=True, null=True)
@@ -25,8 +27,6 @@ class Post(models.Model):
     heatingQC = models.CharField(max_length=100, blank=True, null=True)
     centralAir = models.CharField(max_length=100, blank=True, null=True)
     electrical = models.CharField(max_length=100, blank=True, null=True)
-    fstFloorArea = models.IntegerField(blank=True, null=True)
-    sndFloorArea = models.IntegerField(blank=True, null=True)
     fullBath = models.IntegerField(blank=True, null=True)
     halfBath = models.IntegerField(blank=True, null=True)
     bedroom = models.IntegerField(blank=True, null=True)
