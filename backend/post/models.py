@@ -5,7 +5,6 @@ from django.db import models
 # allowing developers to work with Python objects instead of writing raw SQL queries.
 
 class Listing(models.Model):
-    # content is a paragraph description of the house (will change in the future)
     area = models.IntegerField(blank=True, null=True)
     zone = models.CharField(max_length=100, blank=True, null=True)
     lotArea = models.IntegerField(blank=True, null=True)

@@ -20,7 +20,6 @@ class PostView(APIView):
 
     # Post data to database
     def post(self, request, *args, **kwargs):
-        # text_serializer = ListingSerializer(data=request.data, files=request.FILES)
         posts_serializer = ListingSerializer(data=request.data, context={'request': request})
         if posts_serializer.is_valid():
             posts_serializer.save()

@@ -34,7 +34,6 @@ const Appraisal = () => {
   /* Consider setting default values for Demo purposes */
   const [images, setImages] = useState(null);
   const [property, setProperty] = useState({
-    // image: null,
     area: "",
     zone: "",
     lotArea: "",
@@ -77,7 +76,6 @@ const Appraisal = () => {
 
     // object containing all the properties and their values
     let propertyData = {
-      // image: images,
       area: property.area,
       zone: property.zone,
       lotArea: property.lotArea,
@@ -114,10 +112,13 @@ const Appraisal = () => {
       fence: property.fence
     };
 
+    // add images to formData
     let formData = new FormData();
     for (let i = 0; i < images.length; i++) {
       formData.append("images", images[i]);
     }
+
+    // add text data to formData
     for (let key in propertyData) {
       formData.append(key, propertyData[key]);
     }
