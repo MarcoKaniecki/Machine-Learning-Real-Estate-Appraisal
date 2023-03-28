@@ -11,11 +11,16 @@ from rest_framework import status
 class PostView(APIView):
     parser_classes = (MultiPartParser, FormParser)
 
-    # We don't need a get, there is no outgoing HTTP traffic until PDF creation
+    # get all info in database, will be displayed in REST fraemwork page
+    # we need this to display the text data stored in the database
+    def get(self, request, *args, **kwargs):
+        posts = Listing.objects.all()
+        serializer = ListingSerializer(posts, many=True)
+        return Response(serializer.data)
 
     # Post data to database
     def post(self, request, *args, **kwargs):
-        # posts_serializer = ListingSerializer(data=request.data, files=request.FILES)
+        # text_serializer = ListingSerializer(data=request.data, files=request.FILES)
         posts_serializer = ListingSerializer(data=request.data, context={'request': request})
         if posts_serializer.is_valid():
             posts_serializer.save()

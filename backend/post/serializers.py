@@ -2,6 +2,8 @@ from rest_framework import serializers
 from .models import *
 
 
+# shortcut for creating serializers that deal with model instances and querysets.
+# Automatically generate fields based on the model fields and provide default implementations for creating or updating instances.
 class ImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Image

@@ -4,7 +4,7 @@ from django.db import models
 # It also provides an object-relational mapping (ORM) layer for interacting with the database, 
 # allowing developers to work with Python objects instead of writing raw SQL queries.
 
-class Post(models.Model):
+class Listing(models.Model):
     # content is a paragraph description of the house (will change in the future)
     area = models.IntegerField(blank=True, null=True)
     zone = models.CharField(max_length=100, blank=True, null=True)
@@ -40,15 +40,9 @@ class Post(models.Model):
     woodDeckSF = models.IntegerField(blank=True, null=True)
     fence = models.CharField(max_length=100, blank=True, null=True)
     
-    image = models.ImageField(upload_to='post_images')
-    title = "test"
-    
     def __str__(self):
         return self.title
 
-
-class Listing(models.Model):
-    content = models.CharField(max_length=255)
 
 class Image(models.Model):
     listing = models.ForeignKey(Listing, on_delete=models.CASCADE)

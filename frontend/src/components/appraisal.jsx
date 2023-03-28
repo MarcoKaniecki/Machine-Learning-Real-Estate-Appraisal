@@ -77,7 +77,7 @@ const Appraisal = () => {
 
     // object containing all the properties and their values
     let propertyData = {
-      image: image,
+      // image: images,
       area: property.area,
       zone: property.zone,
       lotArea: property.lotArea,
