@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-scroll'
-import { AiFillGithub } from 'react-icons/ai'
+import { BiCodeAlt } from 'react-icons/bi' 
 import { FaBars } from 'react-icons/fa'
 import { ImCross } from 'react-icons/im'
 
@@ -28,7 +28,12 @@ const Navbar = () => {
                     </button>
                     */}
                     <a href="https://github.com/MarcoKaniecki/Deep-Learning-Real-Estate-Appraisal">
-                    <AiFillGithub className='h-10 w-10 hover:text-indigo-600' />
+                        <button className='px-4 py-2'>
+                            <p className='flex'>
+                                <BiCodeAlt className='h-5 w-5 mr-2 mt-0.5' />
+                                GitHub
+                            </p>  
+                        </button>
                     </a>
                 </div>
 
@@ -55,9 +60,13 @@ const Navbar = () => {
                 
                 {/* Stack buttons ontop of one another using flex and flex-col */}
                 <div className='flex flex-col my-4'>
-                    <button className='bg-transparent text-indigo-600 px-8 py-3 mb-4'>Some</button>
                     <a href="https://github.com/MarcoKaniecki/Deep-Learning-Real-Estate-Appraisal">
-                    <button className='px-8 py-3 mb-4 w-full hover:text-indigo-600'>Github</button>
+                    <button className='px-8 py-3 mb-4 w-full hover:text-indigo-600'>
+                    <p className='flex justify-center'>
+                        <BiCodeAlt className='h-5 w-5 mr-2 mt-0.5' />
+                        GitHub
+                    </p> 
+                    </button>
                     </a>
                 </div>
             </ul>
