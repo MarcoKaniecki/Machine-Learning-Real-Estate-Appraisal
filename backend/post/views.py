@@ -1,5 +1,5 @@
-from .serializers import PostSerializer
-from .models import Post
+from .serializers import *
+from .models import *
 from rest_framework.views import APIView
 from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.response import Response
@@ -11,15 +11,12 @@ from rest_framework import status
 class PostView(APIView):
     parser_classes = (MultiPartParser, FormParser)
 
-    # get all info in database, will be displayed in REST fraemwork page
-    def get(self, request, *args, **kwargs):
-        posts = Post.objects.all()
-        serializer = PostSerializer(posts, many=True)
-        return Response(serializer.data)
+    # We don't need a get, there is no outgoing HTTP traffic until PDF creation
 
-    # post data to database
+    # Post data to database
     def post(self, request, *args, **kwargs):
-        posts_serializer = PostSerializer(data=request.data)
+        # posts_serializer = ListingSerializer(data=request.data, files=request.FILES)
+        posts_serializer = ListingSerializer(data=request.data, context={'request': request})
         if posts_serializer.is_valid():
             posts_serializer.save()
             return Response(posts_serializer.data, status=status.HTTP_201_CREATED)

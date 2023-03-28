@@ -41,6 +41,15 @@ class Post(models.Model):
     fence = models.CharField(max_length=100, blank=True, null=True)
     
     image = models.ImageField(upload_to='post_images')
+    title = "test"
     
     def __str__(self):
         return self.title
+
+
+class Listing(models.Model):
+    content = models.CharField(max_length=255)
+
+class Image(models.Model):
+    listing = models.ForeignKey(Listing, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='images')
