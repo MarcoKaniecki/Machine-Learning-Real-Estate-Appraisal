@@ -2,3 +2,6 @@ Django
 Pillow
 djangorestframework
 django-cors-headers
+scikit-learn
+pandas
+numpy
