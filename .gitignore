@@ -155,4 +155,3 @@ yarn-debug.log*
 yarn-error.log*
 
 backend/media/*
-backend/random_forest_regression_model.joblib
