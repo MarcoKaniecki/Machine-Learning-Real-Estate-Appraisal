@@ -13,7 +13,7 @@ def encode_data(data):
         print('data length does not match feature length')
         return 0
     
-    # rename keys to match feature names except for price
+    # rename keys to match feature names
     data = rename_keys(data, globals.ALL_FEATURES)
 
     # encode ordinal and nominal values
