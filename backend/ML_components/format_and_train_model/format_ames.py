@@ -3,8 +3,8 @@ import numpy as np
 from category_encoders import OrdinalEncoder
 from sklearn.preprocessing import LabelEncoder
 
-file_name = "ames.csv"  # or path to file
-df = pd.read_csv(file_name)  # df means dataframe
+file_path = "ames.csv"  # or path to file
+df = pd.read_csv(file_path)  # df means dataframe
 # total: 2930 rows × 82 columns
 
 # all features we plan to use in our ML model
@@ -65,10 +65,6 @@ ordinal_encoded_features = ['Utilities', 'Exter.Qual', 'Exter.Cond',
                             'BsmtFin.Type.1', 'Heating.QC', 'Electrical',
                             'Kitchen.Qual', 'Garage.Qual', 'Fence']
 
-# overwrite values from float to integer
-for ordinal_encoded_feature in ordinal_encoded_features:
-    formatted_df[ordinal_encoded_feature] = formatted_df[ordinal_encoded_feature].astype(int)
-
 
 # ***********************
 # Encode Nominal Features
@@ -114,6 +110,10 @@ formatted_df.fillna(formatted_df.mean(), inplace=True)
 # changing every type into an integer
 for feature in all_features:
     formatted_df[feature] = formatted_df[feature].astype(int)
+
+# switch price and area columns, if area is 0th column
+if formatted_df.columns.get_loc('area') == 0:
+    formatted_df = formatted_df.iloc[:, [1, 0] + list(range(2, formatted_df.shape[1]))]
 
 # create new file to store the encoded data
 formatted_df.to_csv('formatted_ames.csv', index=False)
