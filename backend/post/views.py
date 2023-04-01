@@ -29,8 +29,6 @@ class PostView(APIView):
             print('------------------------------------')
             print('it works! Heres the price:', predicted_price)
             print('------------------------------------')
-        else:
-            print('No data in database')
         
         return Response(serializer.data)
 
