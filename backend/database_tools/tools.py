@@ -3,8 +3,9 @@ import json
 from post.models import Listing
 
 
-# get data from database, return in form of python dict
+# get most recent listing in database, return in form of python dict
 def get_database_data():
+    # * may want to change getting all data from database to getting only most recent entry
     posts = Listing.objects.all()  # get all data from database
     df = pd.DataFrame(posts.values())  # convert to dataframe
     data = df.to_json(orient='records')  # convert to json
