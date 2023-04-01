@@ -1,88 +1,75 @@
 # Using Deep Learning for Real Estate Appraisal
-The project aims to build a solution for real estate appraisal by utilizing Deep Learning. 
+Before starting, make sure you have [python3](https://www.python.org/downloads/), pip (comes with python3), and [yarn](https://classic.yarnpkg.com/lang/en/docs/install/#windows-stable) installed.
 
+## Local Installation
+Find or create a directory where you want to store the repo
 
-## Backend - Object Recognition using Microsoft Azure Computer Vision
-Extracts features from images to be used in appraisal
-
-### Setup
-Create a virtual environment then install the following packages
 ```console
-pip install Pillow
-```
-```console
-pip install azure-cognitiveservices-vision-computervision==0.9.0
+git clone https://github.com/MarcoKaniecki/Deep-Learning-Real-Estate-Appraisal
 ```
 
-
-## Frontend - User Interface
-
-### Setup
-
-Install Node.js through their website (https://nodejs.org/en/)
-
-For this branch yarn is being used as our package manager.
-To install and upgrade yarn run the following
 ```console
-npm install --global yarn
+cd Deep-Learning-Real-Estate-Appraisal
 ```
 
-Then run
+### Setup the virtual environment for backend
+#### MacOS
+```console
+python3 -m venv env
+```
+```console
+source env/bin/activate
+```
+
+#### Windows
+```console
+py -m venv env
+```
+```console
+.\env\Scripts\activate
+```
+
+### Install backend dependencies
+```console
+cd backend
+```
+```console
+pip install -r ../requirements.txt
+```
+
+Setup database
+```console
+python manage.py makemigrations
+```
+```console
+python manage.py migrate
+```
+
+**Optional**: Setup superuser to add data from backend into database. Enter a username, a random email and a password to access the admin panel
+```console
+python manage.py createsuperuser
+```
+
+Run backend server
+```console
+python manage.py runserver 8000
+```
+
+Go to
+http://127.0.0.1:8000/api/posts/
+to see data in database
+
+
+**Optional** (need to have created a superuser): Go to the following url to add sample data which will be displayed in http://127.0.0.1:8000/api/posts/ URL.
+
+### Setup frontend
+Open a new terminal
+```console
+cd frontend
+```
 ```console
 yarn install
 ```
-to install all the packages used in the program.
-
-Run
 ```console
 yarn start
 ```
-to setup the localhost and have the UI be displayed in a browser window
-
-
-## Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-### Available Scripts
-
-In the project directory, you can run:
-
-#### `yarn start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-#### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-#### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-#### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-#### Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).

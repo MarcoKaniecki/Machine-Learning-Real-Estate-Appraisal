@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-scroll'
+import { BiCodeAlt } from 'react-icons/bi' 
 import { FaBars } from 'react-icons/fa'
 import { ImCross } from 'react-icons/im'
 
@@ -21,10 +22,19 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className='hidden md:flex pr-4'>
+                    {/*
                     <button className='border-none bg-transparent text-black mr-4'>
                         Some
                     </button>
-                    <button className='px-8 py-3'>Thing?</button>
+                    */}
+                    <a href="https://github.com/MarcoKaniecki/Deep-Learning-Real-Estate-Appraisal">
+                        <button className='px-4 py-2'>
+                            <p className='flex'>
+                                <BiCodeAlt className='h-5 w-5 mr-2 mt-0.5' />
+                                GitHub
+                            </p>  
+                        </button>
+                    </a>
                 </div>
 
                 {/* Anything over minimum width the button will be hidden */}
@@ -50,8 +60,14 @@ const Navbar = () => {
                 
                 {/* Stack buttons ontop of one another using flex and flex-col */}
                 <div className='flex flex-col my-4'>
-                    <button className='bg-transparent text-indigo-600 px-8 py-3 mb-4'>Some</button>
-                    <button className='px-8 py-3'>Thing?</button>
+                    <a href="https://github.com/MarcoKaniecki/Deep-Learning-Real-Estate-Appraisal">
+                    <button className='px-8 py-3 mb-4 w-full hover:text-indigo-600'>
+                    <p className='flex justify-center'>
+                        <BiCodeAlt className='h-5 w-5 mr-2 mt-0.5' />
+                        GitHub
+                    </p> 
+                    </button>
+                    </a>
                 </div>
             </ul>
         </div>
