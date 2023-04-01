@@ -1,4 +1,3 @@
-import globals
 from .serializers import *
 from .models import *
 from rest_framework.views import APIView
@@ -6,8 +5,8 @@ from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.response import Response
 from rest_framework import status
 
-from ML_price_prediction import get_database_data, calc_predicted_price, encode_data
-
+from database_tools.tools import get_database_data
+from ML_price_prediction import encode_data, calc_predicted_price
 
 # The views file in Django is responsible for handling incoming requests and returning responses. 
 # It defines functions or classes that encapsulate the business logic of the application and interact with models, serializers, and other components to generate a response.

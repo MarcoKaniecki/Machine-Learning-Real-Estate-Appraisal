@@ -1,31 +1,9 @@
 import pandas as pd
-import numpy as np
-from post.models import Listing
-import json
 import globals
 import joblib
 
+from database_tools.tools import remove_key, rename_keys
 
-# get data from database, return in form of python dict
-def get_database_data():
-    posts = Listing.objects.all()  # get all data from database
-    df = pd.DataFrame(posts.values())  # convert to dataframe
-    data = df.to_json(orient='records')  # convert to json
-    data = json.loads(data)  # convert to python dict
-    # return most recent entry in database
-    return data[-1]
-
-
-# remove key from dictionary
-def remove_key(dictionary, key):
-    r = dict(dictionary)
-    del r[key]
-    return r
-
-
-# rename keys for encoding
-def rename_keys(dictionary, new_keys):
-    return dict(zip(new_keys, dictionary.values()))
 
 
 # encode data for use in ML model
@@ -55,7 +33,6 @@ def encode_data(data):
 
 # compute predicted price
 def calc_predicted_price(data):
-    print('calculating the price of this data:', data)
     # Load the model from the file
     loaded_rf = joblib.load('random_forest_regression_model.joblib')
     
@@ -66,6 +43,6 @@ def calc_predicted_price(data):
     
     # Make prediction
     y_pred = loaded_rf.predict(X)
-    
+
     # y_pred is in form of array, so we need to convert to int
     return int(y_pred[0])
