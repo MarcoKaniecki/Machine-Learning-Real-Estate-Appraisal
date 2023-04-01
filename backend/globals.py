@@ -1,7 +1,7 @@
 import numpy as np
 
 
-ALL_FEATURES = ['price', 'area', 'MS.Zoning', 'Lot.Area', 'Utilities', 'Neighborhood',
+ALL_FEATURES = ['area', 'MS.Zoning', 'Lot.Area', 'Utilities', 'Neighborhood',
                 'Bldg.Type', 'House.Style', 'Overall.Qual', 'Overall.Cond', 'Year.Built',
                 'Year.Remod.Add', 'Exterior.1st', 'Exter.Qual', 'Exter.Cond', 'Foundation',
                 'BsmtFin.Type.1', 'BsmtFin.SF.1', 'Total.Bsmt.SF', 'Heating',

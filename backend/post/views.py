@@ -6,7 +6,8 @@ from rest_framework.response import Response
 from rest_framework import status
 
 from database_tools.tools import get_database_data
-from ML_price_prediction import encode_data, calc_predicted_price
+from ML_components.encoder import encode_data
+from ML_components.price_prediction import calc_predicted_price
 
 # The views file in Django is responsible for handling incoming requests and returning responses. 
 # It defines functions or classes that encapsulate the business logic of the application and interact with models, serializers, and other components to generate a response.
@@ -24,7 +25,11 @@ class PostView(APIView):
             user_input_data = get_database_data()
             encoded_input_data = encode_data(user_input_data)
             predicted_price = calc_predicted_price(encoded_input_data)
+            
+            print('------------------------------------')
             print('it works! Heres the price:', predicted_price)
+            print('------------------------------------')
+            pass
         else:
             print('No data in database')
         

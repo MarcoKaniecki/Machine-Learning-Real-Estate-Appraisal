@@ -1,9 +1,5 @@
-import pandas as pd
 import globals
-import joblib
-
 from database_tools.tools import remove_key, rename_keys
-
 
 
 # encode data for use in ML model
@@ -12,13 +8,13 @@ def encode_data(data):
     if 'id' in data.keys():
         data = remove_key(data, 'id')
     
-    # minus 1 because we are not encoding the price
-    if len(data) != len(globals.ALL_FEATURES) - 1:
+    # check if data length matches feature length
+    if len(data) != len(globals.ALL_FEATURES):
         print('data length does not match feature length')
         return 0
     
     # rename keys to match feature names except for price
-    data = rename_keys(data, globals.ALL_FEATURES[1:])
+    data = rename_keys(data, globals.ALL_FEATURES)
 
     # encode ordinal and nominal values
     for key, value in data.items():
@@ -28,21 +24,7 @@ def encode_data(data):
         elif key in globals.NOMINAL_MAPPING.keys():
             data[key] = globals.NOMINAL_MAPPING[key][value]
 
+        # convert all values to int
+        data[key] = int(data[key])
+
     return data
-
-
-# compute predicted price
-def calc_predicted_price(data):
-    # Load the model from the file
-    loaded_rf = joblib.load('random_forest_regression_model.joblib')
-    
-    # Convert the dictionary to a dataframe
-    encoded_df = pd.DataFrame.from_dict([data])
-    X = encoded_df.values
-    X = [[int(i) for i in X[0]]] # convert to int and 2D array
-    
-    # Make prediction
-    y_pred = loaded_rf.predict(X)
-
-    # y_pred is in form of array, so we need to convert to int
-    return int(y_pred[0])
