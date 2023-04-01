@@ -6,7 +6,7 @@ from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.response import Response
 from rest_framework import status
 
-from ML_price_prediction import get_database_data, calc_predicted_price
+from ML_price_prediction import get_database_data, calc_predicted_price, encode_data
 
 
 # The views file in Django is responsible for handling incoming requests and returning responses. 
@@ -16,16 +16,16 @@ class PostView(APIView):
     parser_classes = (MultiPartParser, FormParser)
 
     # get all info in database, will be displayed in REST fraemwork page
-    # we need this to display the text data stored in the database
     def get(self, request, *args, **kwargs):
         posts = Listing.objects.all()
         serializer = ListingSerializer(posts, many=True)
 
         # if there is data in the database, call the get_database_data() function
         if Listing.objects.exists():
-            globals.PROPERTY_FEATURES = get_database_data()
-            globals.PREDICTED_PRICE = calc_predicted_price()
-            print('it works! Heres the price:', globals.PREDICTED_PRICE)
+            user_input_data = get_database_data()
+            encoded_input_data = encode_data(user_input_data)
+            predicted_price = calc_predicted_price(encoded_input_data)
+            print('it works! Heres the price:', predicted_price)
         else:
             print('No data in database')
         
