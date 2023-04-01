@@ -20,16 +20,15 @@ class PostView(APIView):
         posts = Listing.objects.all()
         serializer = ListingSerializer(posts, many=True)
 
-        # if there is data in the database, call the get_database_data() function
-        if Listing.objects.exists():
-            user_input_data = get_database_data()
+        # get data from database
+        user_input_data = get_database_data()
+        if user_input_data != 0:
             encoded_input_data = encode_data(user_input_data)
             predicted_price = calc_predicted_price(encoded_input_data)
             
             print('------------------------------------')
             print('it works! Heres the price:', predicted_price)
             print('------------------------------------')
-            pass
         else:
             print('No data in database')
         
