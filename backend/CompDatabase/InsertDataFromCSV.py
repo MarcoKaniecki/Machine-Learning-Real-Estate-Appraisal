@@ -17,17 +17,17 @@ def ReadCSVFile(filename):
     #column indices that are used in the database
     selected_columns = [0, 2, 3, 5, 7, 12, 15, 18, 19, 20, 21, 22, 
                         23, 26, 30, 31, 32, 36, 37, 41, 42, 43, 44,
-                        45, 46, 47, 51, 52, 53, 54, 55, 56, 60,
+                        45, 51, 52, 53, 54, 55, 56, 60,
                         63, 64, 65, 68, 75]
     
     #encode ordinal data
     encoding_mappings = {
-        12: {'AllPub': 3, 'NoSewr': 2, 'NoSeWa': 1, 'ELO': 0}, #UTILITIES
+        12: {'AllPub': 3, 'NoSewr': 2, 'NoSeWa': 1, 'ELO': 0},                # UTILITIES
         (30, 31, 43, 55, 65): {'Ex': 4, 'Gd': 3, 'TA': 2, 'Fa': 1, 'Po': 0},  # QUALS/CONDS
-        36: {'Ex': 4, 'Gd': 3, 'TA': 2, 'Fa': 1, 'Po': 0, 'NA': -1}, #BSMTFIN1
-        44: {'Y': 1, 'N': 0},                      # CENTRALAIR
-        45: {'Mix': 1.5, 'FuseP': 0, 'FuseF': 1, 'FuseA': 2, 'SBrkr': 3},           # ELECTRICAL
-        75: {'GdPrv': 4, 'MnPrv': 3, 'GdWo': 2, 'MnWw': 1, 'NA': 0} #FENCE
+        36: {'Ex': 4, 'Gd': 3, 'TA': 2, 'Fa': 1, 'Po': 0, 'NA': -1},          # BSMTFIN1
+        44: {'Y': 1, 'N': 0},                                                 # CENTRALAIR
+        45: {'Mix': 1.5, 'FuseP': 0, 'FuseF': 1, 'FuseA': 2, 'SBrkr': 3},     # ELECTRICAL
+        75: {'GdPrv': 4, 'MnPrv': 3, 'GdWo': 2, 'MnWw': 1, 'NA': 0}           # FENCE
     }
 
     # Open the CSV file and read the data
