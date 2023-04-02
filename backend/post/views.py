@@ -15,21 +15,10 @@ from ML_components.price_prediction import calc_predicted_price
 class PostView(APIView):
     parser_classes = (MultiPartParser, FormParser)
 
-    # get all info in database, will be displayed in REST fraemwork page
+    # display everything in database on REST fraemwork webpage
     def get(self, request, *args, **kwargs):
         posts = Listing.objects.all()
         serializer = ListingSerializer(posts, many=True)
-
-        # get data from database
-        user_input_data = get_database_data()
-        if user_input_data != 0:
-            encoded_input_data = encode_data(user_input_data)
-            predicted_price = calc_predicted_price(encoded_input_data)
-            
-            print('------------------------------------')
-            print('it works! Heres the price:', predicted_price)
-            print('------------------------------------')
-        
         return Response(serializer.data)
 
 
@@ -38,7 +27,23 @@ class PostView(APIView):
         posts_serializer = ListingSerializer(data=request.data, context={'request': request})
         if posts_serializer.is_valid():
             posts_serializer.save()
+
+            get_predicted_price() # ! currently not returning anything
+            
             return Response(posts_serializer.data, status=status.HTTP_201_CREATED)
         else:
             print('error', posts_serializer.errors)
             return Response(posts_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+# This is called when the user clicks the appraise button in the frontend after saving the entry into the database
+def get_predicted_price():
+    user_input_data = get_database_data()
+    if user_input_data != 0:
+        encoded_input_data = encode_data(user_input_data)
+        predicted_price = calc_predicted_price(encoded_input_data)
+        
+        print('------------------------------------')
+        print('it works! Heres the price:', predicted_price)
+        print('------------------------------------')
+        # return predicted_price
