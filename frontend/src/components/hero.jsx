@@ -1,8 +1,9 @@
 import React from 'react'
 import {AiFillGithub} from 'react-icons/ai'
 import {BsFillStopwatchFill} from 'react-icons/bs'
-import {GiGears} from 'react-icons/gi'
-import {ImPriceTag} from 'react-icons/im'
+import {AiFillLock} from 'react-icons/ai'
+import {HiDocument} from 'react-icons/hi'
+import { Link } from 'react-scroll'
 
 import bgImg from '../assets/house.png'
 
@@ -14,7 +15,7 @@ const Hero = () => {
                     <p className='text-2xl'>Using Machine Learning for</p>
                     <h1 className='py-3 text-5xl md:text-7xl font-bold'>Real Estate Appraisal</h1>
                     <p className='text-2xl'>This is our Senior Year Project.</p>
-                    <button className='py-3 px-6 sm:w-[60%] my-4'>Get Started</button>
+                    <button className='py-3 px-6 sm:w-[60%] my-4'><Link to="appraisal" smooth={true} offset={-50} duration={500}>Get Started</Link></button>
                 </div>
                 <div>
                     <img className='w-full' src={bgImg} alt="/" />
@@ -25,9 +26,9 @@ const Hero = () => {
                     <p>Features</p>
                     <div className='flex justify-between flex-wrap px-4'>
                         <p className='flex px-4 py-2 text-slate-500'><AiFillGithub className='h-5 text-indigo-600 mr-1' /> Open Source</p>
-                        <p className='flex px-4 py-2 text-slate-500'><GiGears className='h-5 text-indigo-600 mr-1' /> Deep Learning</p>
-                        <p className='flex px-4 py-2 text-slate-500'><ImPriceTag className='h-5 text-indigo-600 mr-1' /> Appraisal</p>
-                        <p className='flex px-4 py-2 text-slate-500'><BsFillStopwatchFill className='h-5 text-indigo-600 mr-1' /> Fast</p>
+                        <p className='flex px-4 py-2 text-slate-500'><AiFillLock className='h-5 text-indigo-600 mr-1' /> Secure</p>
+                        <p className='flex px-4 py-2 text-slate-500'><HiDocument className='h-5 text-indigo-600 mr-1' /> PDF Format</p>
+                        <p className='flex px-4 py-2 text-slate-500'><BsFillStopwatchFill className='h-5 text-indigo-600 mr-1' /> Instant</p>
                     </div>
                 </div>
             </div>
