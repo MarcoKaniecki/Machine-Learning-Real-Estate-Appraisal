@@ -3,10 +3,10 @@ import os
 import sqlite3
 print(sqlite3.sqlite_version)
 
-connection = sqlite3.connect( os.getcwd() + '\\backend\database\comps.db' )
+connection = sqlite3.connect( os.getcwd() + '\\backend\CompDatabase\comps.db' )
 
 print( "Connected to database successfully.\n" )
-connection.execute("DROP TABLE Comps")
+
 # may need to remove some columns (at least temporarily) for simplicity's sake
 # TODO finish constraining the required columns
 connection.execute("""CREATE TABLE IF NOT EXISTS Comps ( 
@@ -54,5 +54,5 @@ cursor = connection.cursor()
 cursor.execute( "PRAGMA table_info('Comps')")
 print(cursor.fetchall())
 cursor.execute("SELECT COUNT(*) FROM pragma_table_info('Comps');")
-print(cursor.fetchall())
+print("Columns added: ", cursor.fetchall(), "\n")
 print("done.\n")
