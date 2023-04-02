@@ -11,7 +11,12 @@ git clone https://github.com/MarcoKaniecki/Deep-Learning-Real-Estate-Appraisal
 ```console
 cd Deep-Learning-Real-Estate-Appraisal
 ```
+## Running with Launcher (Windows Only)
+Running 'WindowsLauncher.py' within the top level of the repository will run all necessary steps to run the server, open data in Django database, and frontend webpage.
+Please note that you will have to refresh http://127.0.0.1:8000 after the script runs in order to see the data.
+If you run into issues using this or you are using a different OS, see the manual steps below.
 
+## Steps for Manual Setup
 ### Setup the virtual environment for backend
 #### MacOS
 ```console

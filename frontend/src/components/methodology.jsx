@@ -47,6 +47,7 @@ const Methodology = () => {
                     <a href="mailto:erin.chiasson@dal.ca; mr290856@dal.ca"> contact us</a>.
                 </p>
                 {/*TODO reduce the height between here and bottom of page*/}
+                {/*TODO change the colour of the "contact us" to indigo so it is clear theres a link*/}
             </div>
         </div>
     )

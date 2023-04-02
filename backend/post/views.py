@@ -8,6 +8,7 @@ from rest_framework import status
 from database_tools.tools import get_database_data
 from ML_components.encoder import encode_data
 from ML_components.price_prediction import calc_predicted_price
+from CompDatabase import CompExtraction
 
 # The views file in Django is responsible for handling incoming requests and returning responses. 
 # It defines functions or classes that encapsulate the business logic of the application and interact with models, serializers, and other components to generate a response.
@@ -42,6 +43,9 @@ def get_predicted_price():
     if user_input_data != 0:
         encoded_input_data = encode_data(user_input_data)
         predicted_price = calc_predicted_price(encoded_input_data)
+        
+        #comps is currently returned in a list. Waiting to change until we are ready to print it in the PDF
+        comps = CompExtraction.FindComps(user_input_data)
         
         print('------------------------------------')
         print('it works! Heres the price:', predicted_price)
