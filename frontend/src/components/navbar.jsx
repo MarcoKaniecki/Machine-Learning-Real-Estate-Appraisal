@@ -27,14 +27,14 @@ const Navbar = () => {
                         Some
                     </button>
                     */}
-                    <a href="https://github.com/MarcoKaniecki/Deep-Learning-Real-Estate-Appraisal">
-                        <button className='px-4 py-2'>
+                    <button className='px-4 py-2'>
+                        <a href="https://github.com/MarcoKaniecki/Deep-Learning-Real-Estate-Appraisal">
                             <p className='flex'>
                                 <BiCodeAlt className='h-5 w-5 mr-2 mt-0.5' />
                                 GitHub
                             </p>  
-                        </button>
-                    </a>
+                        </a>
+                    </button>
                 </div>
 
                 {/* Anything over minimum width the button will be hidden */}
@@ -43,7 +43,7 @@ const Navbar = () => {
                 </div>
             </div>
 
-            {/* Drop-dowm menu for mobile sized screens */}
+            {/* Drop-down menu for mobile sized screens */}
             <ul className={!nav ? 'hidden' : 'absolute bg-zinc-200 w-full px-8'}>
                 <li className='border-b-2 border-zinc-300 w-full hover:text-indigo-600'>
                     <Link onClick={handleClose} to="home" smooth={true} duration={500}>Home</Link>
@@ -61,12 +61,12 @@ const Navbar = () => {
                 {/* Stack buttons ontop of one another using flex and flex-col */}
                 <div className='flex flex-col my-4'>
                     <a href="https://github.com/MarcoKaniecki/Deep-Learning-Real-Estate-Appraisal">
-                    <button className='px-8 py-3 mb-4 w-full hover:text-indigo-600'>
-                    <p className='flex justify-center'>
-                        <BiCodeAlt className='h-5 w-5 mr-2 mt-0.5' />
-                        GitHub
-                    </p> 
-                    </button>
+                        <button className='px-8 py-3 mb-4 w-full hover:text-indigo-600'>
+                            <p className='flex justify-center'>
+                                <BiCodeAlt className='h-5 w-5 mr-2 mt-0.5' />
+                                GitHub
+                            </p> 
+                        </button>
                     </a>
                 </div>
             </ul>
