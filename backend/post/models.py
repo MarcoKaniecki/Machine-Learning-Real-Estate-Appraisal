@@ -19,6 +19,7 @@ class Listing(models.Model):
     exterior1 = models.CharField(max_length=100, blank=True, null=True)
     exterQual = models.CharField(max_length=100, blank=True, null=True)
     exterCond = models.CharField(max_length=100, blank=True, null=True)
+    foundation = models.CharField(max_length=100, blank=True, null=True)
     bsmtFinType1 = models.CharField(max_length=100, blank=True, null=True)
     bsmtFindSF1 = models.IntegerField(blank=True, null=True)
     totalBsmtSF = models.IntegerField(blank=True, null=True)

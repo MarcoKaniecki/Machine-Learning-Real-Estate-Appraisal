@@ -206,10 +206,10 @@ const Appraisal = () => {
                       value={property.zone}
                       onChange={(e) => setProperty({ ...property, zone: e.target.value })} required>
                       <option value="" disabled selected>Select an option</option>
-                      <option value="A">Agriculture</option>
-                      <option value="C">Commercial</option>
+                      <option value="A (agr)">Agriculture</option>
+                      <option value="C (all)">Commercial</option>
                       <option value="FV">Floating Village Residential</option>
-                      <option value="I">Industrial</option>
+                      <option value="I (all)">Industrial</option>
                       <option value="RH">Residential High Density</option>
                       <option value="RM">Residential Medium Density</option>
                       <option value="RL">Residential Low Density</option>
