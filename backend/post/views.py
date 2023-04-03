@@ -1,5 +1,6 @@
 from .serializers import *
 from .models import *
+from .pdf_generation.pdf_generator import *
 from rest_framework.views import APIView
 from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.response import Response
@@ -25,16 +26,21 @@ class PostView(APIView):
 
     # Post data to database
     def post(self, request, *args, **kwargs):
-        posts_serializer = ListingSerializer(data=request.data, context={'request': request})
-        if posts_serializer.is_valid():
-            posts_serializer.save()
+        listing_serializer = ListingSerializer(data=request.data, context={'request': request})
+        if listing_serializer.is_valid():
+            listing_serializer.save()
 
             get_predicted_price() # ! currently not returning anything
+
+            # Calling the PDF generator
+            generate_pdf()
+            # Deleting user data because it is now obselete
+            Listing.objects.all().delete()
             
-            return Response(posts_serializer.data, status=status.HTTP_201_CREATED)
+            return Response(listing_serializer.data, status=status.HTTP_201_CREATED)
         else:
-            print('error', posts_serializer.errors)
-            return Response(posts_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            print('error', listing_serializer.errors)
+            return Response(listing_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 # This is called when the user clicks the appraise button in the frontend after saving the entry into the database
