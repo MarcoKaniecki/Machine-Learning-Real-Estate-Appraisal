@@ -27,6 +27,12 @@ def generate_pdf():
     listing = Listing.objects.first()
     listing_dict = dict_decode(model_to_dict(listing))
 
+    # Price for testing
+    price = '999,999.00'
+
+    # Adding price to listing dictionary
+    listing_dict['price'] = price
+
     # Comps for testing
     comp_1_dict = listing_dict.copy()
     comp_2_dict = listing_dict.copy()
@@ -102,8 +108,50 @@ def generate_pdf():
     # Page for price reveal and other property info
     pdf.add_page()
     pdf.cell(0,0,'Results of Appraisal', align='C', new_x="LMARGIN", new_y="NEXT")
-    pdf.set_y(120)
-    pdf.cell(0,0,'Price and other info about appraised propery goes here', align='C', new_x="LMARGIN", new_y="NEXT")
+    pdf.set_y(90)
+    pdf.cell(0,40,'Evaluation: $' + price, align='C', new_x="LMARGIN", new_y="NEXT")
+    pdf.cell(0,0,'Features considered', align='L', new_x="LMARGIN", new_y="NEXT")
+    
+    # Constructing the string that will populate the html table
+    feature_string = ""
+
+    # Preparing a way to identify when to switch to a new row
+    num_columns = 3
+    count = 0
+
+    # For making lines between rows, only way I found to accomplish this using severely limited html
+    seperator_cell = '<td>__________________________________________</td>'
+
+    for key, value in listing_dict.items():
+        if not count % num_columns: # Only happens every third time
+            feature_string += "</tr><tr><font size=7>" + num_columns*seperator_cell + "</font></tr>" 
+            feature_string += "<tr><font size=11>"
+
+        if key != 'id':
+          # Cell with name of feature and feature value
+          feature_string += "<td>" + str(key) + ':  ' + str(value) + "</td>" 
+        
+
+        count += 1
+
+
+    # Table creation
+    pdf.write_html("""
+    <font size=8>
+    <table width="100%">
+      <thead>
+        <tr>
+          <th width="33%"></th>
+          <th width="33%"></th>
+          <th width="33%"></th>
+        </tr>
+      </thead>
+      <tbody>
+        """+ feature_string +"""
+      </tbody>
+    </table></font>
+    
+""")
 
 
     # Comps comparison table page
@@ -113,8 +161,21 @@ def generate_pdf():
 
     # Constructing the string that will populate the html table
     table_string = ""
+    seperator_cell = '<td>____________</td>'
+
+    # Setting the first row to price
+    table_string += "<tr><font size=9><td>price</td>"
+    table_string += "<td>" + str(listing_dict["price"]) + "</td>"
+    table_string += "<td>" + str(comp_1_dict["price"]) + "</td>"
+    table_string += "<td>" + str(comp_2_dict["price"]) + "</td>"
+    table_string += "<td>" + str(comp_3_dict["price"]) + "</td>"
+    table_string += "<td>" + str(comp_4_dict["price"]) + "</td>"
+    table_string += "<td>" + str(comp_5_dict["price"]) + "</td></font>"
+    # Row for line separation
+    table_string += "<tr><font size=7>" + 7*seperator_cell + "</font></tr>"
+
     for key, value in listing_dict.items():
-        if key != 'id':
+        if key != 'id' and key != 'price':
             # Row with features
             table_string += "<tr><font size=9><td>" + str(key) + "</td>"
             table_string += "<td>" + str(value) + "</td>"
@@ -124,7 +185,6 @@ def generate_pdf():
             table_string += "<td>" + str(comp_4_dict[str(key)]) + "</td>"
             table_string += "<td>" + str(comp_5_dict[str(key)]) + "</td></font>"
             # Row for line separation
-            seperator_cell = '<td align="left">____________</td>'
             table_string += "<tr><font size=7>" + 7*seperator_cell + "</font></tr>"
 
 
