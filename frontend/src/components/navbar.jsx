@@ -28,7 +28,7 @@ const Navbar = () => {
                     </button>
                     */}
                     <button className='px-4 py-2'>
-                        <a href="https://github.com/MarcoKaniecki/Deep-Learning-Real-Estate-Appraisal">
+                        <a href="https://github.com/MarcoKaniecki/Machine-Learning-Real-Estate-Appraisal">
                             <p className='flex'>
                                 <BiCodeAlt className='h-5 w-5 mr-2 mt-0.5' />
                                 GitHub
@@ -60,7 +60,7 @@ const Navbar = () => {
                 
                 {/* Stack buttons ontop of one another using flex and flex-col */}
                 <div className='flex flex-col my-4'>
-                    <a href="https://github.com/MarcoKaniecki/Deep-Learning-Real-Estate-Appraisal">
+                    <a href="https://github.com/MarcoKaniecki/Machine-Learning-Real-Estate-Appraisal">
                         <button className='px-8 py-3 mb-4 w-full hover:text-indigo-600'>
                             <p className='flex justify-center'>
                                 <BiCodeAlt className='h-5 w-5 mr-2 mt-0.5' />

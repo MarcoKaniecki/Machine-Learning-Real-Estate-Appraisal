@@ -9,7 +9,7 @@ const Footer = () => {
                 <div>
                     <h6 className='font-bold uppercase pt-2'>Support</h6>
                     <ul>
-                        <a href="https://github.com/MarcoKaniecki/Deep-Learning-Real-Estate-Appraisal">
+                        <a href="https://github.com/MarcoKaniecki/Machine-Learning-Real-Estate-Appraisal">
                             <li className='py-1'>GitHub</li>
                         </a>
                         <a href="mailto:erin.chiasson@dal.ca; mr290856@dal.ca">
@@ -23,7 +23,7 @@ const Footer = () => {
                 <p className='py-4'>2022 REALM Group</p>
                 {/*TODO the github icon needs to get moved to the right a bit*/}
                 <div className='flex justify-between sm:w-[300px] pt-4 text-2xl'>
-                    <FaGithub href="https://github.com/MarcoKaniecki/Deep-Learning-Real-Estate-Appraisal"/>
+                    <FaGithub href="https://github.com/MarcoKaniecki/Machine-Learning-Real-Estate-Appraisal"/>
                 </div>
             </div>
         </div>
