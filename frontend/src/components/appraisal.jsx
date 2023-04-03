@@ -190,33 +190,18 @@ const Appraisal = () => {
             <div className='bg-white rounded-xl shadow-2xl'>
               <div className='p-8'>
                 <BsCardText className='w-16 h-16 p-4 bg-indigo-600 text-white rounded-lg mt-[-4rem]' />
-                <h3 className='font-bold text-2xl my-6'>Text</h3>
+                <h3 className='font-bold text-2xl my-6'>Property Information</h3>
 
+                {/* div containing all the input fields organized in a grid */}
                 <div className="grid gap-6 mb-6 md:grid-cols-2">
+
+                  {/* Property Information subsection */}
 
                   {/* Area input field */}
                   <div>
                     <label for="area" className="block mb-2 text-sm font-medium text-gray-900">Area</label>
                     <input id="area" type="number" step="1" min="0" max="1000000" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5"
                       value={property.area} onChange={(e) => setProperty({ ...property, area: e.target.value })} placeholder="2500" required />
-                  </div>
-
-                  {/* Zone/Neighbourhood input field */}
-                  <div>
-                    <label for="zone" className="block mb-2 text-sm font-medium text-gray-900">Zone</label>
-                    <select id="zone" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 h-10"
-                      value={property.zone}
-                      onChange={(e) => setProperty({ ...property, zone: e.target.value })} required>
-                      <option value="" disabled selected>Select an option</option>
-                      <option value="A (agr)">Agriculture</option>
-                      <option value="C (all)">Commercial</option>
-                      <option value="FV">Floating Village Residential</option>
-                      <option value="I (all)">Industrial</option>
-                      <option value="RH">Residential High Density</option>
-                      <option value="RM">Residential Medium Density</option>
-                      <option value="RL">Residential Low Density</option>
-                      <option value="RP">Residential Low Density Park</option>
-                    </select>
                   </div>
 
                   {/* Lot Area input field */}
@@ -237,6 +222,24 @@ const Appraisal = () => {
                       <option value="NoSewr">Electricity, Gas, and Water (Septic Tank)</option>
                       <option value="NoSeWa">Electricity and Gas only</option>
                       <option value="ELO">Electricity only</option>
+                    </select>
+                  </div>
+                  
+                  {/* Zoning input field */}
+                  <div>
+                    <label for="zone" className="block mb-2 text-sm font-medium text-gray-900">Zone</label>
+                    <select id="zone" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 h-10"
+                      value={property.zone}
+                      onChange={(e) => setProperty({ ...property, zone: e.target.value })} required>
+                      <option value="" disabled selected>Select an option</option>
+                      <option value="A (agr)">Agriculture</option>
+                      <option value="C (all)">Commercial</option>
+                      <option value="FV">Floating Village Residential</option>
+                      <option value="I (all)">Industrial</option>
+                      <option value="RH">Residential High Density</option>
+                      <option value="RM">Residential Medium Density</option>
+                      <option value="RL">Residential Low Density</option>
+                      <option value="RP">Residential Low Density Park</option>
                     </select>
                   </div>
 
@@ -304,45 +307,10 @@ const Appraisal = () => {
                       <option value="SLvl">Split Level</option>
                     </select>
                   </div>
-
-                  {/* overall quality input field */}
-                  <div>
-                    <label className="block mb-2 text-sm font-medium text-gray-900">Overall Quality: Overall Material and Finish of the House</label>
-                    <select id="overallQual" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 h-10"
-                      onChange={(e) => setProperty({ ...property, overallQual: e.target.value })} required>
-                      <option value="" disabled selected>Select an option</option>
-                      <option value="10">Very Excellent</option>
-                      <option value="9">Excellent</option>
-                      <option value="8">Very Good</option>
-                      <option value="7">Good</option>
-                      <option value="6">Above Average</option>
-                      <option value="5">Average</option>
-                      <option value="4">Below Average</option>
-                      <option value="3">Fair</option>
-                      <option value="2">Poor</option>
-                      <option value="1">Very Poor</option>
-                    </select>
-                  </div>
-
-                  {/* overall condtion input field */}
-                  <div>
-                    <label className="block mb-2 text-sm font-medium text-gray-900">Overall Condition: Overall Condition of the House</label>
-                    <select id="overallCond" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 h-10"
-                      onChange={(e) => setProperty({ ...property, overallCond: e.target.value })} required>
-                      <option value="" disabled selected>Select an option</option>
-                      <option value="10">Very Excellent</option>
-                      <option value="9">Excellent</option>
-                      <option value="8">Very Good</option>
-                      <option value="7">Good</option>
-                      <option value="6">Above Average</option>
-                      <option value="5">Average</option>
-                      <option value="4">Below Average</option>
-                      <option value="3">Fair</option>
-                      <option value="2">Poor</option>
-                      <option value="1">Very Poor</option>
-                    </select>
-                  </div>
-
+                </div>
+                
+                <h3 className='font-bold text-2xl my-6'>Building Details</h3>
+                <div className="grid gap-6 mb-6 md:grid-cols-2">
                   {/* build year input field */}
                   <div>
                     <label className="block mb-2 text-sm font-medium text-gray-900">Year Built: Original Construction Date</label>
@@ -357,6 +325,21 @@ const Appraisal = () => {
                     {/* may want to change max build year dynamically based on current year */}
                     <input id="yearRemod" type="number" step="1" min="0" max="1000000" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5"
                       value={property.yearRemod} onChange={(e) => setProperty({ ...property, yearRemod: e.target.value })} placeholder="2005" required />
+                  </div>
+
+                  {/* foundation input field */}
+                  <div>
+                    <label className="block mb-2 text-sm font-medium text-gray-900">Foundation: Type of Foundation</label>
+                    <select id="foundation" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 h-10"
+                      onChange={(e) => setProperty({ ...property, foundation: e.target.value })} required>
+                      <option value="" disabled selected>Select an option</option>
+                      <option value="BrkTil">Brick & Tile</option>
+                      <option value="CBlock">Cinder Block</option>
+                      <option value="PConc">Poured Contrete</option>
+                      <option value="Slab">Slab</option>
+                      <option value="Stone">Stone</option>
+                      <option value="Wood">Wood</option>
+                    </select>
                   </div>
 
                   {/* main exterior material input field */}
@@ -410,21 +393,6 @@ const Appraisal = () => {
                       <option value="TA">Average/Typical</option>
                       <option value="Fa">Fair</option>
                       <option value="Po">Poor</option>
-                    </select>
-                  </div>
-
-                  {/* foundation input field */}
-                  <div>
-                    <label className="block mb-2 text-sm font-medium text-gray-900">Foundation: Type of Foundation</label>
-                    <select id="foundation" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 h-10"
-                      onChange={(e) => setProperty({ ...property, foundation: e.target.value })} required>
-                      <option value="" disabled selected>Select an option</option>
-                      <option value="BrkTil">Brick & Tile</option>
-                      <option value="CBlock">Cinder Block</option>
-                      <option value="PConc">Poured Contrete</option>
-                      <option value="Slab">Slab</option>
-                      <option value="Stone">Stone</option>
-                      <option value="Wood">Wood</option>
                     </select>
                   </div>
 
@@ -511,7 +479,55 @@ const Appraisal = () => {
                       <option value="Mix">Mixed</option>
                     </select>
                   </div>
+                </div>
 
+                <h3 className='font-bold text-2xl my-6'>Property Condition</h3>
+                <div className="grid gap-6 mb-6 md:grid-cols-2">
+                  {/* overall quality input field */}
+                  <div>
+                    <label className="block mb-2 text-sm font-medium text-gray-900">Overall Quality: Overall Material and Finish of the House</label>
+                    <select id="overallQual" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 h-10"
+                      onChange={(e) => setProperty({ ...property, overallQual: e.target.value })} required>
+                      <option value="" disabled selected>Select an option</option>
+                      <option value="10">Very Excellent</option>
+                      <option value="9">Excellent</option>
+                      <option value="8">Very Good</option>
+                      <option value="7">Good</option>
+                      <option value="6">Above Average</option>
+                      <option value="5">Average</option>
+                      <option value="4">Below Average</option>
+                      <option value="3">Fair</option>
+                      <option value="2">Poor</option>
+                      <option value="1">Very Poor</option>
+                    </select>
+                  </div>
+
+                  {/* overall condtion input field */}
+                  <div>
+                    <label className="block mb-2 text-sm font-medium text-gray-900">Overall Condition: Overall Condition of the House</label>
+                    <select id="overallCond" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 h-10"
+                      onChange={(e) => setProperty({ ...property, overallCond: e.target.value })} required>
+                      <option value="" disabled selected>Select an option</option>
+                      <option value="10">Very Excellent</option>
+                      <option value="9">Excellent</option>
+                      <option value="8">Very Good</option>
+                      <option value="7">Good</option>
+                      <option value="6">Above Average</option>
+                      <option value="5">Average</option>
+                      <option value="4">Below Average</option>
+                      <option value="3">Fair</option>
+                      <option value="2">Poor</option>
+                      <option value="1">Very Poor</option>
+                    </select>
+                  </div>
+                </div>
+                
+                <h3 className='font-bold text-2xl my-6'>Room Information</h3>
+                <div className="grid gap-6 mb-6 md:grid-cols-2">
+
+                  
+                  {/* Room Information subsection */}
+                  
                   {/* number of full baths input field */}
                   <div>
                     <label className="block mb-2 text-sm font-medium text-gray-900">Number of Full Bathrooms</label>
@@ -560,7 +576,11 @@ const Appraisal = () => {
                     <input id="totRmsAbvGrd" type="number" step="1" min="0" max="1000" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5"
                       value={property.totRmsAbvGrd} onChange={(e) => setProperty({ ...property, totRmsAbvGrd: e.target.value })} placeholder="8" required />
                   </div>
+                </div>
+                
 
+                <h3 className='font-bold text-2xl my-6'>Garage Information</h3>
+                <div className="grid gap-6 mb-6 md:grid-cols-2">
                   {/* garage type input field */}
                   <div>
                     <label className="block mb-2 text-sm font-medium text-gray-900">Garage Location</label>
@@ -605,7 +625,11 @@ const Appraisal = () => {
                       <option value="NA">No Garage</option>
                     </select>
                   </div>
-
+                </div>
+                
+                
+                <h3 className='font-bold text-2xl my-6'>Outdoor Information</h3>
+                <div className="grid gap-6 mb-6 md:grid-cols-2">
                   {/* size of wooden deck input field */}
                   <div>
                     <label className="block mb-2 text-sm font-medium text-gray-900">Wood Deck Area (sqft)</label>
