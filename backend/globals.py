@@ -42,7 +42,9 @@ ORDINAL_MAPPING = {
     'Fence': {'GdPrv': 4, 'MnPrv': 3, 'GdWo': 2, 'MnWw': 1, np.nan: 0},
 }
 
-# create a mapping for each feature in ALL_FEATURES where the key is the feature name and the value is the expanded name of the feature
+# create a mapping for each feature that isn't numbered by default 
+# where the key is the shortend category name of each feature and 
+# the value is the expanded form of the category name
 DECODE_DATABASE_NAMES = {
     'MS.Zoning': {
         'A (agr)': 'Agriculture', 'C (all)': 'Commercial', 'FV': 'Floating Village Residential', 
