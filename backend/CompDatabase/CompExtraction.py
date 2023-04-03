@@ -2,18 +2,41 @@
 
 import sqlite3, os
 
+import threading
 
-#initiate connection to database
-connection = sqlite3.connect( os.getcwd() + '\CompDatabase\comps.db' )
-print('Connected to database successfully.\n')
 
-cursor = connection.cursor()
+# Create a thread-local storage object to hold the database connection
+# objects for each thread.
+local = threading.local()
 
-def SortRows( input_params ):
+def get_db():
+    # Retrieve the current thread's database connection object from
+    # the thread-local storage object, or create a new one if it doesn't
+    # exist yet.
+    if not hasattr(local, 'db'):
+        try:
+            local.db = sqlite3.connect( os.getcwd() + '\CompDatabase\comps.db' )
+        except sqlite3.OperationalError as e:
+            print("sqlite3 Operational Error: ", e)
+            print("Attempted to connect to database at: ", os.getcwd() + '\CompDatabase\comps.db')
+            exit(1)
+    print('Connected to database successfully.\n')
+    return local.db
+
+def close_db():
+    # Close the current thread's database connection object, if it
+    # exists.
+    if hasattr(local, 'db'):
+        local.db.close()
+        del local.db
+
+
+
+def SortRows( input_params, cursor ):
 
     querysort = '''
     SELECT * FROM Comps
-    WHERE NEIGHBORHOOD = :input_neighborhood
+    WHERE NEIGHBORHOOD = :neighborhood
     ORDER BY ABS( AREA - :area ) * 0.12897 +
     ( ZONING - :zone ) * 0.0023718 + 
     ABS( LOTAREA - :lotArea ) * 0.026922 + 
@@ -25,7 +48,7 @@ def SortRows( input_params ):
     ABS( YEARREMOD - :yearRemod ) * 0.01300 +
     ABS( EXTERIOR1 - :exterior1 ) * 0.004974 + 
     ABS( EXTERQUAL - :exterQual ) * 0.0049744 + 
-    ABS( EXTERCOND - :extercond ) * 0.000912 + 
+    ABS( EXTERCOND - :exterCond ) * 0.000912 + 
     ( FOUNDATION - :foundation ) * 0.0010156 + 
     ABS( BSMTFIN1 - :bsmtFinType1 ) * 0.005651 +
     ABS( BSMTFINSF1 - :bsmtFindSF1 ) * 0.02748 +
@@ -56,8 +79,8 @@ def SortRows( input_params ):
 #if there are less than 5 entries, return them then run the sort algorithm to fill remaining spaces
 #if there are more than 5 entries, run the sort algorithm on the entries to return 5
 
-def FindRow( input_params ):
-    sorted_rows = SortRows( input_params )
+def FindRow( input_params, cursor ):
+    sorted_rows = SortRows( input_params, cursor )
 
     fetched_rows_len = len(sorted_rows)
 
@@ -126,15 +149,15 @@ def FindRow( input_params ):
          return sorted_rows
    
 
-
 def FindComps(user_input_data):
-    # print the Comps we found
-    rows = FindRow( user_input_data )
-    comp_idx = 1
-    for row in rows:
-        print("Comp #", comp_idx, ": ", row, "\n")
-        comp_idx += 1
+    with get_db() as conn:
+        cursor = conn.cursor()
+        # print the Comps we found
+        rows = FindRow( user_input_data, cursor )
+        comp_idx = 1
+        for row in rows:
+            print("Comp #", comp_idx, ": ", row, "\n")
+            comp_idx += 1
     #may need to change format
+    close_db()
     return rows
-    
-connection.close()
