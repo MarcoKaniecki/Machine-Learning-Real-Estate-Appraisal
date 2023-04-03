@@ -1,15 +1,15 @@
-# Using Deep Learning for Real Estate Appraisal
+# Using Machine Learning for Real Estate Appraisal
 Before starting, make sure you have [python3](https://www.python.org/downloads/), pip (comes with python3), and [yarn](https://classic.yarnpkg.com/lang/en/docs/install/#windows-stable) installed.
 
 ## Local Installation
 Find or create a directory where you want to store the repo
 
 ```console
-git clone https://github.com/MarcoKaniecki/Deep-Learning-Real-Estate-Appraisal
+git clone https://github.com/MarcoKaniecki/Machine-Learning-Real-Estate-Appraisal
 ```
 
 ```console
-cd Deep-Learning-Real-Estate-Appraisal
+cd Machine-Learning-Real-Estate-Appraisal
 ```
 ## Running with Launcher (Windows Only)
 Running 'WindowsLauncher.py' within the top level of the repository will run all necessary steps to run the server, open data in Django database, and frontend webpage.
