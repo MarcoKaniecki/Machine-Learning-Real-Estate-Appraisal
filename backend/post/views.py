@@ -30,7 +30,7 @@ class PostView(APIView):
         if listing_serializer.is_valid():
             listing_serializer.save()
 
-            get_predicted_price() # ! currently not returning anything
+            # get_predicted_price() # ! currently not returning anything
 
             # Calling the PDF generator
             generate_pdf()

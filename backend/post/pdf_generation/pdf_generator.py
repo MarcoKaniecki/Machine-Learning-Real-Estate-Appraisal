@@ -2,10 +2,18 @@ from fpdf import Align, FPDF
 import os
 from datetime import date
 from django.forms import model_to_dict
-import sys
-
-# Setting the python environment
 from post.models import *
+from globals import DECODE_DATABASE_NAMES
+
+# Decoding features to make them more readable
+def dict_decode(in_dict):
+    out_dict = in_dict
+    for feature in DECODE_DATABASE_NAMES.values():
+      for coded_name,decoded_name in feature.items():
+          for key,value in out_dict.items():
+              if value == coded_name:
+                out_dict[key] = decoded_name
+    return out_dict
 
 def generate_pdf():
 
@@ -17,7 +25,7 @@ def generate_pdf():
 
     # Retrieving listing created by user
     listing = Listing.objects.first()
-    listing_dict = model_to_dict(listing)
+    listing_dict = dict_decode(model_to_dict(listing))
 
     # Comps for testing
     comp_1_dict = listing_dict.copy()
@@ -37,24 +45,7 @@ def generate_pdf():
     today = date.today()
     today_pretty = today.strftime("%B %d, %Y")
 
-    
-
-    # # Example listing
-    # listing = {
-    #     "Owner":"Owen Houseguy",
-    #     "Address":"123 Road St",
-    #     "Price":400,
-    #     "Image path":b_dir + '/PDF generator/house1.webp',
-    # }
-
-    # #example comp
-    # comp = {
-    #     "Owner":"Owen Otherhouseguy",
-    #     "Address":"124 Road St",
-    #     "Price":401,
-    #     "Image path":b_dir + '/PDF generator/house2.webp',
-    # }
-
+    # Header and footer
     class PDF(FPDF):
         def header(self):
             # House
@@ -80,37 +71,23 @@ def generate_pdf():
 
     # Setting auto page break
     pdf.set_auto_page_break(auto=True, margin=15)
+    
 
-    # Page 1
+    # Title page creation
     pdf.add_page()
 
     # Setting font
     pdf.set_font('helvetica', 'B', 20)
     pdf.set_text_color(0, 0, 0)
 
-    # Text
-    #pdf.cell(0,30)
-
-    # Creating space from top
-    # num_lines = 10
-    # for i  in range(0,num_lines):
-    #     pdf.cell(txt=' ', new_x="LMARGIN", new_y="NEXT")
-
-
+    # Offsetting additions to start lower on the page
     pdf.set_y(60)
 
+    # Title page
     pdf.cell(0,0,'APPRAISAL OF', align='C', new_x="LMARGIN", new_y="NEXT")
-    # pdf.cell(0,0,'This is a test ' + listing['Address'])
     pdf.ln()
     pdf.ln()
     pdf.image(image_path, x = Align.C, h = pdf.epw/3)
-    # pdf.image(listing['Image path'],w=pdf.epw/1.5,x=pdf.epw/4-6)
-
-
-    features_string = ""
-    for key, value in listing_dict.items():
-        features_string += "<center><h5>" + str(key) + ": " + str(value) + "</h5></center>"
-
     pdf.set_y(160)
     pdf.write_html("""
         <br>
@@ -122,49 +99,48 @@ def generate_pdf():
     """)
 
 
-    # Price reveal and other info
-
+    # Page for price reveal and other property info
     pdf.add_page()
-    pdf.cell(0,0,'Feature Comparison with Similar Properties', align='C', new_x="LMARGIN", new_y="NEXT")
-    pdf.set_y(160)
+    pdf.cell(0,0,'Results of Appraisal', align='C', new_x="LMARGIN", new_y="NEXT")
+    pdf.set_y(120)
     pdf.cell(0,0,'Price and other info about appraised propery goes here', align='C', new_x="LMARGIN", new_y="NEXT")
 
 
-
-    # Comps table
-
+    # Comps comparison table page
     pdf.add_page()
     pdf.cell(0,0,'Feature Comparison with Similar Properties', align='C', new_x="LMARGIN", new_y="NEXT")
     pdf.set_y(80)
 
-    # Constructing the string that will be the html table
+    # Constructing the string that will populate the html table
     table_string = ""
     for key, value in listing_dict.items():
         if key != 'id':
-            table_string += "<tr><td>" + str(key) + "</td>"
+            # Row with features
+            table_string += "<tr><font size=9><td>" + str(key) + "</td>"
             table_string += "<td>" + str(value) + "</td>"
             table_string += "<td>" + str(comp_1_dict[str(key)]) + "</td>"
             table_string += "<td>" + str(comp_2_dict[str(key)]) + "</td>"
             table_string += "<td>" + str(comp_3_dict[str(key)]) + "</td>"
             table_string += "<td>" + str(comp_4_dict[str(key)]) + "</td>"
-            table_string += "<td>" + str(comp_5_dict[str(key)]) + "</td>"
+            table_string += "<td>" + str(comp_5_dict[str(key)]) + "</td></font>"
+            # Row for line separation
+            seperator_cell = '<td align="left">____________</td>'
+            table_string += "<tr><font size=7>" + 7*seperator_cell + "</font></tr>"
 
 
-    # Font size for the feature table and its elements
-    table_font_size = str(9)
-
+    # Table creation
     pdf.write_html("""
-    <font size="""+ table_font_size +""">
-    <table width="90%">
+    <font size=9>
+    <table width="100%" border=1>
       <thead>
         <tr>
-          <th width="20%">Feature</th>
-          <th width="20%">Appraised property</th>
-          <th width="12%">Comp 1</th>
-          <th width="12%">Comp 2</th>
-          <th width="12%">Comp 3</th>
-          <th width="12%">Comp 4</th>
-          <th width="12%">Comp 5</th>
+          <th width="14%">Feature</th>
+          <th width="14%">Client property</th>
+          <th width="14%">Comp 1</th>
+          <th width="14%">Comp 2</th>
+          <th width="14%">Comp 3</th>
+          <th width="14%">Comp 4</th>
+          <th width="14%">Comp 5</th>
         </tr>
       </thead>
       <tbody>
@@ -176,57 +152,15 @@ def generate_pdf():
 
 
 
-    # More photos of appraised property
-
+    # Page with more photos of appraised property
     pdf.add_page()
     pdf.cell(0,0,'More Photos of Appraised Property', align='C', new_x="LMARGIN", new_y="NEXT")
     pdf.set_y(90)
 
+    # Adding images
     for image in Image.objects.filter(listing = listing.id):
         pdf.image(image.image.path, x = Align.C, h = pdf.epw/3)
 
 
-    # # Title page
-
-    # pdf.write_html("""
-    #     <br>
-    #     <br>
-    #     <center><h3>Owner's name:   """ + listing["Owner"] + """</h3></center>
-    #     <center><h3>Address:   """ + listing["Address"] + """</h3></center>
-    #     <center><b><h3><u>Estimated price:   $""" + str(listing["Price"]) + """</u></h3></b></center>
-    #     <center><h3>Date of appraisal:</h3></center>
-    #     <center><h3>""" + today_pretty + """</h3></center>
-    # """)
-
-
-
-    # Next page code
-
-    # # Example comp
-    # comp = {
-    #     "Owner":"Owen Otherhouseguy",
-    #     "Address":"124 Road St",
-    #     "Price":401,
-    #     "Image path":b_dir + '/PDF generator/house2.webp',
-    # }
-
-    # pdf.add_page()
-    # pdf.set_font('arial', 'B', 16)
-    # pdf.set_y(60)
-
-    # pdf.cell(0,0,'Example comparable property 1', align='C', new_x="LMARGIN", new_y="NEXT")
-
-    # pdf.ln()
-    # pdf.ln()
-    # pdf.image(comp['Image path'],w=pdf.epw/1.5,x=pdf.epw/4-6)
-
-    # pdf.write_html("""
-    #     <br>
-    #     <br>
-    #     <center><h3>Address:   """ + comp["Address"] + """</h3>
-    #     <center><h3>Proximity to Subject:   0.12 km</h3>
-    #     <center><h3>Price:   $""" + str(comp["Price"]) + """</h3>
-    #     <center><h3>Age, features, etc...</h3>
-    # """)
-
+    # Saving PDF
     pdf.output('./Report.pdf')
