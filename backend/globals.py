@@ -44,23 +44,32 @@ ORDINAL_MAPPING = {
 
 # create a mapping for each feature in ALL_FEATURES where the key is the feature name and the value is the expanded name of the feature
 DECODE_DATABASE_NAMES = {
-    'MS.Zoning': {'A (agr)': 'Agriculture', 'C (all)': 'Commercial', 'FV': 'Floating Village Residential', 'I (all)': 'Industrial', 'RH': 'Residential High Density', 'RL': 'Residential Low Density', 'RM': 'Residential Medium Density'},
-    'Utilities': {'AllPub': 'All public Utilities (E,G,W,& S)', 'NoSewr': 'Electricity, Gas, and Water (Septic Tank)', 'NoSeWa': 'Electricity and Gas Only', 'ELO': 'Electricity only'},
+    'MS.Zoning': {
+        'A (agr)': 'Agriculture', 'C (all)': 'Commercial', 'FV': 'Floating Village Residential', 
+        'I (all)': 'Industrial', 'RH': 'Residential High Density', 'RL': 'Residential Low Density', 'RM': 'Residential Medium Density'},
+    'Utilities': {
+        'AllPub': 'All public Utilities (E,G,W,& S)', 'NoSewr': 'Electricity, Gas, and Water (Septic Tank)', 
+        'NoSeWa': 'Electricity and Gas Only', 'ELO': 'Electricity only'},
     'Neighborhood': {
         'Blmngtn': 'Bloomington Heights', 'Blueste': 'Bluestem', 'BrDale': 'Briardale', 'BrkSide': 'Brookside', 'ClearCr': 'Clear Creek',
         'CollgCr': 'College Creek', 'Crawfor': 'Crawford', 'Edwards': 'Edwards', 'Gilbert': 'Gilbert', 'Greens': 'Greens', 'GrnHill': 'Green Hills',
         'IDOTRR': 'Iowa DOT and Rail Road', 'Landmrk': 'Landmark', 'MeadowV': 'Meadow Village', 'Mitchel': 'Mitchell', 'Names': 'North Ames',
         'NoRidge': 'Northridge', 'NPkVill': 'Northpark Villa', 'NridgHt': 'Northridge Heights', 'NWAmes': 'Northwest Ames', 'OldTown': 'Old Town',
         'SWISU': 'South & West of Iowa State University', 'Sawyer': 'Sawyer', 'SawyerW': 'Sawyer West', 'Somerst': 'Somerset', 'StoneBr': 'Stone Brook',
-        'Timber': 'Timberland', 'Veenker': 'Veenker'
-    },
-    'Bldg.Type': {'1Fam': 'Single-family Detached', '2fmCon': 'Two-family Conversion; originally built as one-family dwelling', 'Duplex': 'Duplex', 'Twnhs': 'Townhouse End Unit', 'TwnhsE': 'Townhouse Inside Unit'},
+        'Timber': 'Timberland', 'Veenker': 'Veenker'},
+    'Bldg.Type': {
+        '1Fam': 'Single-family Detached', '2fmCon': 'Two-family Conversion; originally built as one-family dwelling', 
+        'Duplex': 'Duplex', 'Twnhs': 'Townhouse End Unit', 'TwnhsE': 'Townhouse Inside Unit'},
     'House.Style': {
-        '1.5Fin': 'One and one-half story: 2nd level finished', '1.5Unf': 'One and one-half story: 2nd level unfinished', '1Story': 'One story', '2.5Fin': 'Two and one-half story: 2nd level finished', 
-        '2.5Unf': 'Two and one-half story: 2nd level unfinished', '2Story': 'Two story', 'SFoyer': 'Split Foyer', 'SLvl': 'Split Level'
-    },
-    'Overall.Qual': {'10': 'Very Excellent', '9': 'Excellent', '8': 'Very Good', '7': 'Good', '6': 'Above Average', '5': 'Average', '4': 'Below Average', '3': 'Fair', '2': 'Poor', '1': 'Very Poor'},
-    'Overall.Cond': {'10': 'Very Excellent', '9': 'Excellent', '8': 'Very Good', '7': 'Good', '6': 'Above Average', '5': 'Average', '4': 'Below Average', '3': 'Fair', '2': 'Poor', '1': 'Very Poor'},
+        '1.5Fin': 'One and one-half story: 2nd level finished', '1.5Unf': 'One and one-half story: 2nd level unfinished', 
+        '1Story': 'One story', '2.5Fin': 'Two and one-half story: 2nd level finished', 
+        '2.5Unf': 'Two and one-half story: 2nd level unfinished', '2Story': 'Two story', 'SFoyer': 'Split Foyer', 'SLvl': 'Split Level'},
+    'Overall.Qual': {
+        '10': 'Very Excellent', '9': 'Excellent', '8': 'Very Good', '7': 'Good', '6': 'Above Average', 
+        '5': 'Average', '4': 'Below Average', '3': 'Fair', '2': 'Poor', '1': 'Very Poor'},
+    'Overall.Cond': {
+        '10': 'Very Excellent', '9': 'Excellent', '8': 'Very Good', '7': 'Good', '6': 'Above Average', 
+        '5': 'Average', '4': 'Below Average', '3': 'Fair', '2': 'Poor', '1': 'Very Poor'},
     'Exterior.1st': {
         'AsbShng': 'Asbestos Shingles', 'AsphShn': 'Asphalt Shingles', 'BrkComm': 'Brick Common', 'BrkFace': 'Brick Face', 'CBlock': 'Cinder Block', 'CemntBd': 'Cement Board', 
         'HdBoard': 'Hard Board', 'ImStucc': 'Imitation Stucco', 'MetalSd': 'Metal Siding', 'Plywood': 'Plywood', 'PreCast': 'PreCast', 'Stone': 'Stone', 'Stucco': 'Stucco', 
@@ -68,14 +77,25 @@ DECODE_DATABASE_NAMES = {
     },
     'Exterior.Qual': {'Ex': 'Excellent', 'Gd': 'Good', 'TA': 'Average/Typical', 'Fa': 'Fair', 'Po': 'Poor'},
     'Exterior.Cond': {'Ex': 'Excellent', 'Gd': 'Good', 'TA': 'Average/Typical', 'Fa': 'Fair', 'Po': 'Poor'},
-    'Foundation': {'BrkTil': 'Brick & Tile', 'CBlock': 'Cinder Block', 'PConc': 'Poured Contrete', 'Slab': 'Slab', 'Stone': 'Stone', 'Wood': 'Wood'},
-    'BsmtFin.Type.1': {'GLQ': 'Good Living Quarters', 'ALQ': 'Average Living Quarters', 'BLQ': 'Below Average Living Quarters', 'Rec': 'Average Rec Room', 'LwQ': 'Low Quality', 'Unf': 'Unfinshed', 'NA': 'No Basement'},
-    'Heating': {'Floor': 'Floor Furnace', 'GasA': 'Gas forced warm air furnace', 'GasW': 'Gas hot water or steam heat', 'Grav': 'Gravity furnace', 'OthW': 'Hot water or steam heat other than gas', 'Wall': 'Wall furnace'},
+    'Foundation': {
+        'BrkTil': 'Brick & Tile', 'CBlock': 'Cinder Block', 'PConc': 'Poured Contrete', 
+        'Slab': 'Slab', 'Stone': 'Stone', 'Wood': 'Wood'},
+    'BsmtFin.Type.1': {
+        'GLQ': 'Good Living Quarters', 'ALQ': 'Average Living Quarters', 'BLQ': 'Below Average Living Quarters', 
+        'Rec': 'Average Rec Room', 'LwQ': 'Low Quality', 'Unf': 'Unfinshed', 'NA': 'No Basement'},
+    'Heating': {
+        'Floor': 'Floor Furnace', 'GasA': 'Gas forced warm air furnace', 'GasW': 'Gas hot water or steam heat', 
+        'Grav': 'Gravity furnace', 'OthW': 'Hot water or steam heat other than gas', 'Wall': 'Wall furnace'},
     'Heating.QC': {'Ex': 'Excellent', 'Gd': 'Good', 'TA': 'Average/Typical', 'Fa': 'Fair', 'Po': 'Poor'},
     'Central.Air': {'N': 'No', 'Y': 'Yes'},
-    'Electrical': {'SBrkr': 'Standard Circuit Breakers & Romex', 'FuseA': 'Fuse Box over 60 AMP and all Romex wiring (Average)', 'FuseF': '60 AMP Fuse Box and mostly Romex wiring (Fair)', 'FuseP': '60 AMP Fuse Box and mostly knob & tube wiring (poor)', 'Mix': 'Mixed'},
+    'Electrical': {
+        'SBrkr': 'Standard Circuit Breakers & Romex', 'FuseA': 'Fuse Box over 60 AMP and all Romex wiring (Average)', 
+        'FuseF': '60 AMP Fuse Box and mostly Romex wiring (Fair)', 'FuseP': '60 AMP Fuse Box and mostly knob & tube wiring (poor)', 'Mix': 'Mixed'},
     'Kitchen.Qual': {'Ex': 'Excellent', 'Gd': 'Good', 'TA': 'Typical/Average', 'Fa': 'Fair', 'Po': 'Poor'},
-    'Garage.Type': {'2Types': 'More than one type of garage', 'Attchd': 'Attached to home', 'Basment': 'Basement Garage', 'BuiltIn': 'Built-In (Garage part of house - typically has room above garage)', 'CarPort': 'Car Port', 'Detchd': 'Detached from home', 'NA': 'No Garage'},
+    'Garage.Type': {
+        '2Types': 'More than one type of garage', 'Attchd': 'Attached to home', 'Basment': 'Basement Garage', 
+        'BuiltIn': 'Built-In (Garage part of house - typically has room above garage)', 
+        'CarPort': 'Car Port', 'Detchd': 'Detached from home', 'NA': 'No Garage'},
     'Garage.Qual': {'Ex': 'Excellent', 'Gd': 'Good', 'TA': 'Typical/Average', 'Fa': 'Fair', 'Po': 'Poor'},
     'Fence': {'GdPrv': 'Good Privacy', 'MnPrv': 'Minimum Privacy', 'GdWo': 'Good Wood', 'MnWw': 'Minimum Wood/Wire', 'NA': 'No Fence'}
 }
