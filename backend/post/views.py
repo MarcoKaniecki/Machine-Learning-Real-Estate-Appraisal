@@ -34,9 +34,10 @@ class PostView(APIView):
 
             # Calling the PDF generator
             generate_pdf()
+
             # Deleting user data because it is now obselete
             Listing.objects.all().delete()
-            
+
             return Response(listing_serializer.data, status=status.HTTP_201_CREATED)
         else:
             print('error', listing_serializer.errors)
