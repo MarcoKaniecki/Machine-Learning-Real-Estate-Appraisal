@@ -18,15 +18,10 @@ const Navbar = () => {
                         <li className='hover:text-indigo-600'><Link to="home" smooth={true} duration={500}>Home</Link></li>
                         <li className='hover:text-indigo-600'><Link to="about" smooth={true} offset={-200} duration={500}>About</Link></li>
                         <li className='hover:text-indigo-600'><Link to="appraisal" smooth={true} offset={-50} duration={500}>Appraisal</Link></li>
-                        <li className='hover:text-indigo-600'><Link to="methodology" smooth={true} offset={50} duration={500}>Methodology</Link></li>
+                        <li className='hover:text-indigo-600'><Link to="methodology" smooth={true} offset={-140} duration={500}>Methodology</Link></li>
                     </ul>
                 </div>
                 <div className='hidden md:flex pr-4'>
-                    {/*
-                    <button className='border-none bg-transparent text-black mr-4'>
-                        Some
-                    </button>
-                    */}
                     <button className='px-4 py-2'>
                         <a href="https://github.com/MarcoKaniecki/Machine-Learning-Real-Estate-Appraisal">
                             <p className='flex'>
@@ -55,7 +50,7 @@ const Navbar = () => {
                     <Link onClick={handleClose} to="appraisal" smooth={true} offset={-80} duration={500}>Appraisal</Link>
                 </li>
                 <li className='border-b-2 border-zinc-300 w-full hover:text-indigo-600'>
-                    <Link onClick={handleClose} to="methodology" smooth={true} offset={50} duration={500}>Methodology</Link>
+                    <Link onClick={handleClose} to="methodology" smooth={true} offset={-140} duration={500}>Methodology</Link>
                 </li>
                 
                 {/* Stack buttons ontop of one another using flex and flex-col */}
