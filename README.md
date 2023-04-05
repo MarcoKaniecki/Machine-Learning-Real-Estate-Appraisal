@@ -34,6 +34,15 @@ py -m venv env
 .\env\Scripts\activate
 ```
 
+### Create comps database
+```console
+python backend/CompDatabase/CreateDatabase.py
+```
+## Import data from CSV (Using ames.csv as a test dataset)
+```console
+python backend/CompDatabase/InsertDataFromCSV.py backend/ML_components/format_and_train_model/ames.csv
+```
+
 ### Install backend dependencies
 ```console
 cd backend
