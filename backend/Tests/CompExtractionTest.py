@@ -1,5 +1,8 @@
 from CompDatabase import CompExtraction
 
+#depending on configuration, may need to run from terminal using:
+#python -m Tests.CompExtractionTest
+
 test_input = {
     "id": 1,
     "area": 1656,
