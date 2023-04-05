@@ -236,7 +236,7 @@ const Appraisal = () => {
                       <option value="RH">Residential High Density</option>
                       <option value="RM">Residential Medium Density</option>
                       <option value="RL">Residential Low Density</option>
-                      <option value="RP">Residential Low Density Park</option>
+                      {/* no Residential Low Density Park (RP) houses in dataset */}
                     </select>
                   </div>
 
@@ -282,7 +282,7 @@ const Appraisal = () => {
                       <option value="" disabled selected>Select an option</option>
                       <option value="1Fam">Single-family Detached</option>
                       <option value="2FmCon">Two-family Conversion; originally bult as one-family dwelling</option>
-                      <option value="Duplx">Duplex</option>
+                      <option value="Duplex">Duplex</option>
                       <option value="TwnhsE">Townhouse End Unit</option>
                       <option value="TwnhsI">Townhouse Inside Unit</option>
                     </select>
