@@ -51,7 +51,9 @@ def get_predicted_price():
         encoded_input_data = encode_data(user_input_data)
         predicted_price = calc_predicted_price(encoded_input_data)
         
+
         # comps is currently returned in a list. Waiting to change until we are ready to print it in the PDF
+        
         comps = CompExtraction.FindComps(user_input_data)
         
         print('------------------------------------')
