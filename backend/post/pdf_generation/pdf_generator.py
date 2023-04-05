@@ -112,8 +112,10 @@ def generate_pdf(price_prediction):
     # Page for price reveal and other property info
     pdf.add_page()
     pdf.cell(0,0,'Results of Appraisal', align='C', new_x="LMARGIN", new_y="NEXT")
-    pdf.set_y(90)
-    pdf.cell(0,40,'Evaluation: $' + price, align='C', new_x="LMARGIN", new_y="NEXT")
+    pdf.set_y(80)
+    pdf.set_font('helvetica', 'B', 16)
+    pdf.cell(0,40,'Evaluation:      $' + price, align='L', new_x="LMARGIN", new_y="NEXT")
+    pdf.set_font('helvetica', 'B', 12)
     pdf.cell(0,0,'Features considered', align='L', new_x="LMARGIN", new_y="NEXT")
     
     # Constructing the string that will populate the html table
@@ -131,7 +133,7 @@ def generate_pdf(price_prediction):
             feature_string += "<tr><font size=7>" + num_columns*seperator_cell + "</font></tr>" 
             feature_string += "<tr>"
 
-        if key != 'id':
+        if key != 'id' and key != 'price':
           # Cell with name of feature and feature value
           feature_string += "<td>" + str(key) + ':  ' + str(value) + "</td>" 
 
@@ -159,6 +161,7 @@ def generate_pdf(price_prediction):
 
     # Comps comparison table page
     pdf.add_page()
+    pdf.set_font('helvetica', 'B', 20)
     pdf.cell(0,0,'Feature Comparison with Similar Properties', align='C', new_x="LMARGIN", new_y="NEXT")
     pdf.set_y(80)
 
