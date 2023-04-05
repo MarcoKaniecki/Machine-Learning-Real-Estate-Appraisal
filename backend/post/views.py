@@ -1,5 +1,6 @@
 from .serializers import *
 from .models import *
+from .pdf_generation.pdf_generator import *
 from rest_framework.views import APIView
 from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.response import Response
@@ -25,16 +26,22 @@ class PostView(APIView):
 
     # Post data to database
     def post(self, request, *args, **kwargs):
-        posts_serializer = ListingSerializer(data=request.data, context={'request': request})
-        if posts_serializer.is_valid():
-            posts_serializer.save()
+        listing_serializer = ListingSerializer(data=request.data, context={'request': request})
+        if listing_serializer.is_valid():
+            listing_serializer.save()
 
-            get_predicted_price() # ! currently not returning anything
-            
-            return Response(posts_serializer.data, status=status.HTTP_201_CREATED)
+            price_prediction = get_predicted_price()
+
+            # Calling the PDF generator
+            generate_pdf(price_prediction)
+
+            # Deleting user data because it is now obselete
+            Listing.objects.all().delete()
+
+            return Response(listing_serializer.data, status=status.HTTP_201_CREATED)
         else:
-            print('error', posts_serializer.errors)
-            return Response(posts_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            print('error', listing_serializer.errors)
+            return Response(listing_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 # This is called when the user clicks the appraise button in the frontend after saving the entry into the database
@@ -44,11 +51,13 @@ def get_predicted_price():
         encoded_input_data = encode_data(user_input_data)
         predicted_price = calc_predicted_price(encoded_input_data)
         
+
+        # comps is currently returned in a list. Waiting to change until we are ready to print it in the PDF
         
-        #comps is currently returned in a list. Waiting to change until we are ready to print it in the PDF
         comps = CompExtraction.FindComps(user_input_data)
         
         print('------------------------------------')
         print('it works! Heres the price:', predicted_price)
         print('------------------------------------')
-        # return predicted_price
+        
+        return predicted_price

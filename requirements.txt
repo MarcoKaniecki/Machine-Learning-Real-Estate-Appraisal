@@ -7,3 +7,5 @@ pandas
 numpy
 category_encoders
 joblib
+django-cleanup
+fpdf2

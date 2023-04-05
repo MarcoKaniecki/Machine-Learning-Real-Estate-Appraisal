@@ -19,7 +19,7 @@ NOMINAL_MAPPING = {
                      'Mitchel': 14, 'NAmes': 15, 'NPkVill': 16, 'NWAmes': 17, 'NoRidge': 18, 'NridgHt': 19,
                      'OldTown': 20, 'SWISU': 21, 'Sawyer': 22, 'SawyerW': 23, 'Somerst': 24, 'StoneBr': 25,
                      'Timber': 26, 'Veenker': 27},
-    'Bldg.Type': {'1Fam': 0, '2fmCon': 1, 'Duplex': 2, 'Twnhs': 3, 'TwnhsE': 4},
+    'Bldg.Type': {'1Fam': 0, '2FmCon': 1, 'Duplex': 2, 'Twnhs': 3, 'TwnhsE': 4},
     'House.Style': {'1.5Fin': 0, '1.5Unf': 1, '1Story': 2, '2.5Fin': 3, '2.5Unf': 4, '2Story': 5, 'SFoyer': 6, 'SLvl': 7},
     'Exterior.1st': {'AsbShng': 0, 'AsphShn': 1, 'BrkComm': 2, 'BrkFace': 3, 'CBlock': 4, 'CemntBd': 5, 'HdBoard': 6,
                      'ImStucc': 7, 'MetalSd': 8, 'Plywood': 9, 'PreCast': 10, 'Stone': 11, 'Stucco': 12, 'VinylSd': 13,
@@ -60,7 +60,7 @@ DECODE_DATABASE_NAMES = {
         'SWISU': 'South & West of Iowa State University', 'Sawyer': 'Sawyer', 'SawyerW': 'Sawyer West', 'Somerst': 'Somerset', 'StoneBr': 'Stone Brook',
         'Timber': 'Timberland', 'Veenker': 'Veenker'},
     'Bldg.Type': {
-        '1Fam': 'Single-family Detached', '2fmCon': 'Two-family Conversion; originally built as one-family dwelling', 
+        '1Fam': 'Single-family Detached', '2FmCon': 'Two-family Conversion; originally built as one-family dwelling', 
         'Duplex': 'Duplex', 'Twnhs': 'Townhouse End Unit', 'TwnhsE': 'Townhouse Inside Unit'},
     'House.Style': {
         '1.5Fin': 'One and one-half story: 2nd level finished', '1.5Unf': 'One and one-half story: 2nd level unfinished', 
