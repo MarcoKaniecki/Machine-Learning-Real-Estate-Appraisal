@@ -79,6 +79,25 @@ def SortRows( input_params, cursor ):
 #if there are less than 5 entries, return them then run the sort algorithm to fill remaining spaces
 #if there are more than 5 entries, run the sort algorithm on the entries to return 5
 
+def EncodeData( user_input_data ):
+    encoding_dict = {
+        ('garageQual','kitchenQual','overallQual','overallCond'): {'Ex': 4, 'Gd': 3, 'TA': 2, 'Fa': 1, 'Po': 0},
+        'bsmtFinType1': {'Ex': 4, 'Gd': 3, 'TA': 2, 'Fa': 1, 'Po': 0, 'NA': -1}, 
+        'centralAir': {'Y': 1, 'N': 0},                                                 
+        'electrical': {'Mix': 1.5, 'FuseP': 0, 'FuseF': 1, 'FuseA': 2, 'SBrkr': 3},
+        'fence': {'GdPrv': 4, 'MnPrv': 3, 'GdWo': 2, 'MnWw': 1, 'NA': 0}
+        # add more fields and their encodings here
+    }
+
+    # Loop through the dictionary and encode the values
+    for key in user_input_data:
+        if key in encoding_dict:
+            encoding = encoding_dict[key]
+            user_input_data[key] = encoding.get(user_input_data[key], user_input_data[key])
+    
+    return user_input_data
+
+
 def FindRow( input_params, cursor ):
     sorted_rows = SortRows( input_params, cursor )
 
@@ -153,7 +172,8 @@ def FindComps(user_input_data):
     with get_db() as conn:
         cursor = conn.cursor()
         # print the Comps we found
-        rows = FindRow( user_input_data, cursor )
+        encoded_data = EncodeData(user_input_data)
+        rows = FindRow( encoded_data, cursor )
         comp_idx = 1
         for row in rows:
             print("Comp #", comp_idx, ": ", row, "\n")
