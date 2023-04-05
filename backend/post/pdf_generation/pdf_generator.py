@@ -5,6 +5,7 @@ from django.forms import model_to_dict
 from post.models import *
 from globals import DECODE_DATABASE_NAMES
 
+
 # Decoding features to make them more readable
 def dict_decode(in_dict):
     out_dict = in_dict
@@ -15,7 +16,7 @@ def dict_decode(in_dict):
                 out_dict[key] = decoded_name
     return out_dict
 
-def generate_pdf():
+def generate_pdf(price_prediction):
 
     # Path of this python file
     current_file_path = os.path.abspath(__file__)
@@ -29,6 +30,9 @@ def generate_pdf():
 
     # Price for testing
     price = '999,999.00'
+
+    # Price from ML model
+    price = str(price_prediction)
 
     # Adding price to listing dictionary
     listing_dict['price'] = price
@@ -124,21 +128,20 @@ def generate_pdf():
 
     for key, value in listing_dict.items():
         if not count % num_columns: # Only happens every third time
-            feature_string += "</tr><tr><font size=7>" + num_columns*seperator_cell + "</font></tr>" 
-            feature_string += "<tr><font size=11>"
+            feature_string += "<tr><font size=7>" + num_columns*seperator_cell + "</font></tr>" 
+            feature_string += "<tr>"
 
         if key != 'id':
           # Cell with name of feature and feature value
           feature_string += "<td>" + str(key) + ':  ' + str(value) + "</td>" 
-        
 
+        # When count is a multiple of the number of columns, a new row is created to which we add cells
         count += 1
 
 
     # Table creation
     pdf.write_html("""
-    <font size=8>
-    <table width="100%">
+    <font size=8><table width="100%">
       <thead>
         <tr>
           <th width="33%"></th>
@@ -170,7 +173,7 @@ def generate_pdf():
     table_string += "<td>" + str(comp_2_dict["price"]) + "</td>"
     table_string += "<td>" + str(comp_3_dict["price"]) + "</td>"
     table_string += "<td>" + str(comp_4_dict["price"]) + "</td>"
-    table_string += "<td>" + str(comp_5_dict["price"]) + "</td></font>"
+    table_string += "<td>" + str(comp_5_dict["price"]) + "</td></font></tr>"
     # Row for line separation
     table_string += "<tr><font size=7>" + 7*seperator_cell + "</font></tr>"
 
@@ -183,15 +186,15 @@ def generate_pdf():
             table_string += "<td>" + str(comp_2_dict[str(key)]) + "</td>"
             table_string += "<td>" + str(comp_3_dict[str(key)]) + "</td>"
             table_string += "<td>" + str(comp_4_dict[str(key)]) + "</td>"
-            table_string += "<td>" + str(comp_5_dict[str(key)]) + "</td></font>"
+            table_string += "<td>" + str(comp_5_dict[str(key)]) + "</td></font></tr>"
             # Row for line separation
             table_string += "<tr><font size=7>" + 7*seperator_cell + "</font></tr>"
 
 
     # Table creation
     pdf.write_html("""
-    <font size=9>
-    <table width="100%" border=1>
+    
+    <font size=9><table width="100%" border=1>
       <thead>
         <tr>
           <th width="14%">Feature</th>

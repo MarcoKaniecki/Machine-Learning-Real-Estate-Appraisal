@@ -30,10 +30,10 @@ class PostView(APIView):
         if listing_serializer.is_valid():
             listing_serializer.save()
 
-            # get_predicted_price() # ! currently not returning anything
+            price_prediction = get_predicted_price()
 
             # Calling the PDF generator
-            generate_pdf()
+            generate_pdf(price_prediction)
 
             # Deleting user data because it is now obselete
             Listing.objects.all().delete()
@@ -51,10 +51,11 @@ def get_predicted_price():
         encoded_input_data = encode_data(user_input_data)
         predicted_price = calc_predicted_price(encoded_input_data)
         
-        #comps is currently returned in a list. Waiting to change until we are ready to print it in the PDF
+        # comps is currently returned in a list. Waiting to change until we are ready to print it in the PDF
         comps = CompExtraction.FindComps(user_input_data)
         
         print('------------------------------------')
         print('it works! Heres the price:', predicted_price)
         print('------------------------------------')
-        # return predicted_price
+        
+        return predicted_price
