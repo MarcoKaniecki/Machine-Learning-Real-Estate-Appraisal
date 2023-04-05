@@ -8,6 +8,9 @@ import subprocess
 import webbrowser
 import os
 
+from backend.CompDatabase import CreateDatabase 
+from backend.CompDatabase import InsertDataFromCSV
+
 print( os.getcwd() )
 
 # Define the command line arguments
@@ -38,6 +41,10 @@ webbrowser.open("http://127.0.0.1:8000/api/posts/")
 #You will need to refresh this page after the script finishes running. 
 
 os.chdir("backend")
+
+#Create and populate data in comps database
+CreateDatabase()
+InsertDataFromCSV("backend/ML_components/format_and_train_model/ames.csv")
 
 for command in backend_commands:
     try:
