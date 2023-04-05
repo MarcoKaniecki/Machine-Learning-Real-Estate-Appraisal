@@ -1,6 +1,5 @@
-import pandas as pd
-import json
 from post.models import Listing
+from django.forms import model_to_dict
 
 
 # get most recent listing in database, return in form of python dict
@@ -8,12 +7,9 @@ from post.models import Listing
 def get_database_data():
     # check if database contains any data
     if Listing.objects.exists():
-        posts = Listing.objects.all()  # get all data from database
-        df = pd.DataFrame(posts.values())  # convert to dataframe
-        data = df.to_json(orient='records')  # convert to json
-        data = json.loads(data)  # convert to python dict
-        # return most recent entry in database
-        return data[-1]
+        listing = Listing.objects.last()  # get most recent listing
+        listing = model_to_dict(listing)  # convert model to dict
+        return listing
     return 0
 
 
