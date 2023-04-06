@@ -16,7 +16,7 @@ def dict_decode(in_dict):
                 out_dict[key] = decoded_name
     return out_dict
 
-def generate_pdf(price_prediction):
+def generate_pdf(price_prediction, comps):
 
     # Path of this python file
     current_file_path = os.path.abspath(__file__)
@@ -37,12 +37,17 @@ def generate_pdf(price_prediction):
     # Adding price to listing dictionary
     listing_dict['price'] = price
 
-    # Comps for testing
-    comp_1_dict = listing_dict.copy()
-    comp_2_dict = listing_dict.copy()
-    comp_3_dict = listing_dict.copy()
-    comp_4_dict = listing_dict.copy()
-    comp_5_dict = listing_dict.copy()
+    comps_count = len(comps)
+    if comps_count < 5:
+        print("Wrong number of comps passed to pdf generator.\n")
+        print(comps_count, " comps were passed. Terminating PDF generation...\n")
+        print(comps)
+        return 1
+    comp_1_dict = comps[0].copy()
+    comp_2_dict = comps[1].copy()
+    comp_3_dict = comps[2].copy()
+    comp_4_dict = comps[3].copy()
+    comp_5_dict = comps[4].copy()
     
     
 
@@ -226,4 +231,4 @@ def generate_pdf(price_prediction):
 
 
     # Saving PDF
-    pdf.output('./Report.pdf')
+    pdf.output('../frontend/src/assets/Appraisal-Report.pdf', 'F')
