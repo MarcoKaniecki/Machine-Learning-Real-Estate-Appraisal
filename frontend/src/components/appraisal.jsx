@@ -4,6 +4,8 @@ import { BsImages, BsCardText } from 'react-icons/bs'
 
 import supportImg from '../assets/appraisal-bg.png'
 
+import appraisal_pdf from '../assets/Appraisal-Report.pdf'
+
 /* Toast is used to display a quick pop-up message for confirmation when the form is submitted */
 const Toast = ({ message, duration = 3000, onClose }) => {
   const [show, setShow] = useState(true);
@@ -132,6 +134,14 @@ const Appraisal = () => {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+
+  const handleButtonClick = () => {
+    setIsButtonDisabled(true);
+    setTimeout(() => setIsButtonDisabled(false), 5000);
   };
 
 
@@ -656,13 +666,22 @@ const Appraisal = () => {
             <div className='text-center'>
               <input
                 type="submit"
-                value="Appraise!" onClick={handleShowToast}
+                value="Appraise!" onClick={() => { handleShowToast() }} disabled={isButtonDisabled}
                 className="py-3 px-6 sm:w-[60%] md:w-[30%] my-4 shadow-xl text-white border bg-indigo-600 border-indigo-600
                 hover:bg-transparent hover:text-indigo-600 rounded-md cursor-pointer"
               />
               {showToast && (
                 <Toast message="Form submitted!" duration={3000} onClose={handleHideToast} />
               )}
+            </div>
+            <div className='text-center'>
+              <button disabled={!isButtonDisabled} className="py-3 px-6 ">
+                <a href={appraisal_pdf}
+                        download="Appraisal_Report.pdf"
+                        type="application/pdf">
+                    Download PDF    
+                </a>
+              </button>
             </div>
           </div>
         </div>
