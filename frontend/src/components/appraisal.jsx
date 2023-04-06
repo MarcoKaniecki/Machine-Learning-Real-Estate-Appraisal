@@ -258,7 +258,7 @@ const Appraisal = () => {
                       <option value="IDOTRR">Iowa DOT and Rail Road</option>
                       <option value="MeadowV">Meadow Village</option>
                       <option value="Mitchel">Mitchell</option>
-                      <option value="Names">North Ames</option>
+                      <option value="NAmes">North Ames</option>
                       <option value="NoRidge">Northridge</option>
                       <option value="NPkVill">Northpark Villa</option>
                       <option value="NridgHt">Northridge Heights</option>
@@ -282,7 +282,7 @@ const Appraisal = () => {
                       <option value="" disabled selected>Select an option</option>
                       <option value="1Fam">Single-family Detached</option>
                       <option value="2FmCon">Two-family Conversion; originally bult as one-family dwelling</option>
-                      <option value="Duplx">Duplex</option>
+                      <option value="Duplex">Duplex</option>
                       <option value="TwnhsE">Townhouse End Unit</option>
                       <option value="TwnhsI">Townhouse Inside Unit</option>
                     </select>

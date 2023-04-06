@@ -30,10 +30,10 @@ class PostView(APIView):
         if listing_serializer.is_valid():
             listing_serializer.save()
 
-            price_prediction = get_predicted_price()
+            price_prediction, comps = get_predicted_price()
 
             # Calling the PDF generator
-            generate_pdf(price_prediction)
+            generate_pdf(price_prediction, comps)
 
             # Deleting user data because it is now obselete
             Listing.objects.all().delete()
@@ -60,4 +60,4 @@ def get_predicted_price():
         print('it works! Heres the price:', predicted_price)
         print('------------------------------------')
         
-        return predicted_price
+        return predicted_price, comps
