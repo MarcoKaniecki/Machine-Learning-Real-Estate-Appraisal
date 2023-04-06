@@ -4,7 +4,9 @@ from datetime import date
 from django.forms import model_to_dict
 from post.models import *
 from globals import DECODE_DATABASE_NAMES
+import locale
 
+locale.setlocale( locale.LC_ALL, '')
 
 # Decoding features to make them more readable
 def dict_decode(in_dict):
@@ -43,6 +45,12 @@ def generate_pdf(price_prediction, comps):
         print(comps_count, " comps were passed. Terminating PDF generation...\n")
         print(comps)
         return 1
+    i = 0
+    for row in comps:
+        print("Comp dict ", i, ": ", row, "\n" )
+        i += 1
+
+
     comp_1_dict = comps[0].copy()
     comp_2_dict = comps[1].copy()
     comp_3_dict = comps[2].copy()
@@ -118,7 +126,7 @@ def generate_pdf(price_prediction, comps):
     pdf.add_page()
     pdf.cell(0,0,'Results of Appraisal', align='C', new_x="LMARGIN", new_y="NEXT")
     pdf.set_y(90)
-    pdf.cell(0,40,'Evaluation: $' + price, align='C', new_x="LMARGIN", new_y="NEXT")
+    pdf.cell(0,40,'Evaluation: ' + locale.currency( int(price), grouping = True), align='C', new_x="LMARGIN", new_y="NEXT")
     pdf.cell(0,0,'Features considered', align='L', new_x="LMARGIN", new_y="NEXT")
     
     # Constructing the string that will populate the html table

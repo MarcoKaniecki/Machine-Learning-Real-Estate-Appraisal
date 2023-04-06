@@ -1,5 +1,5 @@
 import sys, sqlite3, csv, os
-import ColumnNames
+from CompDatabase import ColumnNames
 
 argCount = len(sys.argv)
 
@@ -10,7 +10,7 @@ cursor = connection.cursor()
 
 if argCount == 1:
     print('Include the CSV file(s) to add to the database as command line arguments when running InsertDataFromCSV.py.')
-    sys.exit()
+  #  sys.exit()
 
 def ReadCSVFile(filename):
 

@@ -54,7 +54,7 @@ def get_predicted_price():
 
         # comps is currently returned in a list. Waiting to change until we are ready to print it in the PDF
         
-        #comps = CompExtraction.FindComps(user_input_data)
+        comps = CompExtraction.FindComps(user_input_data)
         
         print('------------------------------------')
         print('it works! Heres the price:', predicted_price)

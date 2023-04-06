@@ -14,10 +14,10 @@ def get_db():
     # exist yet.
     if not hasattr(local, 'db'):
         try:
-            local.db = sqlite3.connect( os.getcwd() + '\\backend\CompDatabase\comps.db' )
+            local.db = sqlite3.connect( os.getcwd() + '\CompDatabase\comps.db' )
         except sqlite3.OperationalError as e:
             print("sqlite3 Operational Error: ", e)
-            print("Attempted to connect to database at: ", os.getcwd() + '\\backend\CompDatabase\comps.db')
+            print("Attempted to connect to database at: ", os.getcwd() + '\CompDatabase\comps.db')
             exit(1)
     print('Connected to database successfully.\n')
     return local.db
