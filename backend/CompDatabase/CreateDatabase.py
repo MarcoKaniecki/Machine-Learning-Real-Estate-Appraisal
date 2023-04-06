@@ -3,7 +3,8 @@ import os
 import sqlite3
 print(sqlite3.sqlite_version)
 
-connection = sqlite3.connect( os.getcwd() + '\\backend\CompDatabase\comps.db' )
+
+connection = sqlite3.connect( os.getcwd() + '/backend/CompDatabase/comps.db' )
 
 print( "Connected to database successfully.\n" )
 
@@ -54,3 +55,4 @@ print(cursor.fetchall())
 cursor.execute("SELECT COUNT(*) FROM pragma_table_info('Comps');")
 print("Columns added: ", cursor.fetchall(), "\n")
 print("done.\n")
+connection.commit()

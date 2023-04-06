@@ -67,7 +67,7 @@ remainingArgs = argCount
 #TODO: test for multiple file inputs at once
 rows_processed = 0
 while remainingArgs > 1:
-    rows_processed += ReadCSVFile(os.getcwd() + '\\' + sys.argv[argCount - remainingArgs + 1])
+    rows_processed += ReadCSVFile(os.getcwd() + '/' + sys.argv[argCount - remainingArgs + 1])
     remainingArgs -= 1
 print("Rows added to Comps Table: " + str(rows_processed))
 connection.commit()

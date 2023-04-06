@@ -30,10 +30,9 @@ class PostView(APIView):
         if listing_serializer.is_valid():
             listing_serializer.save()
 
-            price_prediction = get_predicted_price()
 
-            # Calling the PDF generator
-            generate_pdf(price_prediction)
+            handle_pdf_generation()
+
 
             # Deleting user data because it is now obselete
             Listing.objects.all().delete()
@@ -45,19 +44,21 @@ class PostView(APIView):
 
 
 # This is called when the user clicks the appraise button in the frontend after saving the entry into the database
-def get_predicted_price():
-    user_input_data = get_database_data()
-    if user_input_data != 0:
-        encoded_input_data = encode_data(user_input_data)
+def get_predicted_price(data):
+    if data != 0:
+        encoded_input_data = encode_data(data)
         predicted_price = calc_predicted_price(encoded_input_data)
-        
-
-        # comps is currently returned in a list. Waiting to change until we are ready to print it in the PDF
-        
-        #comps = CompExtraction.FindComps(user_input_data)
-        
-        print('------------------------------------')
-        print('it works! Heres the price:', predicted_price)
-        print('------------------------------------')
-        
         return predicted_price
+    
+
+def handle_pdf_generation():
+    user_input_data = get_database_data()
+    price_prediction = get_predicted_price(user_input_data)
+    #comps = CompExtraction.FindComps(user_input_data) # comps is currently returned in a list. Waiting to change until we are ready to print it in the PDF
+    
+    print('------------------------------------')
+    print('price_prediction:', price_prediction)
+    #print('comps:', comps)
+    print('------------------------------------')
+    # Calling the PDF generator
+    generate_pdf(price_prediction)
