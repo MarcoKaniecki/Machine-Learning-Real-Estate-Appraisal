@@ -155,3 +155,7 @@ yarn-debug.log*
 yarn-error.log*
 
 backend/media/*
+
+backend/CompDatabase/comps.db
+backend/Report.pdf
+backend/CompDatabase/ames.csv

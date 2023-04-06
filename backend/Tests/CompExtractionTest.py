@@ -1,7 +1,7 @@
-from CompDatabase import CompExtraction
+from backend.CompDatabase import CompExtraction
 
 #depending on configuration, may need to run from terminal using:
-#python -m Tests.CompExtractionTest
+#python -m backend.Tests.CompExtractionTest
 
 test_input1 = {
     "id": 1,

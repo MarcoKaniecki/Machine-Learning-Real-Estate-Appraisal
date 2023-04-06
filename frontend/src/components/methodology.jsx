@@ -43,8 +43,8 @@ const Methodology = () => {
                         </div>
                     </div>
                 </div>
-                <p className='text-xl py-8 text-gray-500 text-center'>To discuss collaboration opportunities, or to request availability in your region please 
-                    <a href="mailto:erin.chiasson@dal.ca; mr290856@dal.ca"> contact us</a>.
+                <p className='text-xl py-8 text-gray-500 text-center'>To discuss collaboration opportunities, or to request availability in your region please
+                    <a href="mailto:erin.chiasson@dal.ca; mr290856@dal.ca" className='py-1 text-indigo-600'> contact us</a>.
                 </p>
             </div>
         </div>

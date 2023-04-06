@@ -230,5 +230,5 @@ def generate_pdf(price_prediction, comps):
         pdf.image(image.image.path, x = Align.C, h = pdf.epw/3)
 
 
-    # Saving PDF
+    # Saving PDF to frotend for download
     pdf.output('../frontend/src/assets/Appraisal-Report.pdf', 'F')

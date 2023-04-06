@@ -57,6 +57,8 @@ def ReadCSVFile(filename):
             # Insert the selected and encoded values into the database
             connection.execute(sql_statement, encoded_values)
 
+            #TODO: handle integrity errors - possibly offer user to continue and assign unique values to IDs in CSV.
+
             row_count += 1
     return row_count
 
@@ -65,7 +67,7 @@ remainingArgs = argCount
 #TODO: test for multiple file inputs at once
 rows_processed = 0
 while remainingArgs > 1:
-    rows_processed += ReadCSVFile(os.getcwd() + sys.argv[argCount - remainingArgs + 1])
+    rows_processed += ReadCSVFile(os.getcwd() + '\\' + sys.argv[argCount - remainingArgs + 1])
     remainingArgs -= 1
 print("Rows added to Comps Table: " + str(rows_processed))
 connection.commit()

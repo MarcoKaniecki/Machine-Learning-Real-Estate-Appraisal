@@ -1,10 +1,8 @@
 #CompExtraction.py
 
 import sqlite3, os
-
 import threading
 from CompDatabase import ColumnNames
-
 
 # Create a thread-local storage object to hold the database connection
 # objects for each thread.
@@ -16,10 +14,10 @@ def get_db():
     # exist yet.
     if not hasattr(local, 'db'):
         try:
-            local.db = sqlite3.connect( os.getcwd() + '\CompDatabase\comps.db' )
+            local.db = sqlite3.connect( os.getcwd() + '\\backend\CompDatabase\comps.db' )
         except sqlite3.OperationalError as e:
             print("sqlite3 Operational Error: ", e)
-            print("Attempted to connect to database at: ", os.getcwd() + '\CompDatabase\comps.db')
+            print("Attempted to connect to database at: ", os.getcwd() + '\\backend\CompDatabase\comps.db')
             exit(1)
     print('Connected to database successfully.\n')
     return local.db
@@ -80,6 +78,7 @@ def SortRows( input_params, cursor ):
 #if there are less than 5 entries, return them then run the sort algorithm to fill remaining spaces
 #if there are more than 5 entries, run the sort algorithm on the entries to return 5
 
+#TODO Create a function to encode data here and when loading data into db
 def EncodeData( user_input_data ):
     encoding_dict = {
         ('garageQual','kitchenQual','overallQual','overallCond'): {'Ex': 4, 'Gd': 3, 'TA': 2, 'Fa': 1, 'Po': 0},
