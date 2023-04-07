@@ -6,7 +6,7 @@ ColumnNames = ("ID", "AREA", "SALEPRICE", "ZONING", "LOTAREA", "UTILITIES", "NEI
                     "TOTALBSMTSF", "HEATING", "HEATINGQC", "CENTRALAIR", "ELECTRICAL", "FULLBATH", "HALFBATH",
                     "BEDROOM", "KITCHEN", "KITCHENQUAL", "TOTRMSABVGRADE", "GARAGETYPE", "GARAGECARS", "GARAGEAREA", "GARAGEQUAL", "WOODDECKSF", "FENCE")
 
-dict_keys = {
+dict_keys = [
     "id", 
     "area", 
     "price",
@@ -42,4 +42,4 @@ dict_keys = {
     "garageArea", 
     "garageQual", 
     "woodDeckSF", 
-    "fence"}
+    "fence"]

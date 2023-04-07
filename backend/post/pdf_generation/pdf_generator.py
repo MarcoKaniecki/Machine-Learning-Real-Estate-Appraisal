@@ -18,6 +18,9 @@ def dict_decode(in_dict):
                 out_dict[key] = decoded_name
     return out_dict
 
+#TODO: fix column names from being displayed as variable names (lot.Area, etc)
+#TODO: improve spacing of document
+#TODO: remove magic numbers for formatting (font sizes, page sizes, etc)
 def generate_pdf(price_prediction, comps):
 
     # Path of this python file
@@ -175,6 +178,8 @@ def generate_pdf(price_prediction, comps):
     pdf.cell(0,0,'Feature Comparison with Similar Properties', align='C', new_x="LMARGIN", new_y="NEXT")
     pdf.set_y(80)
 
+    #TODO: Decode comps to show a more intuitive format display
+
     # Constructing the string that will populate the html table
     table_string = ""
     seperator_cell = '<td>____________</td>'
@@ -237,11 +242,5 @@ def generate_pdf(price_prediction, comps):
     for image in Image.objects.filter(listing = listing.id):
         pdf.image(image.image.path, x = Align.C, h = pdf.epw/3)
 
-
-<<<<<<< HEAD
-    # Saving PDF to frotend for download
-    pdf.output('../frontend/src/assets/Appraisal-Report.pdf', 'F')
-=======
     # Saving PDF
     pdf.output('../frontend/src/assets/Appraisal-Report.pdf', 'F')
->>>>>>> baf66c5c4b4436e308050172c23b73ec47994501

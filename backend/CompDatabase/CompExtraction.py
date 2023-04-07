@@ -3,6 +3,7 @@
 import sqlite3, os
 import threading
 from CompDatabase import ColumnNames
+import collections
 
 # Create a thread-local storage object to hold the database connection
 # objects for each thread.
@@ -170,7 +171,7 @@ def FindRow( input_params, cursor ):
     
 def ConvertRowToDict( row ):
     print("row 1: ", row )
-    comp_dict = dict(zip(ColumnNames.dict_keys, row))
+    comp_dict = collections.OrderedDict(zip(ColumnNames.dict_keys, row))
     return comp_dict
 
    
