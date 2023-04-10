@@ -159,3 +159,6 @@ backend/media/*
 backend/CompDatabase/comps.db
 backend/Report.pdf
 backend/CompDatabase/ames.csv
+
+frontend/src/assets/Appraisal-Report.pdf
+backend/post/pdf-generation/Appraisal-Report.pdf
