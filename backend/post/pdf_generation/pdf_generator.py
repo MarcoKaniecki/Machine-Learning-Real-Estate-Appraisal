@@ -4,7 +4,9 @@ from datetime import date
 from django.forms import model_to_dict
 from post.models import *
 from globals import DECODE_DATABASE_NAMES
+import locale
 
+locale.setlocale( locale.LC_ALL, '')
 
 # Decoding features to make them more readable
 def dict_decode(in_dict):
@@ -16,7 +18,10 @@ def dict_decode(in_dict):
                 out_dict[key] = decoded_name
     return out_dict
 
-def generate_pdf(price_prediction):
+#TODO: fix column names from being displayed as variable names (lot.Area, etc)
+#TODO: improve spacing of document
+#TODO: remove magic numbers for formatting (font sizes, page sizes, etc)
+def generate_pdf(price_prediction, comps):
 
     # Path of this python file
     current_file_path = os.path.abspath(__file__)
@@ -37,12 +42,23 @@ def generate_pdf(price_prediction):
     # Adding price to listing dictionary
     listing_dict['price'] = price
 
-    # Comps for testing
-    comp_1_dict = listing_dict.copy()
-    comp_2_dict = listing_dict.copy()
-    comp_3_dict = listing_dict.copy()
-    comp_4_dict = listing_dict.copy()
-    comp_5_dict = listing_dict.copy()
+    comps_count = len(comps)
+    if comps_count < 5:
+        print("Wrong number of comps passed to pdf generator.\n")
+        print(comps_count, " comps were passed. Terminating PDF generation...\n")
+        print(comps)
+        return 1
+    i = 0
+    for row in comps:
+        print("Comp dict ", i, ": ", row, "\n" )
+        i += 1
+
+
+    comp_1_dict = comps[0].copy()
+    comp_2_dict = comps[1].copy()
+    comp_3_dict = comps[2].copy()
+    comp_4_dict = comps[3].copy()
+    comp_5_dict = comps[4].copy()
     
     
 
@@ -113,7 +129,7 @@ def generate_pdf(price_prediction):
     pdf.add_page()
     pdf.cell(0,0,'Results of Appraisal', align='C', new_x="LMARGIN", new_y="NEXT")
     pdf.set_y(90)
-    pdf.cell(0,40,'Evaluation: $' + price, align='C', new_x="LMARGIN", new_y="NEXT")
+    pdf.cell(0,40,'Evaluation: ' + locale.currency( int(price), grouping = True), align='C', new_x="LMARGIN", new_y="NEXT")
     pdf.cell(0,0,'Features considered', align='L', new_x="LMARGIN", new_y="NEXT")
     
     # Constructing the string that will populate the html table
@@ -161,6 +177,8 @@ def generate_pdf(price_prediction):
     pdf.add_page()
     pdf.cell(0,0,'Feature Comparison with Similar Properties', align='C', new_x="LMARGIN", new_y="NEXT")
     pdf.set_y(80)
+
+    #TODO: Decode comps to show a more intuitive format display
 
     # Constructing the string that will populate the html table
     table_string = ""
@@ -224,6 +242,5 @@ def generate_pdf(price_prediction):
     for image in Image.objects.filter(listing = listing.id):
         pdf.image(image.image.path, x = Align.C, h = pdf.epw/3)
 
-
-    # Saving PDF to frotend for download
+    # Saving PDF
     pdf.output('../frontend/src/assets/Appraisal-Report.pdf', 'F')

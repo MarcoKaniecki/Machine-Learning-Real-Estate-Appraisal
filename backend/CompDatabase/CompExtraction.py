@@ -2,6 +2,8 @@
 
 import sqlite3, os
 import threading
+from CompDatabase import ColumnNames
+import collections
 
 # Create a thread-local storage object to hold the database connection
 # objects for each thread.
@@ -13,10 +15,10 @@ def get_db():
     # exist yet.
     if not hasattr(local, 'db'):
         try:
-            local.db = sqlite3.connect( os.getcwd() + '\\backend\CompDatabase\comps.db' )
+            local.db = sqlite3.connect( os.getcwd() + '\CompDatabase\comps.db' )
         except sqlite3.OperationalError as e:
             print("sqlite3 Operational Error: ", e)
-            print("Attempted to connect to database at: ", os.getcwd() + '\\backend\CompDatabase\comps.db')
+            print("Attempted to connect to database at: ", os.getcwd() + '\CompDatabase\comps.db')
             exit(1)
     print('Connected to database successfully.\n')
     return local.db
@@ -119,6 +121,7 @@ def FindRow( input_params, cursor ):
             rows_to_return.append(row)
 
         remaining_rows = 5 - row_ctr
+        print("remaining rows: ", remaining_rows)
 
         #now run the query again without filtering to get the remaining amount of rows
         query = '''
@@ -135,7 +138,7 @@ def FindRow( input_params, cursor ):
         ABS( YEARREMOD - :yearRemod ) * 0.01300 +
         ABS( EXTERIOR1 - :exterior1 ) * 0.004974 + 
         ABS( EXTERQUAL - :exterQual ) * 0.0049744 + 
-        ABS( EXTERCOND - :extercond ) * 0.000912 + 
+        ABS( EXTERCOND - :exterCond ) * 0.000912 + 
         ( FOUNDATION - :foundation ) * 0.0010156 + 
         ABS( BSMTFIN1 - :bsmtFinType1 ) * 0.005651 +
         ABS( BSMTFINSF1 - :bsmtFindSF1 ) * 0.02748 +
@@ -165,6 +168,12 @@ def FindRow( input_params, cursor ):
         return rows_to_return    
     else:
          return sorted_rows
+    
+def ConvertRowToDict( row ):
+    print("row 1: ", row )
+    comp_dict = collections.OrderedDict(zip(ColumnNames.dict_keys, row))
+    return comp_dict
+
    
 
 def FindComps(user_input_data):
@@ -173,10 +182,13 @@ def FindComps(user_input_data):
         # print the Comps we found
         encoded_data = EncodeData(user_input_data)
         rows = FindRow( encoded_data, cursor )
+
+        comp_dicts = list(dict())
         comp_idx = 1
         for row in rows:
             print("Comp #", comp_idx, ": ", row, "\n")
+            comp_dicts.append(ConvertRowToDict(row))
             comp_idx += 1
     #may need to change format
-    close_db()
-    return rows
+    close_db() 
+    return comp_dicts

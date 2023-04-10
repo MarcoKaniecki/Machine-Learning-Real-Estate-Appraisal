@@ -16,7 +16,10 @@ print( os.getcwd() )
 # Define the command line arguments
 root_commands = [
     'py -m venv env',
-    '.\\env\\Scripts\\activate'
+    '.\\env\\Scripts\\activate'#,
+    #TODO: add database to windowsLauncher
+#    'python backend/CompDatabase/CreateDatabase.py',
+#    'python backend/CompDatabase/InsertDataFromCSV.py backend/ML_components/format_and_train_model/ames.csv'
 ]
 
 backend_commands = [
@@ -42,9 +45,6 @@ webbrowser.open("http://127.0.0.1:8000/api/posts/")
 
 os.chdir("backend")
 
-#Create and populate data in comps database
-CreateDatabase()
-InsertDataFromCSV("backend/ML_components/format_and_train_model/ames.csv")
 
 for command in backend_commands:
     try:

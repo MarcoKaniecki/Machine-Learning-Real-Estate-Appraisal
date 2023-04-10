@@ -3,7 +3,7 @@ from backend.CompDatabase import CompExtraction
 #depending on configuration, may need to run from terminal using:
 #python -m backend.Tests.CompExtractionTest
 
-test_input = {
+test_input1 = {
     "id": 1,
     "area": 1656,
     "zone": "RL",
@@ -41,4 +41,41 @@ test_input = {
     "fence": "NA"
 }
 
-comps = CompExtraction.FindComps(test_input)
+test_input2 = {
+    "id": 2591,
+    "area": 2039,
+    "zone": "RL",
+    "lotArea": 21299,
+    "utilities": "AllPub",
+    "neighborhood": "Gilbert",
+    "bldgType": "1Fam",
+    "houseStyle": "1Story",
+    "overallQual": 7,
+    "overallCond": 5,
+    "yearBuilt": 1941,
+    "yearRemod": 1963,
+    "exterior1": "BrkFace",
+    "exterQual": "Gd",
+    "exterCond": "TA",
+    "foundation": "CBlock",
+    "bsmtFinType1": "Unf",
+    "bsmtFindSF1": 0,
+    "heating": "GasA",
+    "heatingQC": "Fa",
+    "centralAir": "Y",
+    "electrical": "SBrkr",
+    "fullBath": 1,
+    "halfBath": 0,
+    "bedroom": 3,
+    "kitchen": 1,
+    "kitchenQual": "TA",
+    "totRmsAbvGrd": 7,
+    "garageType": "Attchd",
+    "garageCars": 3,
+    "garageArea": 791,
+    "garageQual": "TA",
+    "woodDeckSF": 0,
+    "fence": "NA"
+}
+
+comps = CompExtraction.FindComps(test_input2)
