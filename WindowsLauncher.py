@@ -17,6 +17,7 @@ print( os.getcwd() )
 root_commands = [
     'py -m venv env',
     '.\\env\\Scripts\\activate'#,
+    #TODO: add database to windowsLauncher
 #    'python backend/CompDatabase/CreateDatabase.py',
 #    'python backend/CompDatabase/InsertDataFromCSV.py backend/ML_components/format_and_train_model/ames.csv'
 ]
