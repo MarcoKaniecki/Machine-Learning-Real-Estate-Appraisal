@@ -268,7 +268,7 @@ const Appraisal = () => {
                       <option value="IDOTRR">Iowa DOT and Rail Road</option>
                       <option value="MeadowV">Meadow Village</option>
                       <option value="Mitchel">Mitchell</option>
-                      <option value="NAmes">North Ames</option>
+                      <option value='"NAmes"'>North Ames</option>
                       <option value="NoRidge">Northridge</option>
                       <option value="NPkVill">Northpark Villa</option>
                       <option value="NridgHt">Northridge Heights</option>
